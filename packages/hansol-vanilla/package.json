@@ -1,11 +1,15 @@
 {
   "name": "hansol-vanilla",
-  "version": "1.0.0",
-  "description": "Vending machine onboarding project",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
-  "author": "hansol",
-  "license": "Apache-2.0"
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
 }
