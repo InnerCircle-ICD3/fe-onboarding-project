@@ -1,12 +1,15 @@
 {
   "name": "jiyeong-vanilla",
   "version": "1.0.0",
-  "description": "PROJECT 1. Back to the Basic",
-  "main": "index.js",
+  "description": "Vanilla JavaScript Project",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "http-server src -p 3000"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
 }
