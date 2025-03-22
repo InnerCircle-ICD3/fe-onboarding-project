@@ -1,0 +1,108 @@
+$primary-color: #3498db;
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
+
+button {
+  height: 60px;
+  min-width: 70px;
+  max-width: 100px;
+  background-color: lightblue; // 파스텔 핑크
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.15);
+  
+  &:hover {
+    background-color: #f4a5ae; // 더 진한 핑크
+    transform: translateY(-2px);
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  &:active {
+    background-color: #e8919c; // 더 어두운 핑크
+    transform: translateY(2px);
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.vending-machine-container{
+  width: 100%;
+  max-width: 1000px;
+  // width: 500px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  @media (max-width: 670px) {
+    flex-direction: column;
+    // .vending-machine{
+    //   width: 100%;
+    // }
+    // .control-panel {
+    //   width: 100%;
+    // }
+  }
+  .round-style {
+    border-radius: 5px;
+    padding: 10px;
+  }
+  .screen{
+    background-color: white;
+    text-align: center;
+    height: 40px;
+    min-width: 100px;
+    line-height: 40px;
+    @extend .round-style;
+  }
+
+  .vending-machine {
+    // width:60%;
+    @extend .round-style;
+    background-color: gray;
+    @extend .screen;
+    .products{
+      margin: 10px auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr); // 3열 그리드
+      gap: 10px;
+      width: 300px; // 원하는 크기로 조절
+    }
+    height: auto;
+
+  }
+
+  .control-panel {
+    // width:40%;
+    @extend .round-style;
+    background-color: darkgray;
+    .money-input{
+      display: flex;
+      width: 100%;
+      margin-bottom: 10px;
+      .screen{
+        width: 100%;
+        @extend .screen;
+      }
+      .buttons{
+        margin-left: 10px;
+        display: flex;
+        gap: 10px;
+        word-wrap: normal;
+      }
+      
+    }
+    .log{
+      background-color: white;
+      @extend .round-style
+    }
+  }
+
+}
