@@ -9,8 +9,19 @@ ul {
   margin: 0;
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 10px;
+
+  width: 100%;
+}
+
 .box--wrapper {
   width: 40%;
+  height: 100%;
+
   padding: 20px 15px;
 }
 
@@ -42,11 +53,19 @@ ul {
 
   background-color: #0984e3;
 
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.button > *:first-child {
   font-size: 1.2rem;
   font-weight: 700;
+}
+
+.button:hover {
+  background-color: #0c2461;
+}
+
+.button:active {
+  background-color: #1e3799;
+}
+
+.button > *:last-child {
+  font-size: 0.8rem;
+  font-weight: 600;
 }
