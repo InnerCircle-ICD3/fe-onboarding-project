@@ -1,0 +1,67 @@
+.control-panel {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-display {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #dee2e6;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.control-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #339af0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.control-btn:hover {
+  background: #228be6;
+}
+
+.transaction-history {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.transaction-history p {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+@media (max-width: 768px) {
+  .control-panel {
+    margin-top: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .control-buttons {
+    flex-direction: column;
+  }
+}

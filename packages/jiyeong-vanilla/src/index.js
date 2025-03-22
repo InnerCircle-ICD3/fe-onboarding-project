@@ -1,19 +1,14 @@
-function createApp() {
-  function render() {
-    const app = document.getElementById("app");
-    return app;
-  }
+import { VendingMachine } from './components/VendingMachine/index.js';
+import { ControlPanel } from './components/ControlPanel/index.js';
 
-  function initialize() {
-    render();
-  }
+const App = () => {
+  return `
+    <div class="vending-machine-container">
+      ${VendingMachine()}
+      ${ControlPanel()}
+    </div>
+  `;
+};
 
-  return {
-    initialize,
-  };
-}
-
-window.addEventListener("DOMContentLoaded", () => {
-  const app = createApp();
-  app.initialize();
-});
+const root = document.getElementById('app');
+root.innerHTML = App();

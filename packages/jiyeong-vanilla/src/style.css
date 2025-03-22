@@ -1,3 +1,6 @@
+@import "./components/VendingMachine/index.css";
+@import "./components/ControlPanel/index.css";
+
 * {
   margin: 0;
   padding: 0;
@@ -5,20 +8,148 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  line-height: 1.6;
-  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#app {
+.vending-machine-container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
   max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 20px;
 }
 
-h1 {
-  font-size: 24px;
+/* 왼쪽 자판기 스타일 */
+.vending-machine {
+  flex: 2;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.balance-display {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: right;
+  font-size: 1.5rem;
   font-weight: bold;
-  color: #333;
+  margin-bottom: 1.5rem;
+  border: 2px solid #dee2e6;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.product-btn {
+  background: #e7f5ff;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s;
+}
+
+.product-btn:hover {
+  background: #d0ebff;
+  transform: translateY(-2px);
+}
+
+.product-btn span {
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+/* 오른쪽 컨트롤 패널 스타일 */
+.control-panel {
+  flex: 1;
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input-display {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border: 2px solid #dee2e6;
+}
+
+.control-buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.control-btn {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  background: #339af0;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.control-btn:hover {
+  background: #228be6;
+}
+
+.transaction-history {
+  flex: 1;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 200px;
+  overflow-y: auto;
+}
+
+.transaction-history p {
+  margin-bottom: 0.5rem;
+  color: #495057;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .vending-machine-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .products-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .control-buttons {
+    flex-direction: column;
+  }
 }
