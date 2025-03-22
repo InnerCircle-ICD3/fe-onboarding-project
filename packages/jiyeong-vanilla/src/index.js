@@ -13,7 +13,6 @@ function createApp() {
   };
 }
 
-// Start the application when DOM is fully loaded
 window.addEventListener("DOMContentLoaded", () => {
   const app = createApp();
   app.initialize();
