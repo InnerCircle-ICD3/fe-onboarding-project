@@ -11,7 +11,8 @@ const addButtonList = () => {
     const nameElement = document.createElement("span");
     const priceElement = document.createElement("span");
 
-    buttonElement.classList.add("button");
+    buttonElement.classList.add("button", "button--payment");
+    buttonElement.value = button.price.toString();
 
     nameElement.textContent = button.name;
     priceElement.textContent = button.price.toString();
