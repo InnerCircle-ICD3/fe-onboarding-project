@@ -2,6 +2,7 @@
 .machine {
     padding: 20px;
     background-color: #e8f5e9;  /* 연한 초록색 (영역 확인용) */
+    border: 1px solid #000;
 }
 
 /* 금액 표시창 */
@@ -9,6 +10,8 @@
     padding: 10px;
     margin-bottom: 20px;
     background-color: #e3f2fd; /* 연한 파란색 (영역 확인용) */
+    border: 1px solid #000;
+    text-align: center;
 }
 
 /* 3x3 상품 버튼 그리드 컨테이너 */
@@ -24,4 +27,17 @@
     display: flex;                /* 버튼 내부 요소들을 세로로 배치 */
     flex-direction: column;       /* 상품명과 가격을 위아래로 배치 */
     padding: 10px;
+    align-items: center;     /* flex 아이템 가로축 가운데 정렬 */
+    justify-content: center; /* flex 아이템 세로축 가운데 정렬 */
+}
+
+/* 상품명 스타일 */
+.machine-product-name {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* 가격 스타일 */
+.machine-product-price {
+    color: #555;
 } 

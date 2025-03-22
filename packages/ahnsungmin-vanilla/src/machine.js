@@ -33,4 +33,4 @@ function createProductButton(product) {
         <span class="machine-product-price">${product.price}원</span>
     `;
     return button;
-}
+} 
