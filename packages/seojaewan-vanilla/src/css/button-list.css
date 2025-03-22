@@ -1,12 +1,21 @@
 .button--wrapper {
+  height: 617px;
+  
   border: 1px solid #ffffff;
   background-color: #74b9ff;
+  
 }
 
 .button--list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
   gap: 10px;
+
+  max-height: 500px;
+  overflow-y: auto;
 
   margin-top: 10px;
 }
+
