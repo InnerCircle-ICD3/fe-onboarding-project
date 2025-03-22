@@ -19,6 +19,8 @@ const addButtonList = () => {
     buttonElement.appendChild(nameElement);
     buttonElement.appendChild(priceElement);
 
+    buttonWrapper.classList.add("size--third");
+
     buttonWrapper.appendChild(buttonElement);
     buttonListElement.appendChild(buttonWrapper);
   }

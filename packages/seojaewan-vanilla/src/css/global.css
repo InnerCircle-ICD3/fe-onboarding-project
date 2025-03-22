@@ -69,3 +69,7 @@ ul {
   font-size: 0.8rem;
   font-weight: 600;
 }
+
+.size--third {
+  width: calc((100% - 20px) / 3);
+}
