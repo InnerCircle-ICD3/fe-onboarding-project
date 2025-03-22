@@ -8,8 +8,16 @@
   - CSS3
 
 - **개발 도구**
-  - Live Server
+  - Vite (개발 서버)
 
+## 실행 방법
+```bash
+# 의존성 설치
+npm install
+
+# 개발 서버 실행
+npm run dev
+```
 
 ## 작업 상세 내용
 

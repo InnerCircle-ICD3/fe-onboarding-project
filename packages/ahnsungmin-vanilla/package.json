@@ -2,10 +2,15 @@
   "name": "ahnsungmin-vanilla",
   "version": "1.0.0",
   "description": "Vending machine onboarding project",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "author": "ahnsungmin",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
 }
