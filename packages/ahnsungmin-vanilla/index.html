@@ -5,9 +5,35 @@
     <!-- 반응형 웹을 위한 viewport 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자판기</title>
-    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="stylesheet" href="./src/styles/common.css">  <!-- 공통 스타일 -->
+    <link rel="stylesheet" href="./src/styles/machine.css"> <!-- 좌측 자판기 스타일 -->
+    <link rel="stylesheet" href="./src/styles/panel.css">  <!-- 우측 조작 패널 스타일 -->
 </head>
+
 <body>
+    <div class="total-container">
+        <!-- 1. 좌측 자판기 본체 -->
+        <div class="machine">
+            <div class="machine-money">0</div>
+            <div class="machine-products-container">
+                <!-- 자판기 버튼은 자바스크립트로 동적으로 값 넣어야 함
+                    <button class="machine-product">
+                        <span class="machine-product-name">콜라</span>
+                        <span class="machine-product-price">1500원</span>
+                    </button>
+                -->
+            </div>
+        </div>
+        
+
+
+
+
+        <!-- 2. 우측 조작 패널 -->
+        <div class="panel-container">
+            
+        </div>
+    </div>
     <script src="./src/index.js"></script>
 </body>
 </html> 
