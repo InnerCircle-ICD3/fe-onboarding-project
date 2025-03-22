@@ -13,6 +13,7 @@ const addButtonList = () => {
 
     buttonElement.classList.add("button", "button--payment");
     buttonElement.value = button.price.toString();
+    buttonElement.name = button.name;
 
     nameElement.textContent = button.name;
     priceElement.textContent = button.price.toString();

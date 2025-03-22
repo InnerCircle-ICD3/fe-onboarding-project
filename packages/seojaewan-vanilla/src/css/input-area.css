@@ -15,7 +15,7 @@
   -webkit-appearance: none;
 }
 
-.log--wrapper {
+.log--list {
   height: 518px;
   overflow-y: auto;
 
@@ -24,4 +24,8 @@
 
   padding: 20px;
   margin-top: 10px;
+}
+
+.log--item {
+  color:#000;
 }

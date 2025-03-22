@@ -1,3 +1,5 @@
+import addLogging from "./logging";
+
 class TotalPrice {
     private tempTotalPrice: number;
     private totalPrice: number;
@@ -37,10 +39,12 @@ class TotalPrice {
         this.tempTotalPrice = 0;
         this.isTemp = false;
 
+        addLogging(`${this.totalPrice}원 추가하였습니다.`);
+
         return this.totalPrice;
     }
 
-    public payment(value: number): number {
+    public payment(name: string, value: number): number {
         const currentValue = this.getCurrentValue();
 
         if(value > currentValue) {
@@ -52,6 +56,8 @@ class TotalPrice {
             this.totalPrice -= value;
         }
 
+        addLogging(`${name}을(를) 구매하였습니다.`);
+        addLogging(`${value}원을 사용했습니다.`);
          
         return this.totalPrice;
     }
