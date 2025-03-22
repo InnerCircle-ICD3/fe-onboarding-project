@@ -1,14 +1,17 @@
 {
   "name": "yujin-vanilla",
-  "version": "1.0.0",
-  "description": "온보딩 프로젝트 - Vanilla Javascript로 자판기만들기",
-  "main": "index.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "scss": "sass --watch src/styles.scss:src/styles.css"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "UNLICENSED",
-  "type": "commonjs"
+  "devDependencies": {
+    "vite": "^6.2.0"
+  },
+  "dependencies": {
+    "sass": "^1.86.0"
+  }
 }
