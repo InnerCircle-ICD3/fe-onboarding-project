@@ -39,7 +39,7 @@ class TotalPrice {
         this.tempTotalPrice = 0;
         this.isTemp = false;
 
-        addLogging(`${this.totalPrice}원 추가하였습니다.`);
+        addLogging(`${value}원 추가하였습니다.`);
 
         return this.totalPrice;
     }

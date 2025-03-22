@@ -1,6 +1,6 @@
-import addButtonList from "./button-list";
+import addButtonList from "./buttonList";
 import addPaymentEvent from "./payment";
-import addInputEvent from "./price-input";
+import addInputEvent from "./priceInput";
 import TotalPrice from "./totalPrice";
 
 export const totalPrice = new TotalPrice()
