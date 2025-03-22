@@ -52,12 +52,15 @@ class TotalPrice {
             this.totalPrice = value;
 
             this.isTemp = true;
+
+            addLogging(`금액이 부족합니다.`);
+            addLogging(`${name}을(를) 구매하지 못했습니다.`);
         } else {
             this.totalPrice -= value;
+        
+            addLogging(`${name}을(를) 구매하였습니다.`);
+            addLogging(`${value}원을 사용했습니다.`);
         }
-
-        addLogging(`${name}을(를) 구매하였습니다.`);
-        addLogging(`${value}원을 사용했습니다.`);
          
         return this.totalPrice;
     }
