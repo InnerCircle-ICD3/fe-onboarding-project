@@ -1,6 +1,6 @@
 import { numberWithComma, parseNumberWithComma } from "./commas";
 
-const priceInput = () => {
+const handlePriceInput = () => {
   const priceInputElement = document.querySelector(
     ".input"
   ) as HTMLInputElement;
@@ -16,7 +16,7 @@ const priceInput = () => {
   priceInputElement.value = "0";
 };
 
-const changePriceInput = (e: Event) => {
+const handlePriceChange = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
 
   if (Number(value) < 0) {
@@ -32,8 +32,8 @@ const addInputEvent = () => {
     ".input"
   ) as HTMLInputElement;
 
-  addPriceElement.addEventListener("click", priceInput);
-  priceInputElement.addEventListener("change", changePriceInput);
+  addPriceElement.addEventListener("click", handlePriceInput);
+  priceInputElement.addEventListener("change", handlePriceChange);
 };
 
 export default addInputEvent;
