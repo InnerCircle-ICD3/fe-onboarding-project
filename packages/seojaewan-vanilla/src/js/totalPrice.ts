@@ -10,22 +10,6 @@ class TotalPrice {
         this.isTemp = false;
     }
 
-    public getTempTotalPrice(): number {
-        return this.tempTotalPrice;
-    }
-
-    public setTempTotalPrice(value: number): void {
-        this.tempTotalPrice = value;
-    }
-
-    public getTotalPrice(): number {
-        return this.totalPrice;
-    }
-
-    public setTotalPrice(value: number): void {
-        this.totalPrice = value;
-    }
-
     private getCurrentValue(): number {
         return this.isTemp ? this.tempTotalPrice : this.totalPrice;
     }
