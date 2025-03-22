@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="global.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>vending machine - vanilla</title>
   </head>
@@ -16,21 +16,20 @@
       <div class="vending-machine">
         <div class="display">15,000</div>
         <div class="product-grid">
-          <button class="product">콜라<br /><span>1500원</span></button>
-          <button class="product">속이사이다<br /><span>1700원</span></button>
-          <button class="product">판타지판타<br /><span>1500원</span></button>
-          <button class="product">오뎅국물<br /><span>1800원</span></button>
-          <button class="product">부장라떼<br /><span>800원</span></button>
-          <button class="product">판타지판타<br /><span>1500원</span></button>
-          <button class="product">레드불<br /><span>2500원</span></button>
-          <button class="product">핫세븐<br /><span>1900원</span></button>
-          <button class="product">커피우유<br /><span>1400원</span></button>
+          <button class="product">콜라<br /><span class="product-price">1500원</span></button>
+          <button class="product">속이사이다<br /><span class="product-price">1700원</span></button>
+          <button class="product">판타지판타<br /><span class="product-price">1500원</span></button>
+          <button class="product">오뎅국물<br /><span class="product-price">1800원</span></button>
+          <button class="product">부장라떼<br /><span class="product-price">800원</span></button>
+          <button class="product">판타지판타<br /><span class="product-price">1500원</span></button>
+          <button class="product">레드불<br /><span class="product-price">2500원</span></button>
+          <button class="product">핫세븐<br /><span class="product-price">1900원</span></button>
+          <button class="product">커피우유<br /><span class="product-price">1400원</span></button>
         </div>
       </div>
   
       <!-- 오른쪽 입력창 -->
       <div class="control-panel">
-        <div class="balance">3,000</div>
         <div class="input-group">
           <input type="number" placeholder="금액 입력" />
           <button>투입</button>

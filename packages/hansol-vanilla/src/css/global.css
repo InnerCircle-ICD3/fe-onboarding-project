@@ -42,7 +42,7 @@ body {
   cursor: pointer;
 }
 
-.product span {
+.product-price {
   display: block;
   font-size: 0.9rem;
   margin-top: 4px;
@@ -52,6 +52,7 @@ body {
   width: 300px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
 }
 
