@@ -1,4 +1,5 @@
-import { numberWithComma, parseNumberWithComma } from "./commas";
+import { numberWithComma } from "./commas";
+import { totalPrice } from "./main";
 
 const handlePriceInput = () => {
   const priceInputElement = document.querySelector(
@@ -10,11 +11,18 @@ const handlePriceInput = () => {
   ) as HTMLDivElement;
 
   const price = Number(priceInputElement.value);
-  const totalPrice = parseNumberWithComma(totalPriceElement.textContent as string);
 
-  totalPriceElement.textContent = numberWithComma(price + totalPrice).toString();
+  const updatePrice = totalPrice.updateTotalPrice(price);
+
+  totalPriceElement.textContent = numberWithComma(updatePrice).toString();
   priceInputElement.value = "0";
 };
+
+const handleKeyDown = (e: KeyboardEvent) => {
+  if (e.key === "Enter") {
+    handlePriceInput();
+  }
+}
 
 const handlePriceChange = (e: Event) => {
   const value = (e.target as HTMLInputElement).value;
@@ -33,6 +41,8 @@ const addInputEvent = () => {
   ) as HTMLInputElement;
 
   addPriceElement.addEventListener("click", handlePriceInput);
+  priceInputElement.addEventListener("keydown", handleKeyDown);
+
   priceInputElement.addEventListener("change", handlePriceChange);
 };
 
