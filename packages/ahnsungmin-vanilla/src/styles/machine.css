@@ -1,0 +1,27 @@
+/* 1. 좌측 자판기 본체 */
+.machine {
+    padding: 20px;
+    background-color: #e8f5e9;  /* 연한 초록색 (영역 확인용) */
+}
+
+/* 금액 표시창 */
+.machine-money {
+    padding: 10px;
+    margin-bottom: 20px;
+    background-color: #e3f2fd; /* 연한 파란색 (영역 확인용) */
+}
+
+/* 3x3 상품 버튼 그리드 컨테이너 */
+.machine-products-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);   /* 3개의 열, 각각 동일한 너비(1fr) */
+    gap: 10px;                               /* 버튼 사이의 간격 */
+    background-color: #fff3e0;             /* 연한 주황색 (영역 확인용) */
+}
+
+/* 개별 상품 버튼 */
+.machine-product {
+    display: flex;                /* 버튼 내부 요소들을 세로로 배치 */
+    flex-direction: column;       /* 상품명과 가격을 위아래로 배치 */
+    padding: 10px;
+} 

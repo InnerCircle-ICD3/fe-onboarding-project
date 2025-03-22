@@ -1,0 +1,7 @@
+/* 2. 조작 패널 */
+.panel-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #fce4ec;
+}
