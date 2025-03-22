@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/css/global.css" />
     <link rel="stylesheet" href="/src/css/button-list.css" />
+    <link rel="stylesheet" href="/src/css/input-area.css" />
     <title>Calculate</title>
   </head>
   <body>
     <div id="app">
-      <section>
+      <section class="container">
         <article class="box--wrapper button--wrapper">
           <div class="value--view">15000</div>
           <ul class="button--list">
@@ -69,6 +70,16 @@
               </button>
             </li>
           </ul>
+        </article>
+
+        <article class="box--wrapper">
+          <div class="input--wrapper">
+            <input class="value--view input" type="number" />
+            <button class="button">투입</button>
+            <button class="button">반환</button>
+          </div>
+
+          <div class="log--wrapper"></div>
         </article>
       </section>
     </div>
