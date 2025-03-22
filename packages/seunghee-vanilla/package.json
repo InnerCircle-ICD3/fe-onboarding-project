@@ -1,0 +1,11 @@
+{
+  "name": "seunghee-vanilla",
+  "version": "1.0.0",
+  "description": "Sample onboarding project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "seunghee",
+  "license": "Apache-2.0"
+}
