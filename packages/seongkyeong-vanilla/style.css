@@ -1,4 +1,42 @@
-#app {
+.wrapper {
     margin: 0;
     display: flex;
+    width: 500px;
+    gap: 30px;
+}
+
+input {
+    font-size: 20px;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.left .menu-wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.right {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.control-box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-box input {
+    width: 50%;
+}
+
+.logging-box {
+    border: 1px solid black;
+    height: 100%;
 }
