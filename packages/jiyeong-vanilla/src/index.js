@@ -3,7 +3,7 @@ import { ControlPanel } from './components/ControlPanel/index.js';
 
 const App = () => {
   return `
-    <div class="vending-machine-container">
+    <div class="vending-machine-wrapper">
       ${VendingMachine()}
       ${ControlPanel()}
     </div>

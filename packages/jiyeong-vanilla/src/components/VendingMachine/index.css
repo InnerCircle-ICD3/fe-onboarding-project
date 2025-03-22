@@ -4,6 +4,8 @@
   border-radius: 12px;
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  min-width: 400px;
+  width: 100%;
 }
 
 .balance-display {
@@ -57,14 +59,18 @@
   color: #495057;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 576px) {
   .products-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 400px) {
+  .vending-machine {
+    padding: 1rem;
+  }
+
   .products-grid {
-    grid-template-columns: 1fr;
+    gap: 0.5rem;
   }
 }
