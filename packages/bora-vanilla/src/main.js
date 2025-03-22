@@ -9,6 +9,9 @@ const insertForm = document.querySelector(
   '.vending-machine-insert-form'
 );
 const priceInput = document.querySelector('.price-input');
+const logContainer = document.querySelector(
+  '.log-message-container > div'
+);
 
 // 버튼 렌더링
 const renderProducts = (productsData) => {
@@ -32,7 +35,10 @@ const renderProducts = (productsData) => {
 };
 
 const renderLog = (message) => {
-  console.log(message);
+  const logItem = document.createElement('div');
+  logItem.className = 'p-1 border-gray-200 text-sm';
+  logItem.textContent = `${message}`;
+  logContainer.appendChild(logItem);
 };
 
 // 금액 입력
