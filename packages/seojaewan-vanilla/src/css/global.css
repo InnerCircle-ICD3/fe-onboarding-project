@@ -57,6 +57,14 @@ ul {
   font-weight: 700;
 }
 
+.button:hover {
+  background-color: #0c2461;
+}
+
+.button:active {
+  background-color: #1e3799;
+}
+
 .button > *:last-child {
   font-size: 0.8rem;
   font-weight: 600;
