@@ -1,4 +1,4 @@
-import numberWithComma from "./numberWithComma";
+import { numberWithComma, parseNumberWithComma } from "./commas";
 
 const handlePriceInput = () => {
   const priceInputElement = document.querySelector(
@@ -9,9 +9,10 @@ const handlePriceInput = () => {
     ".total-price"
   ) as HTMLDivElement;
 
-  totalPriceElement.textContent = numberWithComma(
-    Number(priceInputElement.value)
-  ).toString();
+  const price = Number(priceInputElement.value);
+  const totalPrice = parseNumberWithComma(totalPriceElement.textContent as string);
+
+  totalPriceElement.textContent = numberWithComma(price + totalPrice).toString();
   priceInputElement.value = "0";
 };
 
