@@ -58,15 +58,12 @@
 }
 
 .transaction-history {
-  flex: 1;
-  background: #f8f9fa;
-  border-radius: 8px;
-  padding: 1rem;
-  min-height: 200px;
-  overflow-y: auto;
+  list-style: none;
+  padding: 0;
+  counter-reset: transaction;
 }
 
-.transaction-history p {
+.transaction-history li {
   margin-bottom: 0.5rem;
   color: #495057;
 }
