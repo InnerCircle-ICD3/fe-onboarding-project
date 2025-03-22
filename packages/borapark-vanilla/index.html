@@ -79,11 +79,10 @@
       <section class="vending-machine-input-box">
         <form role="form" aria-label="금액 입력">
           <fieldset>
-            <legend>User Amount</legend>
-            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required aria-invalid="false"
-              aria-describedby="error-message" />
-            <label for="user-amount">user amount</label>
-            <div id="error-message" class="error-message" role="alert" aria-live="polite"></div>
+            <legend class="fieldset-legend">투입 금액</legend>
+            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required
+              aria-invalid="false" />
+            <label for="user-amount">투입 금액</label>
             <button type="submit" aria-label="금액 투입">투입</button>
             <button type="button" aria-label="금액 반환">반환</button>
           </fieldset>
