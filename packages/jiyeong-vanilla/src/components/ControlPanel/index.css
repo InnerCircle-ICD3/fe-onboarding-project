@@ -19,11 +19,6 @@
   border: 2px solid #dee2e6;
 }
 
-.control-buttons {
-  display: flex;
-  gap: 1rem;
-}
-
 .control-btn {
   flex: 1;
   padding: 0.8rem;
@@ -33,11 +28,21 @@
   color: white;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.1s ease;
+  /* 3D 효과를 위한 속성 추가 */
+  position: relative;
+  box-shadow: 0 6px 0 #1c7ed6;
+  transform: translateY(-2px);
 }
 
 .control-btn:hover {
   background: #228be6;
+}
+
+.control-btn:active {
+  background: #228be6;
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #1c7ed6;
 }
 
 .transaction-history {
