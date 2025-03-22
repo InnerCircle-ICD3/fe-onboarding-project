@@ -1,3 +1,3 @@
-import addButtonList from "./button-list";
+import addButtonList from "./buttonList";
 
 addButtonList();
