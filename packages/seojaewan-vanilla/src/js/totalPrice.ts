@@ -12,22 +12,6 @@ class TotalPrice {
         this.isTemp = false;
     }
 
-    public getTempTotalPrice(): number {
-        return this.tempTotalPrice;
-    }
-
-    public setTempTotalPrice(value: number): void {
-        this.tempTotalPrice = value;
-    }
-
-    public getTotalPrice(): number {
-        return this.totalPrice;
-    }
-
-    public setTotalPrice(value: number): void {
-        this.totalPrice = value;
-    }
-
     private getCurrentValue(): number {
         return this.isTemp ? this.tempTotalPrice : this.totalPrice;
     }
@@ -39,7 +23,7 @@ class TotalPrice {
         this.tempTotalPrice = 0;
         this.isTemp = false;
 
-        addLogging(`${this.totalPrice}원 추가하였습니다.`);
+        addLogging(`${value}원 추가하였습니다.`);
 
         return this.totalPrice;
     }
@@ -52,12 +36,15 @@ class TotalPrice {
             this.totalPrice = value;
 
             this.isTemp = true;
+
+            addLogging(`금액이 부족합니다.`);
+            addLogging(`${name}을(를) 구매하지 못했습니다.`);
         } else {
             this.totalPrice -= value;
+        
+            addLogging(`${name}을(를) 구매하였습니다.`);
+            addLogging(`${value}원을 사용했습니다.`);
         }
-
-        addLogging(`${name}을(를) 구매하였습니다.`);
-        addLogging(`${value}원을 사용했습니다.`);
          
         return this.totalPrice;
     }
