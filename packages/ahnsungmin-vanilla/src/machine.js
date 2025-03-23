@@ -24,13 +24,18 @@ function initializeVendingMachine() {
     });
 }
 
-// 상품 버튼 생성 함수
+// 상품 버튼 생성
 function createProductButton(product) {
-    const button = document.createElement('button');
-    button.className = 'machine-product';
-    button.innerHTML = `
-        <span class="machine-product-name">${product.name}</span>
-        <span class="machine-product-price">${product.price}원</span>
-    `;
-    return button;
-} 
+    // 1. template 태그를 가져온다
+    const template = document.getElementById('product-button-template');
+
+    // 2. template 태그 안에 있던 내용(button 태그)만 쏙 빼와서 복사
+    const button = template.content.cloneNode(true);  // 참고: true는 자식 요소까지 모두 복사한다는 의미 (깊은 복사)
+    
+    // 3. 복사된 button에 상품 정보 채우기
+    button.querySelector('.machine-product-name').textContent = product.name;
+    button.querySelector('.machine-product-price').textContent = `${product.price}원`;
+    
+    // 4. 완성된 button 요소를 찾아서 반환
+    return button.querySelector('button');
+}
