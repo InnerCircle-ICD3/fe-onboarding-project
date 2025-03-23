@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자판기</title>
     <link rel="stylesheet" href="./src/styles/common.css">  <!-- 공통 스타일 -->
-    <link rel="stylesheet" href="./src/styles/machine.css"> <!-- 좌측 자판기 스타일 -->
-    <link rel="stylesheet" href="./src/styles/panel.css">  <!-- 우측 조작 패널 스타일 -->
+    <link rel="stylesheet" href="./src/styles/machine.css"> <!-- 왼쪽 자판기 스타일 -->
+    <link rel="stylesheet" href="./src/styles/panel.css">   <!-- 우측 조작 패널 스타일 -->
 </head>
 
 <body>
@@ -25,10 +25,6 @@
                 </template>
             </div>
         </div>
-        
-
-
-
 
         <!-- 2. 우측 조작 패널 -->
         <div class="panel">
@@ -39,12 +35,14 @@
             </div>
 
             <div class="log-section">
-                
+                <template id="log-template">
+                    <p class="log-item">(* 이곳에 로그가 표시됩니다 *)</p>
+                </template>
             </div>
         </div>
     </div>
 
-    <script src="./src/machine.js"></script>
-    <script src="./src/panel.js"></script>
+    <script type="module" src="./src/machine.js"></script> <!-- 왼쪽 자판기 -->
+    <script type="module" src="./src/panel.js"></script>   <!-- 우측 조작 패널 -->
 </body>
 </html> 
