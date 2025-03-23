@@ -15,6 +15,7 @@ const addButtonList = () => {
     buttonElement.value = button.price.toString();
     buttonElement.name = button.name;
 
+
     nameElement.textContent = button.name;
     priceElement.textContent = button.price.toString();
 
