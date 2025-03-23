@@ -21,11 +21,13 @@ body {
 }
 
 .total-amount {
+
     font-size: 32px;
     margin-bottom: 20px;
     border: 2px solid #000;
     padding: 10px 40px;
     background: white;
+
 }
 
 .product-grid {
@@ -41,6 +43,7 @@ body {
     text-align: center;
     font-size: 16px;
     line-height: 1.4;
+    cursor: pointer;
 }
 
 .right-panel {
@@ -50,11 +53,18 @@ body {
 }
 
 .input-amount {
-    font-size: 28px;
     text-align: center;
     margin-bottom: 15px;
     border: 2px solid #000;
     padding: 10px;
+}
+
+.amount-inner-input {
+    font-size: 28px;
+    text-align: center;
+    border: none;
+    padding: 10px;
+
 }
 
 .button-group {
@@ -68,6 +78,7 @@ body {
     border: 2px solid #000;
     padding: 10px 20px;
     font-size: 16px;
+    cursor: pointer;
 }
 
 .log-box {
