@@ -14,7 +14,7 @@ const handlePriceInput = (e:SubmitEvent) => {
   const totalPriceElement = document.querySelector(
     ".total-price"
   );
-  if(!checkInstance(totalPriceElement, HTMLDivElement)) return;
+  if(!checkInstance(totalPriceElement, HTMLParagraphElement)) return;
 
   const price = Number(priceInputElement.value);
   const updatePrice = totalPrice.updateTotalPrice(price);
