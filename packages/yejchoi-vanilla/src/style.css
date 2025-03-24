@@ -26,19 +26,14 @@ body {
     align-items: center;
 }
 
-.log-message.error {
-    color : red;
-}
-
-
 .total-amount {
-
+    display: flex;
     font-size: 32px;
     margin-bottom: 20px;
     border: 2px solid #000;
     padding: 10px 40px;
     background: white;
-
+    justify-content: center;
 }
 
 .product-grid {
@@ -106,4 +101,8 @@ body {
     background: #fefefe;
     height: 150px;
     overflow-y: scroll;
+}
+
+.log-message.error {
+    color : red;
 }
