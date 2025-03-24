@@ -18,7 +18,7 @@ const menuItems: Menu[] = [
 const drawMenuButtons = () => {
     const $menuWrapper = document.querySelector(".menu-btn-wrapper");
 
-    menuItems.forEach(menu => {
+    for (const menu of menuItems) {
         const $menuBtn = document.createElement("button");
         const $name = document.createElement("p");
         const $price = document.createElement("p");
@@ -30,9 +30,7 @@ const drawMenuButtons = () => {
         $menuBtn.appendChild($price);
 
         $menuWrapper?.appendChild($menuBtn);
-    });
+    }
 }
 
-window.addEventListener("load", () => {
-    drawMenuButtons();
-});
+drawMenuButtons();
