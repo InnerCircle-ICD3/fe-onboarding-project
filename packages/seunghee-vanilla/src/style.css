@@ -5,7 +5,7 @@
   grid-template-columns: 1fr 1fr;
 }
 
-.vending-machine-left {
+.status-section {
   height: 100%;
   margin: 8px;
   padding: 8px;
@@ -37,7 +37,7 @@
   cursor: pointer;
 }
 
-.vending-machine-right {
+.user-action-section {
   margin: 8px;
   padding: 8px;
   display: grid;
