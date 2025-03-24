@@ -1,26 +1,22 @@
-import { buttonList } from "../assets/info.json";
+import { productList } from "../assets/info.json";
 
 const addButtonList = () => {
   const buttonListElement = document.querySelector(
     ".button--list"
   ) as HTMLUListElement;
+  const templateElement = document.querySelector("#button--template") as HTMLTemplateElement;
 
-  for (const button of buttonList) {
-    const buttonWrapper = document.createElement("li");
-    const buttonElement = document.createElement("button");
-    const nameElement = document.createElement("span");
-    const priceElement = document.createElement("span");
+  
+  for (const {name, price} of productList) {
+    const clone = document.importNode(templateElement.content, true); 
 
-    buttonElement.classList.add("button");
+    const nameElement = clone.querySelector(".name") as HTMLSpanElement;
+    const priceElement = clone.querySelector(".price") as HTMLSpanElement;
 
-    nameElement.textContent = button.name;
-    priceElement.textContent = button.price.toString();
+    nameElement.textContent = name;
+    priceElement.textContent = price.toString();
 
-    buttonElement.appendChild(nameElement);
-    buttonElement.appendChild(priceElement);
-
-    buttonWrapper.appendChild(buttonElement);
-    buttonListElement.appendChild(buttonWrapper);
+    buttonListElement.appendChild(clone);
   }
 };
 
