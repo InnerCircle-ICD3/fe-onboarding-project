@@ -1,6 +1,10 @@
 import products from './db/productsData';
 import './index.css';
-import { renderLog } from './utils';
+import {
+  extractDigitsOnly,
+  parseNumberWithCommas,
+  renderLog,
+} from './utils';
 
 document.addEventListener('DOMContentLoaded', () => {
   renderProducts(products);
@@ -55,16 +59,29 @@ export const setupEventListeners = () => {
     '.vending-machine-insert-form'
   );
   const returnMoneyButton = '.return-money-button';
+  const priceInput = document.querySelector('.price-input');
+
+  // 금액 입력시 콤마 추가
+  priceInput.addEventListener('input', handlePriceInputWithComma);
 
   // 금액 투입
   insertForm.addEventListener('submit', handleInsertFormSubmit);
+};
+
+const handlePriceInputWithComma = (e) => {
+  const value = extractDigitsOnly(e.target.value);
+
+  if (value) {
+    const number = Number.parseInt(value, 10);
+    e.target.value = number.toLocaleString();
+  }
 };
 
 const handleInsertFormSubmit = (e) => {
   const priceInput = document.querySelector('.price-input');
 
   e.preventDefault();
-  const amount = Number.parseInt(priceInput.value);
+  const amount = parseNumberWithCommas(priceInput.value);
 
   // 양수만 가능
   if (Number.isNaN(amount) || amount <= 0) {
