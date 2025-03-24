@@ -2,7 +2,6 @@
 .machine {
     padding: 20px;
     background-color: #e8f5e9;  /* 연한 초록색 (영역 확인용) */
-    border: 1px solid #000;
 }
 
 /* 금액 표시창 */
@@ -10,7 +9,6 @@
     padding: 10px;
     margin-bottom: 20px;
     background-color: #e3f2fd; /* 연한 파란색 (영역 확인용) */
-    border: 1px solid #000;
     text-align: center;
 }
 
@@ -24,11 +22,21 @@
 
 /* 개별 상품 버튼 */
 .machine-product {
-    display: flex;                /* 버튼 내부 요소들을 세로로 배치 */
-    flex-direction: column;       /* 상품명과 가격을 위아래로 배치 */
+    display: flex;                /* flex의 기본값은 가로 배치 */
+    flex-direction: column;       /* flex에서 이 속성을 추가해야 상품명이랑 가격을 세로 배치할 수 있따 */
+    background-color: #ffffff;  /* 흰색 - 기본 상태 */
     padding: 10px;
-    align-items: center;     /* flex 아이템 가로축 가운데 정렬 */
-    justify-content: center; /* flex 아이템 세로축 가운데 정렬 */
+    cursor: pointer;
+}
+
+/* 개별 상품 버튼 - 마우스 올렸을 때 (hover) */
+.machine-product:hover {
+    background-color: #f0f0f0;  /* 매우 연한 회색 - 마우스 오버 시 */
+}
+
+/* 개별 상품 버튼 - 클릭했을 때 (active) */
+.machine-product:active {
+    background-color: #e0e0e0;  /* 연한 회색 - 클릭 시 */
 }
 
 /* 상품명 스타일 */
