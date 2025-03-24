@@ -14,14 +14,16 @@ export const BalaceManager = (() => {
 })();
 
 export function updateDisplay(currentBalance: number) {
-  const display = document.querySelector('.vending-machine-display') as HTMLDivElement;
+  const display = document.querySelector<HTMLDivElement>('.vending-machine-display');
+  if(!display) throw new Error('자판기 디스플레이를 찾을 수 없습니다.');
 
   display.textContent = currentBalance.toLocaleString();
 }
 
 export function addLogMessage(message: string) {
-  const logList = document.querySelector('.log') as HTMLUListElement;
+  const logList = document.querySelector<HTMLUListElement>('.log');
   const li = document.createElement('li');
+  if(!logList) throw new Error('로그 영역을 찾을 수 없습니다.');
   
   li.innerHTML = `<span class="log-message">${ message }</span>`;
   logList.appendChild(li);

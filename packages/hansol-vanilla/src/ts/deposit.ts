@@ -2,8 +2,8 @@ import { addLogMessage, BalaceManager, updateDisplay } from "./common";
 
 let currentBalance = BalaceManager.get();
 
-const controlInput = document.querySelector('.control-input') as HTMLInputElement;
-const addButton = document.querySelector('.add-button') as HTMLButtonElement;
+const controlInput = document.querySelector<HTMLInputElement>('.control-input');
+const addButton = document.querySelector<HTMLButtonElement>('.add-button');
 
 
 function handleAddMoney() {
@@ -17,8 +17,12 @@ function handleAddMoney() {
   BalaceManager.add(inputValue);
   updateDisplay(currentBalance);
   addLogMessage(`${inputValue.toLocaleString()}원을 투입했습니다.`);
+  
+  if(!controlInput) throw new Error('금액 입력창을 찾을 수 없습니다.');
 
   controlInput.value = '';
 }
+
+if(!addButton) throw new Error('투입 버튼을 찾을 수 없습니다.');
 
 addButton.addEventListener('click', handleAddMoney);
