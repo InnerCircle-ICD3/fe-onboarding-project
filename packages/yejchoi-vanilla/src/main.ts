@@ -26,7 +26,7 @@ const addLog = (message : string) => {
 }
 
 // 금액 투입 처리
-const insertButtonElement = document.querySelector('#insert-button') as HTMLDivElement
+const insertButtonElement = document.querySelector('#insert-button') as HTMLButtonElement
 const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
 
 insertButtonElement.addEventListener("click", () => {
@@ -46,7 +46,7 @@ insertButtonElement.addEventListener("click", () => {
 // 상품버튼 클릭 이벤트
 
 const handleProductButton = (product : Product) => {
-    const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLDivElement
+    const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLButtonElement
 
     productButtonElement.addEventListener("mousedown", () => {
         if(totalAmount < product.price) {
