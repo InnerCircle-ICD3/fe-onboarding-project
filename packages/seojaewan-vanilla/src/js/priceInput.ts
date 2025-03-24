@@ -1,39 +1,44 @@
-import { numberWithComma, parseNumberWithComma } from "./commas";
+import checkInstance from "./checkType";
+import { numberWithComma } from "./commas";
+import { totalPrice } from "./main";
 
-const handlePriceInput = () => {
-  const priceInputElement = document.querySelector(
-    ".input"
-  ) as HTMLInputElement;
+const handlePriceInput = (e:SubmitEvent) => {
+  e.preventDefault();
+
+  const form = e.target;
+  if(!checkInstance(form, HTMLFormElement)) return;
+
+  const priceInputElement = form.elements.namedItem("price-input");
+  if(!checkInstance(priceInputElement, HTMLInputElement)) return;
 
   const totalPriceElement = document.querySelector(
     ".total-price"
-  ) as HTMLDivElement;
+  );
+  if(!checkInstance(totalPriceElement, HTMLDivElement)) return;
 
   const price = Number(priceInputElement.value);
-  const totalPrice = parseNumberWithComma(totalPriceElement.textContent as string);
+  const updatePrice = totalPrice.updateTotalPrice(price);
 
-  totalPriceElement.textContent = numberWithComma(price + totalPrice).toString();
-  priceInputElement.value = "0";
+  totalPriceElement.textContent = numberWithComma(updatePrice).toString();
+  form.reset();
+  priceInputElement.select();
 };
 
-const handlePriceChange = (e: Event) => {
-  const value = (e.target as HTMLInputElement).value;
+const handleFocusInput = (e: FocusEvent) => {
+  const inputElement = e.target as HTMLInputElement;
 
-  if (Number(value) < 0) {
-    (e.target as HTMLInputElement).value = "0";
-  }
-};
+  if(checkInstance(inputElement, HTMLInputElement)) inputElement.select();
+}
 
 const addInputEvent = () => {
-  const addPriceElement = document.querySelector(
-    ".add-price"
-  ) as HTMLButtonElement;
-  const priceInputElement = document.querySelector(
-    ".input"
-  ) as HTMLInputElement;
+  const formElement = document.querySelector<HTMLButtonElement>(
+    ".input--wrapper"
+  );
+  const priceInputElement = document.querySelector<HTMLInputElement>(
+    ".input");
 
-  addPriceElement.addEventListener("click", handlePriceInput);
-  priceInputElement.addEventListener("change", handlePriceChange);
+  if(checkInstance(formElement, HTMLButtonElement)) formElement.addEventListener("submit", handlePriceInput);
+  if(checkInstance(priceInputElement, HTMLInputElement)) priceInputElement.addEventListener("focus", handleFocusInput);
 };
 
 export default addInputEvent;
