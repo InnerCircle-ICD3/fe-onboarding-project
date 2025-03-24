@@ -1,20 +1,24 @@
+import { addLogMessage, BalaceManager, updateDisplay } from "./common";
+
+let currentBalance = BalaceManager.get();
+
+const controlInput = document.querySelector('.control-input') as HTMLInputElement;
+const addButton = document.querySelector('.add-button') as HTMLButtonElement;
+
+
 function handleAddMoney() {
-  // 1. input 값 읽기
-  const controlInput = document.querySelector('.control-input') as HTMLInputElement;
-  // 2. 값이 유효한지 확인
   const inputValue = Number(controlInput?.value);
-  if (inputValue >= 0) {
 
+  if (inputValue <= 0) {
+    alert('유효한 금액을 입력해주세요.');
+    return;
   }
-  // 3. 금액 상태 업데이트
-  // 4. 디스플레이 업데이트
-  // 5. 로그 추가
+  
+  BalaceManager.add(inputValue);
+  updateDisplay(currentBalance);
+  addLogMessage(`${inputValue.toLocaleString()}원을 투입했습니다.`);
+
+  controlInput.value = '';
 }
 
-function updateDisplay() {
-  // 디스플레이 텍스트 변경
-}
-
-function addLogMessage(message: string) {
-  // 로그 ul에 li 추가
-}
+addButton.addEventListener('click', handleAddMoney);
