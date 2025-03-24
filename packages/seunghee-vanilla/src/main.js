@@ -1,5 +1,7 @@
 import "./style.css";
 
+let insertedMoney = 0;
+
 const mds = [
   { name: "콜라", price: 1500 },
   { name: "사이다", price: 1700 },
@@ -33,3 +35,16 @@ function renderMdButtons() {
 }
 
 renderMdButtons();
+
+const moneyPresenter = document.getElementsByClassName(
+  "inserted-money-presenter"
+)[0];
+
+const moneyInput = document.getElementById("money-input");
+const inputButton = document.getElementsByClassName("input-btn")[0];
+
+inputButton.onclick = () => {
+  const money = parseInt(moneyInput.value);
+  insertedMoney += money;
+  moneyPresenter.innerText = insertedMoney;
+};
