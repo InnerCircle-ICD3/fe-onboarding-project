@@ -7,7 +7,6 @@ interface Product {
 let totalAmount = 0;
 
 // 금액 표시창 관리 영역
-
 const totalAmountElement = document.querySelector(".total-amount") as HTMLDivElement
 
 const updateTotalAmount = (value : number) => {
@@ -15,36 +14,49 @@ const updateTotalAmount = (value : number) => {
 }
 
 // 로그 기록 함수 처리
-
 const logBoxElement = document.querySelector(".log-box") as HTMLDivElement
 
-const addLog = (message : string) => {
+const addLog = (message : string, state?: string) => {
     const logElement = document.createElement("div");
+
+    logElement.className = `${state === 'error' ? 'error' : ''} log-message`;
     logElement.textContent = message;
     logBoxElement.appendChild(logElement);
     logBoxElement.scrollTop = logBoxElement.scrollHeight;
 }
 
 // 금액 투입 처리
-const insertButtonElement = document.querySelector('#insert-button') as HTMLDivElement
+const insertButtonElement = document.querySelector('#insert-button') as HTMLButtonElement
 const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
 
 insertButtonElement.addEventListener("click", () => {
     const value = Number(amountInputElement.value);
 
     if(value <= 0) {
-        addLog('1원 이상 투입해주세요')
+        addLog('1원 이상 투입해주세요', 'error')
         return
     }
 
     totalAmount += value;
     updateTotalAmount(totalAmount)
-    amountInputElement.value = "";
+    amountInputElement.value = '0';
     addLog(`${value.toLocaleString()}원 투입`);
 })
 
-// 상품버튼 클릭 이벤트
+// 반환 버튼 로직 처리
+const returnButtonElement = document.querySelector('#return-button') as HTMLButtonElement
 
+returnButtonElement.addEventListener('click', () => {
+    const value = Number(amountInputElement.value);
+    const balance = totalAmount - value;
+
+    updateTotalAmount(0)
+    amountInputElement.value = '0';
+    addLog(`${balance.toLocaleString()}원 반환`);
+})
+
+
+// 상품버튼 클릭 이벤트
 const handleProductButton = (product : Product) => {
     const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLDivElement
 
@@ -60,13 +72,9 @@ const handleProductButton = (product : Product) => {
     productButtonElement.addEventListener('mouseup', () => {
         updateTotalAmount(totalAmount)
     })
-
 }
 
-
-
 // 상품버튼 표출 영역
-
 try {
     const response = await fetch("/data/productData.json");
 

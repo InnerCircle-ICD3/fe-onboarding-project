@@ -20,6 +20,11 @@ body {
     align-items: center;
 }
 
+.log-message.error {
+    color : red;
+}
+
+
 .total-amount {
 
     font-size: 32px;
