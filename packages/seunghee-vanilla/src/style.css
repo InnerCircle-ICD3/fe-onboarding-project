@@ -1,16 +1,75 @@
-.container {
+.vending-machine {
+  height: 100%;
+  padding: 8px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  justify-content: center;
+  grid-template-columns: 1fr 1fr;
 }
 
-button {
+.vending-machine-left {
+  height: 100%;
+  margin: 8px;
+  padding: 8px;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  background-color: aqua;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.inserted-money-presenter {
+  margin: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.md-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.md-btn {
+  margin: 8px;
   background-color: skyblue;
   color: black;
-  padding: 14px 20px;
-  margin: 8px;
   border: 1px solid black;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.vending-machine-right {
+  margin: 8px;
+  padding: 8px;
+  display: grid;
+  grid-template-rows: 1fr 3fr;
+  height: 100%;
+}
+
+.money-function-container {
+  display: grid;
+  grid-template-columns: 50% 1fr 1fr;
+}
+
+.money-input {
+  margin: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+
+.input-btn,
+.return-btn {
+  margin: 8px;
+  background-color: skyblue;
+  color: black;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.user-logger {
+  margin: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
 }

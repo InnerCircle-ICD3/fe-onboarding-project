@@ -8,7 +8,30 @@
     <title>Vite App</title>
   </head>
   <body>
-    <div class="container" id="md-container"></div>
+    <div class="vending-machine">
+      <section class="vending-machine-left">
+        <div class="inserted-money-presenter"></div>
+        <div class="md-container">
+          <button class="md-btn" id="md-r1c1"></button>
+          <button class="md-btn" id="md-r1c2"></button>
+          <button class="md-btn" id="md-r1c3"></button>
+          <button class="md-btn" id="md-r2c1"></button>
+          <button class="md-btn" id="md-r2c2"></button>
+          <button class="md-btn" id="md-r2c3"></button>
+          <button class="md-btn" id="md-r3c1"></button>
+          <button class="md-btn" id="md-r3c2"></button>
+          <button class="md-btn" id="md-r3c3"></button>
+        </div>
+      </section>
+      <section class="vending-machine-right">
+        <div class="money-function-container">
+          <input class="money-input" />
+          <button class="input-btn">투입</button>
+          <button class="return-btn">반환</button>
+        </div>
+        <div class="user-logger"></div>
+      </section>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

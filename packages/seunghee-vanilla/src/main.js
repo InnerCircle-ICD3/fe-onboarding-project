@@ -18,15 +18,18 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const container = document.getElementById("md-container");
-  container.innerHTML = "";
+  const mdContainer = document.getElementsByClassName("md-container")[0];
+  const mdButtons = mdContainer.children;
 
-  mds.forEach((md) => {
-    const button = document.createElement("button");
-    button.textContent = `${md.name} - ${md.price}원`;
+  for (let i = 0; i < mdButtons.length; i++) {
+    const mdButton = mdButtons[i];
+    const md = mds[i];
 
-    container.appendChild(button);
-  });
+    mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
+    mdButton.onclick = () => {
+      console.log(md.price);
+    };
+  }
 }
 
 renderMdButtons();
