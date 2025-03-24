@@ -1,22 +1,19 @@
+import products from './db/productsData';
 import './index.css';
-import { productService } from './service/productService';
+import { renderLog } from './utils';
 
-const buttonContainer = document.querySelector(
-  '.vending-machine-button-container'
-);
+document.addEventListener('DOMContentLoaded', () => {
+  renderProducts(products);
+  setupEventListeners();
+});
 
-const insertForm = document.querySelector(
-  '.vending-machine-insert-form'
-);
-const priceInput = document.querySelector('.price-input');
+let balance = 0;
 
-const logContainer = document.querySelector(
-  '.log-message-container > div'
-);
-
-// 상품 렌더링
-const renderProducts = (productsData) => {
-  console.log(productsData, 'productsData');
+/** 상품 버튼 렌더링 */
+export const renderProducts = (productsData) => {
+  const buttonContainer = document.querySelector(
+    '.vending-machine-button-container'
+  );
 
   const fragment = document.createDocumentFragment();
 
@@ -28,7 +25,8 @@ const renderProducts = (productsData) => {
   buttonContainer.appendChild(fragment);
 };
 
-const createProductButton = (product) => {
+/** 상품 버튼 생성 */
+export const createProductButton = (product) => {
   const button = document.createElement('button');
   button.className =
     'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200';
@@ -51,33 +49,29 @@ const createProductButton = (product) => {
   return button;
 };
 
-const renderLog = (message) => {
-  const logItem = document.createElement('div');
-  logItem.className = 'p-1 border-gray-200 text-sm';
-  logItem.textContent = `${message}`;
-  logContainer?.appendChild(logItem);
+/** 이벤트 리스너 설정 */
+export const setupEventListeners = () => {
+  const insertForm = document.querySelector(
+    '.vending-machine-insert-form'
+  );
+
+  // 금액 투입
+  insertForm.addEventListener('submit', handleInsertFormSubmit);
 };
 
-// 금액 입력
-insertForm?.addEventListener('submit', (e) => {
+const handleInsertFormSubmit = (e) => {
+  const priceInput = document.querySelector('.price-input');
+
   e.preventDefault();
   const amount = Number.parseInt(priceInput.value);
 
   // 양수만 가능
-  if (isNaN(amount) || amount <= 0) {
+  if (Number.isNaN(amount) || amount <= 0) {
     renderLog('올바른 금액을 입력해주세요.');
     return;
   }
 
-  let balance = 0;
   balance += amount;
   renderLog(`${amount}원이 투입되었습니다.`);
   priceInput.value = '';
-});
-
-const init = () => {
-  const buttonData = productService.getAllProducts();
-  renderProducts(buttonData);
 };
-
-init();
