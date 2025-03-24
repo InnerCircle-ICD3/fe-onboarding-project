@@ -57,6 +57,14 @@ body {
     cursor: pointer;
 }
 
+.product-button:hover {
+    background-color: #6fb8f8;
+}
+
+.product-button:active {
+    background-color: #346996;
+}
+
 .right-panel {
     flex: 1;
     padding: 20px;
