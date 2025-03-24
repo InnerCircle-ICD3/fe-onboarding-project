@@ -16,6 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    const handleEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            insertMoney();
+        }
+    };
+
     // 2. [반환] 버튼
     const returnMoney = () => {
         if (currentMoney > 0) {
@@ -24,7 +30,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // 이벤트 리스너 등록
     insertButton.addEventListener('click', insertMoney);
+    inputElement.addEventListener('keypress', handleEnterKey);
     returnButton.addEventListener('click', returnMoney);
-    inputElement.addEventListener('keypress', e => e.key === 'Enter' && insertMoney());
 }); 
