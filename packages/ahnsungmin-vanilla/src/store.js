@@ -1,4 +1,4 @@
-// 자판기의 상태 관리
+// 자판기의 상태 관리 (machine.js와 panel.js 둘 다 사용)
 export let currentMoney = 0;  // 현재 자판기에 남아있는 잔액
 let logs = [];
 
@@ -28,11 +28,3 @@ export function addLog(message) {
     p.textContent = `${logs.length}. ${message}`;
     logSection.appendChild(p);
 }
-
-// 반환 버튼 클릭
-export function returnMoney() {
-    if (currentMoney > 0) {
-        addLog(`${currentMoney}원을 반환합니다.`);
-        updateMoney(0);
-    }
-} 

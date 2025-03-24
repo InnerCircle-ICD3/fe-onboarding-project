@@ -1,5 +1,5 @@
 // machine.js에서 export한 currentMoney 변수를 import
-import { currentMoney, updateMoney, returnMoney } from './store.js';
+import { currentMoney, updateMoney, addLog } from './store.js';
 
 // 조작 패널 관련 코드 
 document.addEventListener('DOMContentLoaded', () => {
@@ -16,15 +16,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    insertButton.addEventListener('click', insertMoney);
-    inputElement.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            insertMoney();
-        }
-    });
-
     // 2. [반환] 버튼
-    returnButton.addEventListener('click', () => {
-        returnMoney();
-    });
+    const returnMoney = () => {
+        if (currentMoney > 0) {
+            addLog(`${currentMoney}원을 반환합니다.`);
+            updateMoney(0);
+        }
+    };
+
+    insertButton.addEventListener('click', insertMoney);
+    returnButton.addEventListener('click', returnMoney);
+    inputElement.addEventListener('keypress', e => e.key === 'Enter' && insertMoney());
 }); 
