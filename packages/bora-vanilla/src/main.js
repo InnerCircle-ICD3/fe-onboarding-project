@@ -54,6 +54,7 @@ export const setupEventListeners = () => {
   const insertForm = document.querySelector(
     '.vending-machine-insert-form'
   );
+  const returnMoneyButton = '.return-money-button';
 
   // 금액 투입
   insertForm.addEventListener('submit', handleInsertFormSubmit);
@@ -72,6 +73,14 @@ const handleInsertFormSubmit = (e) => {
   }
 
   balance += amount;
-  renderLog(`${amount}원이 투입되었습니다.`);
+  renderLog(`${amount.toLocaleString()}원이 투입되었습니다.`);
+  setVendingMachineBalance(balance);
   priceInput.value = '';
+};
+
+const setVendingMachineBalance = (balance) => {
+  const vendingMachineBalance = document.querySelector(
+    '.vending-machine-balance'
+  );
+  vendingMachineBalance.textContent = `${balance.toLocaleString()}원`;
 };
