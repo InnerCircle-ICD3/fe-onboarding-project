@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let balance = 0;
+const formatter = new Intl.NumberFormat();
 
 /** 상품 버튼 렌더링 */
 export const renderProducts = (productsData) => {
@@ -72,8 +73,7 @@ const handlePriceInputWithComma = (e) => {
   const value = extractDigitsOnly(e.target.value);
 
   if (value) {
-    const number = Number.parseInt(value, 10);
-    e.target.value = number.toLocaleString();
+    e.target.value = formatter.format(value);
   }
 };
 
@@ -90,7 +90,7 @@ const handleInsertFormSubmit = (e) => {
   }
 
   balance += amount;
-  renderLog(`${amount.toLocaleString()}원이 투입되었습니다.`);
+  renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
   setVendingMachineBalance(balance);
   priceInput.value = '';
 };
@@ -99,5 +99,7 @@ const setVendingMachineBalance = (balance) => {
   const vendingMachineBalance = document.querySelector(
     '.vending-machine-balance'
   );
-  vendingMachineBalance.textContent = `${balance.toLocaleString()}원`;
+  vendingMachineBalance.textContent = `${formatter.format(
+    balance
+  )}원`;
 };
