@@ -97,5 +97,5 @@ body {
     font-family: monospace;
     background: #fefefe;
     height: 150px;
-    overflow: scroll;
+    overflow-y: scroll;
 }

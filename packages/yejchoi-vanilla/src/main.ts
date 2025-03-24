@@ -6,7 +6,6 @@ interface Product {
 
 let totalAmount = 0;
 const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
-amountInputElement.value = '0';
 
 //금액입력 input 정수만 넣을 수 있도록 처리
 amountInputElement.addEventListener('keydown', (event) => {
