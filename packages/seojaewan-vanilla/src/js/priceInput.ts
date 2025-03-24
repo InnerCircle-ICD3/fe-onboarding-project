@@ -31,13 +31,13 @@ const handleFocusInput = (e: FocusEvent) => {
 }
 
 const addInputEvent = () => {
-  const formElement = document.querySelector<HTMLButtonElement>(
+  const formElement = document.querySelector(
     ".input--wrapper"
   );
-  const priceInputElement = document.querySelector<HTMLInputElement>(
+  const priceInputElement = document.querySelector(
     ".input");
 
-  if(checkInstance(formElement, HTMLButtonElement)) formElement.addEventListener("submit", handlePriceInput);
+  if(checkInstance(formElement, HTMLFormElement)) formElement.addEventListener("submit", handlePriceInput);
   if(checkInstance(priceInputElement, HTMLInputElement)) priceInputElement.addEventListener("focus", handleFocusInput);
 };
 
