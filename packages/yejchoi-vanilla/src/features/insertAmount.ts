@@ -1,28 +1,34 @@
 import {addLog, updateTotalAmount} from "../utils/utiles.ts";
 import {amountStore} from "../amount/amountStore.ts";
 
+interface insertAmountProps {
+    amountInputElement : HTMLInputElement | null;
+    insertButtonElement : HTMLButtonElement | null;
+}
 
-export const insertAmount = () => {
-    const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
-    const insertButtonElement = document.querySelector('#insert-button') as HTMLButtonElement
+export const insertAmount = (props : insertAmountProps) => {
 
+    const {amountInputElement, insertButtonElement} = props;
 
-    insertButtonElement.addEventListener("click", () => {
-        const totalAmount : number = amountStore.getAmount()
+    insertButtonElement?.addEventListener("click", () => {
 
-        const value = Number(amountInputElement.value);
+        if(amountInputElement) {
+            const totalAmount : number = amountStore.getAmount();
 
-        if(value <= 0) {
-            addLog('1원 이상 투입해주세요', 'error')
-            return
+            const value = Number(amountInputElement.value);
+
+            if(value <= 0) {
+                addLog('1원 이상 투입해주세요', 'error');
+                return;
+            }
+
+            amountStore.setAmount(totalAmount + value);
+
+            updateTotalAmount(totalAmount + value);
+
+            amountInputElement.value = '0';
+
+            addLog(`${value.toLocaleString()}원 투입`);
         }
-
-        amountStore.setAmount(totalAmount + value);
-
-        updateTotalAmount(totalAmount + value)
-
-        amountInputElement.value = '0';
-
-        addLog(`${value.toLocaleString()}원 투입`);
     })
 }

@@ -3,13 +3,16 @@ import {amountStore} from "../amount/amountStore.ts";
 
 import {addLog, updateTotalAmount} from "../utils/utiles.ts";
 
-export const returnAmount = () => {
-    const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
-    const returnButtonElement = document.querySelector('#return-button') as HTMLButtonElement
+interface returnAmountProps {
+    amountInputElement : HTMLInputElement | null;
+    returnButtonElement : HTMLButtonElement | null;
+}
 
+export const returnAmount = (props : returnAmountProps) => {
+    const { amountInputElement, returnButtonElement } = props;
 
-    returnButtonElement.addEventListener('click', () => {
-        const totalAmount : number = amountStore.getAmount()
+    returnButtonElement?.addEventListener('click', () => {
+        const totalAmount : number = amountStore.getAmount();
 
         const balance = totalAmount;
 
@@ -23,7 +26,9 @@ export const returnAmount = () => {
 
         updateTotalAmount(0);
 
-        amountInputElement.value = '0';
+        if(amountInputElement) {
+            amountInputElement.value = '0';
+        }
 
         addLog(`${balance.toLocaleString()}원 반환`);
     })

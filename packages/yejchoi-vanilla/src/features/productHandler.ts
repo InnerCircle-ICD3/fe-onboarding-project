@@ -3,17 +3,15 @@ import {amountStore} from "../amount/amountStore.ts";
 import {addLog, updateTotalAmount} from "../utils/utiles.ts";
 import {Product} from "../types/types.ts";
 
-const totalAmountElement = document.querySelector(".total-amount") as HTMLDivElement
-
-
 export const handleProductButton = (product : Product) => {
 
-    const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLDivElement
+    const productButtonElement = document.querySelector<HTMLDivElement>(`#product-${product.id}`);
+    const totalAmountElement = document.querySelector<HTMLDivElement>(".total-amount");
 
-    productButtonElement.addEventListener("mousedown", () => {
-        const totalAmount : number = amountStore.getAmount()
+    productButtonElement?.addEventListener("mousedown", () => {
+        const totalAmount : number = amountStore.getAmount();
 
-        if(totalAmount < product.price) {
+        if (totalAmount < product.price && totalAmountElement) {
             totalAmountElement.textContent = product.price.toLocaleString();
         } else {
             amountStore.setAmount(totalAmount - product.price)
@@ -21,9 +19,9 @@ export const handleProductButton = (product : Product) => {
         }
     })
 
-    productButtonElement.addEventListener('mouseup', () => {
-        const totalAmount : number = amountStore.getAmount()
+    productButtonElement?.addEventListener('mouseup', () => {
+        const totalAmount : number = amountStore.getAmount();
 
-        updateTotalAmount(totalAmount)
+        updateTotalAmount(totalAmount);
     })
 }
