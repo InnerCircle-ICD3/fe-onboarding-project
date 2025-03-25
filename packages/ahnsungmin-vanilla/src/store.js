@@ -16,7 +16,7 @@ export function updateMoney(newAmount) {
 // 화면에 표시하는 금액 (돈 있는 상태에서는 잔액을 띄우지만, 돈 없는 상태로 음료수를 누르면 잔액 대신 음료수의 가격을 임시로 표시함)
 export function updateMoneyDisplay(newAmount) {
     const displayElement = document.querySelector('.machine-money');
-    displayElement.textContent = newAmount.toLocaleString();
+    displayElement.textContent = newAmount.toLocaleString('ko-KR');
 }
 
 // 로그 추가

@@ -7,16 +7,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // 자판기 상품 버튼들을 동적으로 생성하여 화면에 표시
 const products = [
-    { name: '콜라', price: 1500, particle: '를' },
-    { name: '속이사이다', price: 1700, particle: '를' },
-    { name: '판타지판타', price: 1500, particle: '를' },
-    { name: '오뎅국물', price: 1800, particle: '을' },
-    { name: '부장라떼', price: 800, particle: '를' },
-    { name: '판타지판타', price: 1500, particle: '를' },
-    { name: '레드뿔', price: 2500, particle: '을' },
-    { name: '핫세븐', price: 1900, particle: '을' },
-    { name: '커피우유', price: 1400, particle: '를' },
+    { name: '콜라', price: 1500 },
+    { name: '속이사이다', price: 1700 },
+    { name: '판타지판타', price: 1500 },
+    { name: '오뎅국물', price: 1800 },
+    { name: '부장라떼', price: 800 },
+    { name: '판타지판타', price: 1500 },
+    { name: '레드뿔', price: 2500 },
+    { name: '핫세븐', price: 1900 },
+    { name: '커피우유', price: 1400 }
 ];
+
+// 한글 조사 판단 함수 (0xAC00: '가'의 코드값(44032))
+function getKoreanParticle(str) {
+    return (str.at(-1).charCodeAt(0) - 0xac00) % 28 ? '을' : '를';  // 28의 의미: 한글 글자는 초성(19개) + 중성(21개) + 종성(28개)으로 구성되어 있음 => 28로 나눈 나머지가 0이면 받침이 없고('를'), 0이 아니면 받침이 있음('을')
+}
 
 function initializeVendingMachine() {
     const productsContainer = document.querySelector('.machine-products-container');
@@ -47,7 +52,7 @@ function createProductButton(product) {
 
     buttonElement.addEventListener('mouseup', () => {
         if (currentMoney >= product.price) {
-            addLog(`${product.name}${product.particle} 구매했습니다.`);
+            addLog(`${product.name}${getKoreanParticle(product.name)} 구매했습니다.`);
             updateMoney(currentMoney - product.price);  // 잔액이 충분하면 구매 처리 후 화면 업데이트
         } else {
             updateMoneyDisplay(currentMoney);  // 잔액이 부족하면 구매 X (마우스 뗐을 때 현재 잔액 표시)
