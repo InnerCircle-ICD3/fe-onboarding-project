@@ -18,7 +18,8 @@ const createStore = (initialState = {}) => {
 };
 
 const initialState = {
-  inputCoinAmount: 0,
+  insertAmount: 0,
+  balance: 0,
 };
 
 export const store = createStore(initialState);
