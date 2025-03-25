@@ -15,7 +15,7 @@ let balance = 0;
 const formatter = new Intl.NumberFormat();
 
 /** 상품 버튼 렌더링 */
-export const renderProducts = (productsData) => {
+const renderProducts = (productsData) => {
   const buttonContainer = document.querySelector(
     '.vending-machine-button-container'
   );
@@ -31,7 +31,7 @@ export const renderProducts = (productsData) => {
 };
 
 /** 상품 버튼 생성 */
-export const createProductButton = (product) => {
+const createProductButton = (product) => {
   const button = document.createElement('button');
   button.className =
     'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200';
@@ -55,7 +55,7 @@ export const createProductButton = (product) => {
 };
 
 /** 이벤트 리스너 설정 */
-export const setupEventListeners = () => {
+const setupEventListeners = () => {
   const insertForm = document.querySelector(
     '.vending-machine-insert-form'
   );
