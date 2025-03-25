@@ -59,7 +59,9 @@ const setupEventListeners = () => {
   const insertForm = document.querySelector(
     '.vending-machine-insert-form'
   );
-  const returnMoneyButton = '.return-money-button';
+  const returnMoneyButton = document.querySelector(
+    '.return-money-button'
+  );
   const priceInput = document.querySelector('.price-input');
 
   // 금액 입력시 콤마 추가
@@ -67,8 +69,12 @@ const setupEventListeners = () => {
 
   // 금액 투입
   insertForm.addEventListener('submit', handleInsertFormSubmit);
+
+  // 잔돈 반환
+  returnMoneyButton.addEventListener('click', handleReturnMoneyClick);
 };
 
+/** 금액 입력시 콤마 추가 */
 const handlePriceInputWithComma = (e) => {
   const value = extractDigitsOnly(e.target.value);
 
@@ -77,6 +83,7 @@ const handlePriceInputWithComma = (e) => {
   }
 };
 
+/** 금액 투입 기능 */
 const handleInsertFormSubmit = (e) => {
   const priceInput = document.querySelector('.price-input');
 
@@ -84,17 +91,30 @@ const handleInsertFormSubmit = (e) => {
   const amount = parseNumberWithCommas(priceInput.value);
 
   // 양수만 가능
-  if (Number.isNaN(amount) || amount <= 0) {
+  if (!Number.isFinite(amount) || amount <= 0) {
     renderLog('올바른 금액을 입력해주세요.');
     return;
   }
 
+  // 투입 금액 업데이트
   balance += amount;
-  renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
+
+  // 자판기 남은 금액 업데이트
   setVendingMachineBalance(balance);
+
+  // 로그 출력
+  renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
+
   priceInput.value = '';
 };
 
+/** 잔돈 반환 기능 */
+const handleReturnMoneyClick = () => {
+  renderLog(`${formatter.format(balance)}원이 반환되었습니다.`);
+  setVendingMachineBalance(0);
+};
+
+/** 자판기 남은 금액 */
 const setVendingMachineBalance = (balance) => {
   const vendingMachineBalance = document.querySelector(
     '.vending-machine-balance'
