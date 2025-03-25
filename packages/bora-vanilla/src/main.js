@@ -124,7 +124,8 @@ const handleInsertFormSubmit = (e) => {
 /** 잔돈 반환 기능 */
 const handleReturnMoneyClick = () => {
   renderLog(`${formatter.format(balance)}원이 반환되었습니다.`);
-  setVendingMachineBalance(0);
+  balance = 0;
+  setVendingMachineBalance(balance);
 };
 
 /** 자판기 남은 금액 */
