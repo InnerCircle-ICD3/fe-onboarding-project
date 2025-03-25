@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자판기</title>
+    <link rel="stylesheet" href="./src/style.css" />
+    <script type="module" src="./src/main.ts" ></script>
+</head>
+<body>
+<div class="vending-machine">
+    <div class="left-panel">
+        <div class="total-amount">0</div>
+        <div class="product-grid" id="productGrid"></div>
+    </div>
+    <div class="right-panel">
+        <div class="input-amount">
+            <input class="amount-inner-input"/>
+        </div>
+
+        <div class="button-group">
+            <button id="insert-button">투입</button>
+            <button id="return-button">반환</button>
+        </div>
+        <div class="log-box">
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
