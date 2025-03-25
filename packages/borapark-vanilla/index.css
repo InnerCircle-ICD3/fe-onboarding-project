@@ -1,0 +1,12 @@
+@import "./reset.css";
+@import "./variable.css";
+
+body {
+  height: 100dvh;
+  overflow: hidden;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+}
