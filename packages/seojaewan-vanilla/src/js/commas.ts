@@ -1,3 +1,3 @@
 export const numberWithComma = (num: number): string => {
-  return num.toLocaleString();
+  return num.toLocaleString("ko-KR");
 };
