@@ -9,7 +9,7 @@
   <body>
     <div class="vending-machine-wrapper">
       <div class="vending-machine">
-        <div class="balance-display"></div>
+        <div class="balance-display">0</div>
         <div class="products-grid">
           <button class="product-btn">콜라<span>1500원</span></button>
           <button class="product-btn">쥬시아이다<span>1700원</span></button>
@@ -27,7 +27,9 @@
           <input
             type="text"
             class="insert-amount"
-            placeholder="금액을 입력하세요"
+            value="0"
+            pattern="[0-9]*"
+            min="0"
           />
           <div class="control-buttons">
             <button class="control-btn btn-insert">투입</button>
