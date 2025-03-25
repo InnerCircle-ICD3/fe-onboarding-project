@@ -34,17 +34,20 @@ function renderMdButtons() {
   }
 }
 
+function renderInsertedMoney() {
+  const moneyPresenter = document.getElementsByClassName(
+    "inserted-money-presenter"
+  )[0];
+
+  const moneyInput = document.getElementById("money-input");
+  const inputButton = document.getElementsByClassName("input-btn")[0];
+
+  inputButton.onclick = () => {
+    const money = parseInt(moneyInput.value);
+    insertedMoney += money;
+    moneyPresenter.innerText = insertedMoney;
+  };
+}
+
 renderMdButtons();
-
-const moneyPresenter = document.getElementsByClassName(
-  "inserted-money-presenter"
-)[0];
-
-const moneyInput = document.getElementById("money-input");
-const inputButton = document.getElementsByClassName("input-btn")[0];
-
-inputButton.onclick = () => {
-  const money = parseInt(moneyInput.value);
-  insertedMoney += money;
-  moneyPresenter.innerText = insertedMoney;
-};
+renderInsertedMoney();
