@@ -90,7 +90,10 @@ const handleInsertFormSubmit = (e) => {
   e.preventDefault();
   const amount = parseNumberWithCommas(priceInput.value);
 
-  // 양수만 가능
+  /** Number.isFinite()
+   * - 숫자가 아닌 모든 입력을 거부합니다.
+   * - Infinity, NaN을 거부합니다.
+   */
   if (!Number.isFinite(amount) || amount <= 0) {
     renderLog('올바른 금액을 입력해주세요.');
     return;
