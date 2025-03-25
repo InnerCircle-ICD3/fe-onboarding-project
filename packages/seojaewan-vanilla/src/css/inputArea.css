@@ -1,0 +1,29 @@
+.input--wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.input {
+    border: 1px solid #000;
+
+    color: #000;
+}
+
+.input::-webkit-inner-spin-button {
+    appearance: none;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+.log--wrapper {
+    height: 518px;
+    overflow-y: auto;
+
+    border: 1px solid #000;
+    border-radius: 10px;
+
+    padding: 20px;
+    margin-top: 10px;
+}

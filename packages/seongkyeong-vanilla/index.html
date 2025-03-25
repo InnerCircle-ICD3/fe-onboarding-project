@@ -1,26 +1,39 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>자판기</title>
   </head>
   <body>
     <div id="app">
-      <div class="left">
-        <input/>
-      </div>
-      <div class="right">
-        <div class="control-box">
+      <main>
+        <section class="menu-wrapper">
           <input/>
-          <button>투입</button>
-          <button>반환</button>
-        </div>
-        <div class="logging-box">
-
-        </div>
-      </div>
+          <div class="menu-btn-wrapper">
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+            <button class="menu-item">콜라</button>
+          </div>
+        </section>
+        <section class="control-wrapper">
+          <div class="control-box">
+            <input/>
+            <button>투입</button>
+            <button>반환</button>
+          </div>
+          <div class="logging-box">
+          </div>
+        </section>
+      </main>
     </div>
-    <!-- <script type="module" src="/src/main.ts"></script> -->
+    <script type="module" src="/index.ts"></script>
   </body>
 </html>

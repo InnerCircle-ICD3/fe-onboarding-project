@@ -36,7 +36,6 @@ class TotalPrice {
             this.totalPrice -= value;
         }
 
-         
         return this.totalPrice;
     }
 }

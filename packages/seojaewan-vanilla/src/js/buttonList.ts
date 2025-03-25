@@ -1,29 +1,26 @@
-import { buttonList } from "../assets/info.json";
+import { productList } from "../assets/info.json";
+import checkInstance from "./checkType";
 
 const addButtonList = () => {
   const buttonListElement = document.querySelector(
     ".button--list"
-  ) as HTMLUListElement;
+  );
+  const templateElement = document.querySelector("#button--template");
 
-  for (const button of buttonList) {
-    const buttonWrapper = document.createElement("li");
-    const buttonElement = document.createElement("button");
-    const nameElement = document.createElement("span");
-    const priceElement = document.createElement("span");
+  if(!checkInstance(buttonListElement, HTMLUListElement) || !checkInstance(templateElement, HTMLTemplateElement)) return;
+  
+  for (const {name, price} of productList) {
+    const clone = document.importNode(templateElement.content, true); 
 
-    buttonElement.classList.add("button", "button--payment");
-    buttonElement.value = button.price.toString();
+    const nameElement = clone.querySelector(".name");
+    const priceElement = clone.querySelector(".price");
 
-    nameElement.textContent = button.name;
-    priceElement.textContent = button.price.toString();
+    if(!checkInstance(nameElement, HTMLSpanElement) || !checkInstance(priceElement, HTMLSpanElement)) return;
+    
+    nameElement.textContent = name;
+    priceElement.textContent = price.toString();
 
-    buttonElement.appendChild(nameElement);
-    buttonElement.appendChild(priceElement);
-
-    buttonWrapper.classList.add("size--third");
-
-    buttonWrapper.appendChild(buttonElement);
-    buttonListElement.appendChild(buttonWrapper);
+    buttonListElement.appendChild(clone);
   }
 };
 

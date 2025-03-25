@@ -5,29 +5,38 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/css/global.css" />
-    <link rel="stylesheet" href="/src/css/button-list.css" />
-    <link rel="stylesheet" href="/src/css/input-area.css" />
+    <link rel="stylesheet" href="/src/css/buttonList.css" />
+    <link rel="stylesheet" href="/src/css/inputArea.css" />
     <title>Calculate</title>
   </head>
   <body>
     <div id="app">
       <section class="container">
         <article class="box--wrapper button--wrapper">
-          <div class="value--view total-price">0</div>
+          <p class="value--view total-price">0</p>
           <ul class="button--list"></ul>
         </article>
 
         <article class="box--wrapper">
-          <div class="input--wrapper">
-            <input class="value--view input size--third" type="number" value="0" />
-            <button class="button size--third add-price">투입</button>
-            <button class="button size--third">반환</button>
-          </div>
+          <form class="input--wrapper">
+            <input class="value--view input" name="price-input" type="number" value="0" min="0" />
+            <button class="button add-price" type="submit">투입</button>
+            <button class="button" type="button">반환</button>
+          </form>
 
-          <div class="log--wrapper"></div>
+          <ul class="log--wrapper"></ul>
         </article>
       </section>
     </div>
     <script type="module" src="/src/js/main.ts"></script>
   </body>
+
+  <template id="button--template">
+    <li>
+      <button class="button">
+        <span class="name"></span>
+        <span class="price"></span>
+      </button>
+    </li>
+  </template>
 </html>
