@@ -5,9 +5,46 @@
     <!-- 반응형 웹을 위한 viewport 설정 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>자판기</title>
-    <link rel="stylesheet" href="./src/styles/style.css">
+    <link rel="stylesheet" href="./src/styles/common.css">  <!-- 공통 스타일 -->
+    <link rel="stylesheet" href="./src/styles/machine.css"> <!-- 좌측 자판기 스타일 -->
+    <link rel="stylesheet" href="./src/styles/panel.css">  <!-- 우측 조작 패널 스타일 -->
 </head>
+
 <body>
-    <script src="./src/index.js"></script>
+    <div class="total-container">
+        <!-- 1. 좌측 자판기 본체 -->
+        <div class="machine">
+            <div class="machine-money">0</div>
+            <div class="machine-products-container">
+                <!-- template 태그 자체는 화면에서 안보이지만, 이후 자바스크립트에서 button 태그만 복사해서 동적으로 텍스트와 가격 넣을 예정 -->
+                <template id="product-button-template">
+                    <button class="machine-product">
+                        <span class="machine-product-name">(* 이곳에 제품명이 들어갑니다 *)</span>
+                        <span class="machine-product-price">(* 이곳에 제품가격이 들어갑니다 *)</span>
+                    </button>
+                </template>
+            </div>
+        </div>
+        
+
+
+
+
+        <!-- 2. 우측 조작 패널 -->
+        <div class="panel">
+            <div class="panel-amount">
+                <input type="number" id="panel-input" placeholder="금액 입력">
+                <button id="panel-insert-btn">투입</button>
+                <button id="panel-return-btn">반환</button>
+            </div>
+
+            <div class="log-section">
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="./src/machine.js"></script>
+    <script src="./src/panel.js"></script>
 </body>
 </html> 

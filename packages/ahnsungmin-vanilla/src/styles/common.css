@@ -1,0 +1,14 @@
+/* 공통 스타일 */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* 전체 컨테이너 */
+.total-container {
+    display: flex;     /* machine과 panel을 좌우로 배치 */
+    gap: 20px;         /* machine과 panel 사이의 간격 */
+    padding: 20px;
+    background-color: #f0f0f0;
+} 
