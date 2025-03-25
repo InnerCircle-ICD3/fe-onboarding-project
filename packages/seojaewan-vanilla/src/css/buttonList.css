@@ -19,3 +19,6 @@
   margin-top: 10px;
 }
 
+.button--list li {
+  width: calc((100% - 20px) / 3);
+}
