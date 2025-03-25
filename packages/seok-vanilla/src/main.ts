@@ -1,4 +1,6 @@
+import { decrease, increase } from "./amount";
 import db from "./db.json";
+import "./input-amount";
 
 const productBtns = db.products.map((product) => {
   const li = document.createElement("li");
