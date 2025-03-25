@@ -3,11 +3,92 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="./src/css/global.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + TS</title>
+    <title>vending machine - vanilla</title>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <main class="container">
+      <!-- 자판기 본체 -->
+      <section class="vending-machine">
+        <div class="vending-machine-display">15,000</div>
+        
+        <ul class="product-grid">
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">콜라</span>
+              <span class="product-price">1500원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">속이사이다</span>
+              <span class="product-price">1700원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">판타지판타</span>
+              <span class="product-price">1500원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">오뎅국물</span>
+              <span class="product-price">1800원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">부장라떼</span>
+              <span class="product-price">800원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">판타지판타</span>
+              <span class="product-price">1500원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">레드불</span>
+              <span class="product-price">2500원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">핫세븐</span>
+              <span class="product-price">1900원</span>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="product-button">
+              <span class="product-name">커피우유</span>
+              <span class="product-price">1400원</span>
+            </button>
+          </li>
+        </ul>
+      </section>
+  
+      <!-- 오른쪽 입력창 -->
+      <section class="control-panel">
+        <div class="input-group">
+          <input type="number" placeholder="금액 입력" class="control-input"/>
+          <button type="button" class="control-button add-button">투입</button>
+          <button type="button" class="control-button return-button">반환</button>
+        </div>
+        <ul class="log">
+          <li><span class="log-message">2000원을 투입했습니다.</span></li>
+          <li><span class="log-message">오뎅국물을 구매했습니다.</span></li>
+          <li><span class="log-message">200원을 반환합니다.</span></li>
+        </ul>
+      </section>
+    </main>
+
+    <script type="module" src="/src/ts/main.ts"></script>
   </body>
 </html>

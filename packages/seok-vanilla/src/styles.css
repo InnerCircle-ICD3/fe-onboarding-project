@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+.input-primary {
+  @apply py-2 px-2 rounded-xl border outline-none;
+}
+
+.btn-product {
+  @apply py-4 border rounded-xl w-full;
+}
+
+#btn-insert,
+#btn-refund {
+  @apply border rounded-xl px-4;
+}
+
+#product-section,
+#operation-section {
+  @apply flex flex-col flex-1 p-4 gap-2;
+}
+
+#product-list {
+  @apply grid grid-cols-3 gap-4 flex-1;
+}
