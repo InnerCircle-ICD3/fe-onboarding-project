@@ -27,9 +27,20 @@ function renderMdButtons() {
     const mdButton = mdButtons[i];
     const md = mds[i];
 
+    const moneyPresenter = document.getElementsByClassName(
+      "inserted-money-presenter"
+    )[0];
+
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
     mdButton.onclick = () => {
-      console.log(md.price);
+      const presentMoney = insertedMoney;
+      if (presentMoney < md.price) {
+        console.log("돈이 부족합니다.");
+        return;
+      }
+
+      insertedMoney -= md.price;
+      moneyPresenter.innerText = insertedMoney.toLocaleString();
     };
   }
 }
