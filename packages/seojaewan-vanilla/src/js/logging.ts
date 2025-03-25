@@ -1,13 +1,20 @@
+import checkInstance from "./checkType";
+
 const addLogging = (message: string) => {
-    const logsElement = document.querySelector(".log--list") as HTMLDivElement;
-    const logElement = document.createElement('li');
+    const logListElement = document.querySelector(".log--list");
+    const templateElement = document.querySelector("#log--template");
 
-    logElement.textContent = message;
-    logElement.classList.add("log--item");
+    if(!checkInstance(logListElement, HTMLUListElement) || !checkInstance(templateElement, HTMLTemplateElement)) return;
 
-    logsElement.appendChild(logElement);
+    const clone = document.importNode(templateElement.content, true);
+    const logItemElement = clone.querySelector(".log--item");
+
+    if(!checkInstance(logItemElement, HTMLSpanElement)) return;
+
+    logItemElement.textContent = message;
+    logListElement.appendChild(clone);
     
-    logElement.scrollIntoView({ behavior: "smooth" });
+    logItemElement.scrollIntoView({ behavior: "smooth" });
 }
 
 export default addLogging;

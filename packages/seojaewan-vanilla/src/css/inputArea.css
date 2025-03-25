@@ -17,7 +17,7 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.log--wrapper {
+.log--list {
     height: 518px;
     overflow-y: auto;
 
