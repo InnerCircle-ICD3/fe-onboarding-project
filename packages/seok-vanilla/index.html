@@ -1,13 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite App</title>
+    <link rel="stylesheet" href="./src/styles.css" />
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" class="flex p-10">
+      <section id="product-section" class="border rounded-2xl">
+        <input id="inserted-amount" class="input-primary w-full" readonly />
+        <ul id="product-list"></ul>
+      </section>
+      <section id="operation-section">
+        <div class="flex gap-4">
+          <input type="text" id="input-amount" class="input-primary flex-1" />
+          <button id="btn-insert">투입</button>
+          <button id="btn-refund">반환</button>
+        </div>
+        <div id="log-box" class="border flex-1 rounded-2xl"></div>
+      </section>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
