@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let balance = 0;
+const MAX_AMOUNT = 1000000;
 const formatter = new Intl.NumberFormat();
 
 /** 상품 버튼 렌더링 */
@@ -96,6 +97,15 @@ const handleInsertFormSubmit = (e) => {
    */
   if (!Number.isFinite(amount) || amount <= 0) {
     renderLog('올바른 금액을 입력해주세요.');
+    return;
+  }
+
+  // 최대 금액 제한
+
+  if (amount > MAX_AMOUNT) {
+    renderLog(
+      `최대 ${formatter.format(MAX_AMOUNT)}원까지만 투입 가능합니다.`
+    );
     return;
   }
 
