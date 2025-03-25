@@ -4,20 +4,6 @@ const $putButton = document.querySelector(".put-btn") as HTMLButtonElement;
 const $returnButton = document.querySelector(".rtn-btn") as HTMLButtonElement;
 const $warningContent = document.querySelector(".warning-box") as HTMLDivElement;
 
-const putCash = (cash: number) => {
-    let balance = Number($balanceInput.value);
-
-    $cashInput.value = "";
-    balance += cash;
-    
-    $balanceInput.value = balance.toString();
-}
-
-const returnCash = (balance: number) => {
-    $cashInput.value = balance.toString();
-    $balanceInput.value = "0";
-}
-
 $putButton.addEventListener("click", () => {
     const cash = Number($cashInput.value);
 
@@ -39,6 +25,20 @@ $returnButton.addEventListener("click", () => {
         setWarning("반환할 금액이 없습니다.");
     }
 });
+
+const putCash = (cash: number) => {
+    let balance = Number($balanceInput.value);
+
+    $cashInput.value = "";
+    balance += cash;
+    
+    $balanceInput.value = balance.toString();
+}
+
+const returnCash = (balance: number) => {
+    $cashInput.value = balance.toString();
+    $balanceInput.value = "0";
+}
 
 const setWarning = (message: string) => {
     $warningContent.innerText = message;
