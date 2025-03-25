@@ -128,3 +128,28 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+button {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+button:focus,
+button:active {
+  outline: none;
+}
+
+input {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input:disabled {
+  cursor: not-allowed;
+}

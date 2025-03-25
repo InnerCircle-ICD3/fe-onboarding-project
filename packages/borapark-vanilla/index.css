@@ -4,9 +4,169 @@
 body {
   height: 100dvh;
   overflow: hidden;
+  font-family: var(--font-family-base);
 }
 
 main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  flex: 1 1;
+
   max-width: 960px;
   margin: 0 auto;
+  height: 100%;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+button:hover {
+  background-color: var(--color-secondary);
+}
+
+button:focus,
+button:active {
+  background-color: var(--color-accent);
+}
+
+.vending-machine-layout,
+.vending-machine-control-panel {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 50%;
+  gap: var(--spacing-md);
+}
+
+.vending-machine-layout {
+  background-color: var(--color-primary-light);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+}
+
+.vending-machine-layout .vending-machine-total-amount {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: var(--height-box);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-md);
+}
+
+.vending-machine-layout ul {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-md);
+}
+
+.vending-machine-layout ul li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: var(--height-drink-button);
+
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-900);
+}
+
+.vending-machine-layout ul li button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.vending-machine-layout ul li button .drink-name {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.vending-machine-layout ul li button .drink-price {
+  font-size: var(--font-size-sm);
+}
+
+.vending-machine-control-panel {
+  height: var(--height-control-panel);
+}
+
+.vending-machine-control-panel .vending-machine-input-box form {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xs);
+  width: 100%;
+}
+
+.vending-machine-control-panel .vending-machine-input-box form fieldset {
+  flex: 1 1 50%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-xs);
+  box-sizing: border-box;
+}
+
+.vending-machine-control-panel .vending-machine-input-box form fieldset:last-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: var(--spacing-sm);
+}
+
+.vending-machine-input-box form fieldset legend {
+  display: none;
+}
+
+.vending-machine-input-box form fieldset input {
+  width: 100%;
+  height: var(--height-input);
+  padding: 0 var(--spacing-sm);
+  box-sizing: border-box;
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-900);
+  font-size: var(--font-size-base);
+  appearance: textfield;
+}
+
+.vending-machine-input-box form fieldset input::-webkit-outer-spin-button,
+.vending-machine-input-box form fieldset input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.vending-machine-input-box form fieldset label {
+  display: none;
+}
+
+.vending-machine-input-box form fieldset button {
+  width: 100%;
+  height: var(--height-button);
+  background-color: var(--color-primary);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-900);
+}
+
+.vending-machine-control-panel .vending-machine-log-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-md);
+  height: var(--height-container);
+  overflow-y: auto;
+
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--color-gray-900);
+  box-sizing: border-box;
+}
+
+.vending-machine-log-box p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
 }

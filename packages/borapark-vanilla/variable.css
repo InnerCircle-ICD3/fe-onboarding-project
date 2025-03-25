@@ -1,14 +1,13 @@
 :root {
   /* Colors */
-  --color-primary: #2c3e50;
-  --color-secondary: #34495e;
-  --color-accent: #3498db;
+  --color-primary: #ceeafe;
+  --color-primary-light: #e6f5ff;
+  --color-secondary: #16c1ff;
+  --color-accent: #59b1fe;
   --color-success: #2ecc71;
   --color-danger: #e74c3c;
   --color-warning: #f1c40f;
-  --color-text: #2c3e50;
-  --color-text-light: #7f8c8d;
-  --color-background: #ecf0f1;
+  --color-background: #eff6ff;
   --color-white: #ffffff;
   --color-gray-100: #f8f9fa;
   --color-gray-200: #e9ecef;
@@ -30,6 +29,10 @@
   --line-height-base: 1.5;
   --line-height-tight: 1.25;
   --line-height-loose: 1.75;
+  --font-weight-base: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* Spacing */
   --spacing-xs: 4px;
@@ -65,4 +68,13 @@
   --z-index-modal: 1050;
   --z-index-popover: 1060;
   --z-index-tooltip: 1070;
+
+  /* Height */
+  --height-container: 100%;
+  --height-box: 60px;
+  --height-drink-button: 80px;
+  --height-input: 60px;
+  --height-button: 60px;
+  --height-log-box: 280px;
+  --height-control-panel: 386px;
 }
