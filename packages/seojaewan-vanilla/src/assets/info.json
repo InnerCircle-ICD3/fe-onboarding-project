@@ -10,35 +10,43 @@
     },
     {
       "name": "환타",
-      "price": 1500
+      "price": 1300
     },
     {
       "name": "포카리",
-      "price": 2000
+      "price": 1500
     },
     {
       "name": "게토레이",
-      "price": 2500
+      "price": 1500
     },
     {
-      "name": "밀키스",
-      "price": 3000
+      "name": "물",
+      "price": 500
     },
     {
-      "name": "펩시",
-      "price": 3500
+      "name": "커피",
+      "price": 1000
     },
     {
-      "name": "코카콜라",
-      "price": 4000
+      "name": "코코아",
+      "price": 1200
     },
     {
-      "name": "스프라이트",
-      "price": 4500
+      "name": "밀크티",
+      "price": 1500
     },
     {
-      "name": "마운틴듀",
-      "price": 5000
+      "name": "아메리카노",
+      "price": 1500
+    },
+    {
+      "name": "라떼",
+      "price": 2000
+    },
+    {
+      "name": "카푸치노",
+      "price": 2000
     }
   ]
 }
