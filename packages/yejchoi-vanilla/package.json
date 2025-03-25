@@ -1,0 +1,17 @@
+{
+  "name": "yejchoi-vanilla",
+  "version": "1.0.0",
+  "description": "Vending machine onboarding project",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "author": "yejchoi",
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "~5.7.2",
+    "vite": "^6.2.0"
+  }
+}
