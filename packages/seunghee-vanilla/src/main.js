@@ -40,12 +40,28 @@ function renderInsertedMoney() {
   )[0];
 
   const moneyInput = document.getElementById("money-input");
-  const inputButton = document.getElementsByClassName("input-btn")[0];
+  moneyInput.oninput = (ev) => {
+    let value = ev.target.value.replace(/[^0-9]/g, "");
+    if (value === "") {
+      value = 0;
+    }
 
+    ev.target.value = Number(value).toLocaleString();
+  };
+  moneyInput.onkeydown = (ev) => {
+    const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
+
+    if (!allowedKeys.includes(ev.key) && isNaN(parseInt(ev.key))) {
+      ev.preventDefault();
+    }
+  };
+
+  const inputButton = document.getElementsByClassName("input-btn")[0];
   inputButton.onclick = () => {
-    const money = parseInt(moneyInput.value);
+    const money = parseInt(moneyInput.value.replace(/,/g, ""));
     insertedMoney += money;
-    moneyPresenter.innerText = insertedMoney;
+    moneyPresenter.innerText = insertedMoney.toLocaleString();
+    moneyInput.value = 0;
   };
 }
 
