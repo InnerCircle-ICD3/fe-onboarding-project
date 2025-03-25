@@ -27,4 +27,7 @@ export function addLog(message) {
     logs.push(message);
     p.textContent = `${logs.length}. ${message}`;
     logSection.appendChild(p);
+
+    // 스크롤을 맨 아래로 이동
+    logSection.scrollTop = logSection.scrollHeight;
 }
