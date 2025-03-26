@@ -1,4 +1,4 @@
-import { BalanceManager, getInputNumberValue } from "./common";
+import { BalanceManager, formatCurrencyKRW, getInputNumberValue } from "./common";
 
 const currentBalance = BalanceManager.get();
 const vendingMachineDisplay = document.querySelector<HTMLDivElement>('.vending-machine-display');
@@ -12,7 +12,7 @@ function initVendingMachine() {
 function initVendingMachineDisplay() {
   if(!vendingMachineDisplay) throw new Error('자판기 금액창을 찾을 수 없습니다.');
 
-  vendingMachineDisplay.innerText = currentBalance.toLocaleString('ko-KR');
+  vendingMachineDisplay.innerText = formatCurrencyKRW(currentBalance);
 }
 
 function initControlInput() {
@@ -36,7 +36,7 @@ function handleInputFormat(e: KeyboardEvent) {
     target.value = '';
   } else {
     target.classList.remove('input-error');
-    target.value = value.toLocaleString('ko-KR');
+    target.value = formatCurrencyKRW(value);
   }
 }
 

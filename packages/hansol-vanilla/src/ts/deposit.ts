@@ -1,4 +1,4 @@
-import { addLogMessage, BalanceManager, getInputNumberValue, updateDisplay } from "./common";
+import { addLogMessage, BalanceManager, formatCurrencyKRW, getInputNumberValue, updateDisplay } from "./common";
 
 const controlInput = document.querySelector<HTMLInputElement>('.control-input');
 const addButton = document.querySelector<HTMLButtonElement>('.add-button');
@@ -8,7 +8,7 @@ function handleAddBalance() {
   
   BalanceManager.add(inputValue);
   updateDisplay(BalanceManager.get());
-  addLogMessage(`${inputValue.toLocaleString('ko-KR')}원을 투입했습니다.`);
+  addLogMessage(`${formatCurrencyKRW(inputValue)}원을 투입했습니다.`);
   
   if(!controlInput) throw new Error('금액 입력창을 찾을 수 없습니다.');
 
