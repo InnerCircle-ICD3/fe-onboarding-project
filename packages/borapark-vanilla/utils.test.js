@@ -1,9 +1,5 @@
 import { formatLocaleString } from "./utils.js";
 
-const my_money = 1000000;
-
-console.log(formatLocaleString(my_money));
-
 describe("formatLocaleString", () => {
   test("숫자를 천 단위 구분자와 함께 포맷팅한다", () => {
     const currency1 = 1000000;
