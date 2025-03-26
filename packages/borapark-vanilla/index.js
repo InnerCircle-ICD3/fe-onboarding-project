@@ -17,15 +17,15 @@ const DRINK_PRICES = {
 let totalAmount = 0;
 let currentAmount = 0;
 let drinkInventory = {
-  COLA: 10,
-  SPRITE: 10,
-  FANTA: 10,
-  EOMUK: 10,
-  LATTE: 10,
-  WATER: 10,
-  RED_BULL: 10,
-  HOT_SEVEN: 10,
-  COFFEE_MILK: 10,
+  COLA: 10000,
+  SPRITE: 10000,
+  FANTA: 10000,
+  EOMUK: 10000,
+  LATTE: 10000,
+  WATER: 10000,
+  RED_BULL: 10000,
+  HOT_SEVEN: 10000,
+  COFFEE_MILK: 10000,
 };
 
 /**
@@ -54,7 +54,7 @@ const convertDrinkPrice = () => {
 
 // 투입 금액 입력창 금액
 const getUserAmount = () => {
-  const userAmount = document.querySelector("#user-amount").value;
+  const userAmount = document.getElementById("user-amount").value;
   return userAmount;
 };
 
@@ -65,6 +65,12 @@ const convertUserAmount = () => {
 };
 
 // 투입 기능
+const handleChangeAmount = () => {
+  const userAmount = getUserAmount();
+  totalAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+};
+
 const insertAmount = () => {
   const userAmount = getUserAmount();
   totalAmount += userAmount;
@@ -76,4 +82,15 @@ document.addEventListener("DOMContentLoaded", () => {
   convertVendingMachineTotalAmount();
   convertDrinkPrice();
   convertUserAmount();
+
+  // 투입 기능
+  document.getElementById("insert-amount").addEventListener("change", handleChangeAmount);
+
+  document
+    .querySelector(".vending-machine-button-fieldset > button:nth-child(1)")
+    .addEventListener("click", insertAmount);
+
+  document
+    .querySelector(".vending-machine-button-fieldset > button:nth-child(2)")
+    .addEventListener("click", handleChangeAmount);
 });
