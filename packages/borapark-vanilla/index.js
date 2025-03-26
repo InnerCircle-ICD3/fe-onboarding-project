@@ -1,4 +1,4 @@
-import { formatCurrencyAsLocaleString } from "./utils.js";
+import {formatCurrencyAsLocaleString} from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -65,14 +65,24 @@ const convertUserAmount = () => {
   updateAmountDisplay("#user-amount", userAmount);
 };
 
-/**
- * 자판기 초기 view 설정
- * @returns {void}
- */
-const initVendingMachineView = () => {
-  convertVendingMachineTotalAmount();
-  convertDrinkPrice();
-  convertUserAmount();
+// 투입 기능
+const insertAmount = () => {
+  const userAmount = getUserAmount();
+  totalAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
 };
 
-initVendingMachineView();
+// 이벤트 리스너 등록
+document.addEventListener("DOMContentLoaded", () => {
+  /**
+   * 자판기 초기 view 설정
+   * @returns {void}
+   */
+  const initVendingMachineView = () => {
+    convertVendingMachineTotalAmount();
+    convertDrinkPrice();
+    convertUserAmount();
+  };
+
+  initVendingMachineView();
+
