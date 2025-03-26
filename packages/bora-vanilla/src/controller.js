@@ -1,5 +1,5 @@
 import { ERROR_MESSAGES, formatter } from './constants';
-import { buyProduct, insertMoney } from './services';
+import { buyProduct, insertMoney, returnMoney } from './services';
 import {
   extractDigitsOnly,
   parseNumberWithCommas,
@@ -55,4 +55,20 @@ export const handleBuyProductClick = (e) => {
   // 자판기 업데이트
   setVendingMachineBalance(updatedBalance);
   renderLog(`${product.name}을(를) 구매하셨습니다.`);
+};
+
+/** 잔돈 반환 기능 */
+export const handleReturnMoneyClick = () => {
+  const { success, returnBalance, updateBalance, errorCode } =
+    returnMoney();
+
+  if (!success) {
+    const errorMessage = ERROR_MESSAGES[errorCode];
+    return renderLog(errorMessage);
+  }
+
+  renderLog(`${formatter.format(returnBalance)}원이 반환되었습니다.`);
+
+  // 자판기 업데이트
+  setVendingMachineBalance(updateBalance);
 };

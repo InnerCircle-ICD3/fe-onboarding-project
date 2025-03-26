@@ -4,6 +4,7 @@ import {
   decrementBalance,
   getBalance,
   incrementBalance,
+  resetBalance,
 } from './store';
 import { createError } from './utils';
 
@@ -55,6 +56,20 @@ const buyProduct = (productId) => {
 };
 
 /** 잔돈 반환 */
-const returnMoney = () => {};
+const returnMoney = () => {
+  const currentBalance = getBalance();
 
-export { buyProduct, insertMoney };
+  if (currentBalance === 0) {
+    return createError(ERROR_CODE.NO_BALANCE_TO_RETURN);
+  }
+
+  resetBalance();
+
+  return {
+    success: true,
+    returnBalance: currentBalance,
+    updateBalance: getBalance(),
+  };
+};
+
+export { buyProduct, insertMoney, returnMoney };
