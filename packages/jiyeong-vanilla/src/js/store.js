@@ -20,6 +20,7 @@ const createStore = (initialState = {}) => {
 const initialState = {
   insertAmount: 0,
   balance: 0,
+  logs: [],
 };
 
 export const store = createStore(initialState);

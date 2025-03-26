@@ -27,6 +27,10 @@ export const handleInsertButton = () => {
         ...currentState,
         insertAmount: 0,
         balance: currentState.balance + insertAmount,
+        logs: [
+          ...currentState.logs,
+          `💰 ${formatNumber(insertAmount)}원을 투입했습니다.`,
+        ],
       });
     }
   });
