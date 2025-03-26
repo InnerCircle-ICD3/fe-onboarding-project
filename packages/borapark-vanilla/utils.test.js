@@ -4,9 +4,7 @@ describe("formatCurrencyAsLocaleString()", () => {
   test("숫자를 전달하면, 세 자리마다 쉼표를 추가한 문자열로 반환한다.", () => {
     expect(formatCurrencyAsLocaleString(1_000_000)).toBe("1,000,000");
     expect(formatCurrencyAsLocaleString(384_729_343)).toBe("384,729,343");
-    expect(formatCurrencyAsLocaleString(857_295_720_374_230)).toBe(
-      "857,295,720,374,230"
-    );
+    expect(formatCurrencyAsLocaleString(857_295_720_374_230)).toBe("857,295,720,374,230");
   });
 
   test("0을 전달하면 '0'을 반환한다.", () => {
