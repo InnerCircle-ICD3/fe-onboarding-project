@@ -76,13 +76,13 @@
     <article class="vending-machine-control-panel">
       <section class="vending-machine-input-box">
         <form aria-label="금액 입력">
-          <fieldset>
+          <fieldset class="vending-machine-input-fieldset">
             <legend class="fieldset-legend">투입 금액</legend>
             <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required value="0"
               aria-invalid="false" />
             <label for="user-amount">투입 금액</label>
           </fieldset>
-          <fieldset>
+          <fieldset class="vending-machine-button-fieldset">
             <legend class="fieldset-legend">금액 관리</legend>
             <button type="submit">투입</button>
             <button type="button">반환</button>
