@@ -50,4 +50,21 @@ const renderBalanceDisplay = (balance) => {
   )}원`;
 };
 
-export { createProductButton, renderBalanceDisplay, renderProducts };
+/** 로그 메시지 렌더링 */
+const renderLogMessage = (message) => {
+  const logContainer = document.querySelector(
+    '.log-message-container > div'
+  );
+
+  const logItem = document.createElement('div');
+  logItem.className = 'p-1 border-gray-200 text-sm';
+  logItem.textContent = `${message}`;
+  logContainer?.appendChild(logItem);
+};
+
+export {
+  createProductButton,
+  renderBalanceDisplay,
+  renderLogMessage,
+  renderProducts,
+};

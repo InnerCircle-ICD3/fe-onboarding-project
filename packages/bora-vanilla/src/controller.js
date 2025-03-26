@@ -1,11 +1,7 @@
 import { ERROR_MESSAGES, formatter } from './constants';
 import { buyProduct, insertMoney, returnMoney } from './services';
-import {
-  extractDigitsOnly,
-  parseNumberWithCommas,
-  renderLogMessage,
-} from './utils';
-import { renderBalanceDisplay } from './view';
+import { extractDigitsOnly, parseNumberWithCommas } from './utils';
+import { renderBalanceDisplay, renderLogMessage } from './view';
 
 /** 금액 입력시 콤마 추가 */
 const handlePriceInputWithComma = (e) => {
@@ -85,15 +81,8 @@ export const setupEventListeners = () => {
     '.vending-machine-button-container'
   );
 
-  // 금액 입력시 콤마 추가
   priceInput.addEventListener('input', handlePriceInputWithComma);
-
-  // 금액 투입
   insertForm.addEventListener('submit', handleInsertFormSubmit);
-
-  // 잔돈 반환
   returnMoneyButton.addEventListener('click', handleReturnMoneyClick);
-
-  // 상품 구매
   buttonContainer.addEventListener('click', handleBuyProductClick);
 };

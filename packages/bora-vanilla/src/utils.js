@@ -1,16 +1,5 @@
 import { ERROR_CODE } from './constants';
 
-export const renderLogMessage = (message) => {
-  const logContainer = document.querySelector(
-    '.log-message-container > div'
-  );
-
-  const logItem = document.createElement('div');
-  logItem.className = 'p-1 border-gray-200 text-sm';
-  logItem.textContent = `${message}`;
-  logContainer?.appendChild(logItem);
-};
-
 /** 문자열에서 숫자만 추출합니다. */
 export const extractDigitsOnly = (value) => {
   return value.replace(/[^\d]/g, '');
