@@ -14,11 +14,13 @@ const addButtonList = () => {
 
     const nameElement = clone.querySelector(".name");
     const priceElement = clone.querySelector(".price");
+    const buttonElement = clone.querySelector(".button--payment");
 
-    if(!checkInstance(nameElement, HTMLSpanElement) || !checkInstance(priceElement, HTMLSpanElement)) return;
+    if(!checkInstance(nameElement, HTMLSpanElement) || !checkInstance(priceElement, HTMLSpanElement) || !checkInstance(buttonElement, HTMLButtonElement)) return;
     
     nameElement.textContent = name;
     priceElement.textContent = price.toString();
+    buttonElement.value = price.toString();
 
     buttonListElement.appendChild(clone);
   }

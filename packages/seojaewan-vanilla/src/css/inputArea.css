@@ -18,7 +18,8 @@ input[type="number"] {
 }
 
 .log--wrapper {
-    height: 230px;
+    height: 518px;
+    overflow-y: auto;
 
     border: 1px solid #000;
     border-radius: 10px;
