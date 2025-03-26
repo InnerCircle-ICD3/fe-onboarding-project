@@ -50,7 +50,7 @@ export const handleReturnButton = () => {
         balance: 0,
         logs: [
           ...currentState.logs,
-          `💸 ${formatNumber(currentState.balance)}원을 반환했습니다.`,
+          `🙇‍♀️ ${formatNumber(currentState.balance)}원을 반환합니다.`,
         ],
       });
     }
