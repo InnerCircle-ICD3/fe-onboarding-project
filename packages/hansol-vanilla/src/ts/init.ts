@@ -12,12 +12,12 @@ function initVendingMachine() {
 function initVendingMachineDisplay() {
   if(!vendingMachineDisplay) throw new Error('자판기 금액창을 찾을 수 없습니다.');
 
-  vendingMachineDisplay.innerText = currentBalance.toLocaleString();
+  vendingMachineDisplay.innerText = currentBalance.toLocaleString('ko-KR');
 }
 
 function initControlInput() {
   if(!controlInput) throw new Error('금액 입력창을 찾을 수 없습니다.');
-
+  
   controlInput.addEventListener('keyup', handleInputFormat);
 }
 
@@ -29,14 +29,14 @@ function handleInputFormat(e: KeyboardEvent) {
     target.classList.remove('input-error');
     return;
   }
-  
+
   if(!value) {
     alert('양수만 입력해주세요');
     target.classList.add('input-error');
     target.value = '';
   } else {
     target.classList.remove('input-error');
-    target.value = value.toLocaleString();
+    target.value = value.toLocaleString('ko-KR');
   }
 }
 
