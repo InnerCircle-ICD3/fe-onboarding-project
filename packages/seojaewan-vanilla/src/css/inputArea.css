@@ -17,7 +17,7 @@ input[type="number"] {
     -moz-appearance: textfield;
 }
 
-.log--wrapper {
+.log--list {
     height: 518px;
     overflow-y: auto;
 
@@ -27,3 +27,7 @@ input[type="number"] {
     padding: 20px;
     margin-top: 10px;
 }
+
+.log--item {
+    color:#000;
+  }
