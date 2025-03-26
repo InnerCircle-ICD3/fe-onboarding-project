@@ -5,7 +5,7 @@ import {
   parseNumberWithCommas,
   renderLog,
 } from './utils';
-import { setVendingMachineBalance } from './view';
+import { updateBalanceDisplay } from './view';
 
 /** 금액 입력시 콤마 추가 */
 const handlePriceInputWithComma = (e) => {
@@ -31,8 +31,7 @@ const handleInsertFormSubmit = (e) => {
     return renderLog(errorMessage);
   }
 
-  // 자판기 업데이트
-  setVendingMachineBalance(updateBalance);
+  updateBalanceDisplay(updateBalance);
   renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
   priceInput.value = '';
 };
@@ -52,8 +51,7 @@ const handleBuyProductClick = (e) => {
     return renderLog(errorMessage);
   }
 
-  // 자판기 업데이트
-  setVendingMachineBalance(updatedBalance);
+  updateBalanceDisplay(updatedBalance);
   renderLog(`${product.name}을(를) 구매하셨습니다.`);
 };
 
@@ -69,8 +67,7 @@ const handleReturnMoneyClick = () => {
 
   renderLog(`${formatter.format(returnBalance)}원이 반환되었습니다.`);
 
-  // 자판기 업데이트
-  setVendingMachineBalance(updateBalance);
+  updateBalanceDisplay(updateBalance);
 };
 
 /** 이벤트 리스너 설정 */

@@ -1,7 +1,7 @@
 import { formatter } from './constants';
 
 /** 자판기 남은 금액 */
-const setVendingMachineBalance = (balance) => {
+const updateBalanceDisplay = (balance) => {
   const vendingMachineBalance = document.querySelector(
     '.vending-machine-balance'
   );
@@ -10,4 +10,4 @@ const setVendingMachineBalance = (balance) => {
   )}원`;
 };
 
-export { setVendingMachineBalance };
+export { updateBalanceDisplay };
