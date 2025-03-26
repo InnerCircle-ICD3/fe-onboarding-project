@@ -31,3 +31,15 @@ export const handleInsertButton = () => {
     }
   });
 };
+
+export const handleReturnButton = () => {
+  const returnButton = document.querySelector(".btn-return");
+
+  returnButton.addEventListener("click", () => {
+    store.setState({
+      ...store.getState(),
+      insertAmount: 0,
+      balance: 0,
+    });
+  });
+};
