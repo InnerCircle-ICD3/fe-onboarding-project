@@ -10,3 +10,17 @@ describe("formatLocaleString", () => {
     expect(formatLocaleString(currency3)).toBe("857,295,720,374,230");
   });
 });
+
+describe("updateAmountDisplay", () => {
+  test("금액을 표시한다", () => {
+    const amount = 1000000;
+    const amountElement = document.createElement("div");
+    amountElement.textContent = formatLocaleString(amount);
+    expect(amountElement.textContent).toBe("1,000,000");
+
+    // needUnit 옵션이 true일 때
+    const amountElement2 = document.createElement("div");
+    amountElement2.textContent = formatLocaleString(amount, true);
+    expect(amountElement2.textContent).toBe("1,000,000원");
+  });
+});

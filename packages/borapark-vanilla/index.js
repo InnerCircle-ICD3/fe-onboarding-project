@@ -1,4 +1,4 @@
-import { formatLocaleString } from "./utils.js";
+import { updateAmountDisplay } from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -26,18 +26,6 @@ let drinkInventory = {
   RED_BULL: 10000,
   HOT_SEVEN: 10000,
   COFFEE_MILK: 10000,
-};
-
-/**
- * 금액 표시 화면 기능
- * @param {string} selector
- * @param {number} amount
- * @param {boolean} needUnit (optional)
- */
-const updateAmountDisplay = (selector, amount, needUnit = false) => {
-  const unit = "원";
-  const amountElement = document.querySelector(selector);
-  amountElement.textContent = `${formatLocaleString(amount)}${needUnit ? unit : ""}`;
 };
 
 // 금액 표시 화면 금액 변환
