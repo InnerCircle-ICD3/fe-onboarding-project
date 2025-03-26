@@ -1,6 +1,6 @@
-import { BalaceManager, getInputNumberValue } from "./common";
+import { BalanceManager, getInputNumberValue } from "./common";
 
-const currentBalance = BalaceManager.get();
+const currentBalance = BalanceManager.get();
 const vendingMachineDisplay = document.querySelector<HTMLDivElement>('.vending-machine-display');
 const controlInput = document.querySelector<HTMLInputElement>('.control-input');
 

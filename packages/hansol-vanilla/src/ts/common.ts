@@ -1,4 +1,4 @@
-export const BalaceManager = (() => {
+export const BalanceManager = (() => {
   let balance = 0;
 
   return {
