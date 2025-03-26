@@ -1,6 +1,6 @@
 import { ERROR_CODE } from './constants';
 
-export const renderLog = (message) => {
+export const renderLogMessage = (message) => {
   const logContainer = document.querySelector(
     '.log-message-container > div'
   );

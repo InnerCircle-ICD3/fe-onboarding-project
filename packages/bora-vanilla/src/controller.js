@@ -3,7 +3,7 @@ import { buyProduct, insertMoney, returnMoney } from './services';
 import {
   extractDigitsOnly,
   parseNumberWithCommas,
-  renderLog,
+  renderLogMessage,
 } from './utils';
 import { updateBalanceDisplay } from './view';
 
@@ -28,11 +28,11 @@ const handleInsertFormSubmit = (e) => {
 
   if (!success) {
     const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLog(errorMessage);
+    return renderLogMessage(errorMessage);
   }
 
   updateBalanceDisplay(updateBalance);
-  renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
+  renderLogMessage(`${formatter.format(amount)}원이 투입되었습니다.`);
   priceInput.value = '';
 };
 
@@ -48,11 +48,11 @@ const handleBuyProductClick = (e) => {
 
   if (!success) {
     const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLog(errorMessage);
+    return renderLogMessage(errorMessage);
   }
 
   updateBalanceDisplay(updatedBalance);
-  renderLog(`${product.name}을(를) 구매하셨습니다.`);
+  renderLogMessage(`${product.name}을(를) 구매하셨습니다.`);
 };
 
 /** 잔돈 반환 기능 */
@@ -62,10 +62,12 @@ const handleReturnMoneyClick = () => {
 
   if (!success) {
     const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLog(errorMessage);
+    return renderLogMessage(errorMessage);
   }
 
-  renderLog(`${formatter.format(returnBalance)}원이 반환되었습니다.`);
+  renderLogMessage(
+    `${formatter.format(returnBalance)}원이 반환되었습니다.`
+  );
 
   updateBalanceDisplay(updateBalance);
 };
