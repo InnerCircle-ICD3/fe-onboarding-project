@@ -1,6 +1,12 @@
 import products from './db/productsData';
 import './index.css';
 import {
+  decrementBalance,
+  getBalance,
+  incrementBalance,
+  resetBalance,
+} from './store';
+import {
   extractDigitsOnly,
   parseNumberWithCommas,
   renderLog,
@@ -11,7 +17,6 @@ document.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
 });
 
-let balance = 0;
 const MAX_AMOUNT = 1000000;
 const formatter = new Intl.NumberFormat();
 
@@ -108,7 +113,6 @@ const handleInsertFormSubmit = (e) => {
   }
 
   // 최대 금액 제한
-
   if (amount > MAX_AMOUNT) {
     renderLog(
       `최대 ${formatter.format(MAX_AMOUNT)}원까지만 투입 가능합니다.`
@@ -117,10 +121,10 @@ const handleInsertFormSubmit = (e) => {
   }
 
   // 투입 금액 업데이트
-  balance += amount;
+  incrementBalance(amount);
 
   // 자판기 남은 금액 업데이트
-  setVendingMachineBalance(balance);
+  setVendingMachineBalance(getBalance());
 
   // 로그 출력
   renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
@@ -139,22 +143,27 @@ const handleBuyProductClick = (e) => {
     (product) => product.id === Number(productId)
   );
 
-  if (balance < product.price) {
+  const currentBalance = getBalance();
+
+  if (currentBalance < product.price) {
     renderLog('잔액이 부족합니다.');
     return;
   }
 
   // 잔액 업데이트
-  balance -= product.price;
-  setVendingMachineBalance(balance);
+  decrementBalance(product.price);
+  setVendingMachineBalance(getBalance());
   renderLog(`${product.name}을(를) 구매하셨습니다.`);
 };
 
 /** 잔돈 반환 기능 */
 const handleReturnMoneyClick = () => {
-  renderLog(`${formatter.format(balance)}원이 반환되었습니다.`);
-  balance = 0;
-  setVendingMachineBalance(balance);
+  const currentBalance = getBalance();
+  renderLog(
+    `${formatter.format(currentBalance)}원이 반환되었습니다.`
+  );
+  resetBalance();
+  setVendingMachineBalance(getBalance());
 };
 
 /** 자판기 남은 금액 */
