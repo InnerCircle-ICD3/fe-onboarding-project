@@ -48,6 +48,8 @@ function renderMdButtons() {
 
       if (isMdPriceShown) {
         isMdPriceShown = false;
+      } else {
+        addLog(`${md.name}을(를) 구매했습니다.`);
       }
     });
   }
@@ -81,7 +83,21 @@ function renderInsertedMoney() {
     insertedMoney += money;
     moneyPresenter.innerText = insertedMoney.toLocaleString();
     moneyInput.value = 0;
+
+    if (money !== 0) {
+      addLog(`${money.toLocaleString()}원을 넣었습니다.`);
+    }
   };
+}
+
+function addLog(message) {
+  const userLogger = document.getElementsByClassName("user-logger")[0];
+
+  const log = document.createElement("div");
+  log.innerText = message;
+
+  userLogger.appendChild(log);
+  userLogger.scrollTop = userLogger.scrollHeight;
 }
 
 renderMdButtons();
