@@ -17,6 +17,11 @@ export const handlePressProductButton = () => {
       if (currentState.balance < product.price) {
         originalBalance = currentState.balance; // 원래 잔액 저장
         balanceDisplay.textContent = formatNumber(product.price);
+      } else {
+        store.setState({
+          ...currentState,
+          balance: currentState.balance - product.price,
+        });
       }
     });
 
