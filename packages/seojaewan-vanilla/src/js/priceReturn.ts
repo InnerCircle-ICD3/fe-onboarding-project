@@ -1,17 +1,21 @@
+import checkInstance from "./checkType";
+import addLogging from "./logging";
 import { totalPrice } from "./main";
 
 const handlePriceReturn = () => {
-    const totalPriceElement = document.querySelector(".total-price") as HTMLDivElement;
+    const totalPriceElement = document.querySelector(".total-price");
+    
+    if(!checkInstance(totalPriceElement, HTMLParagraphElement)) return;
 
-    totalPrice.resetTotalPrice();
-    totalPriceElement.textContent = "0";
+    totalPriceElement.textContent = totalPrice.resetTotalPrice().toString();
+    addLogging("금액이 반환되었습니다.");
 }
 
 
 const addReturnEvent = () => {
-    const returnPriceElement = document.querySelector(".return-price") as HTMLButtonElement;
+    const returnPriceElement = document.querySelector(".return-price");
 
-    returnPriceElement.addEventListener("click", handlePriceReturn);
+    if(checkInstance(returnPriceElement, HTMLButtonElement)) returnPriceElement.addEventListener("click", handlePriceReturn);
 }
 
 export default addReturnEvent;

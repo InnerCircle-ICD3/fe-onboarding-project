@@ -17,7 +17,7 @@ const handlePriceInput = (e:SubmitEvent) => {
   );
   if(!checkInstance(totalPriceElement, HTMLParagraphElement)) return;
 
-  const price = Number(priceInputElement.value);
+  const price = priceInputElement.valueAsNumber;
   const updatePrice = totalPrice.updateTotalPrice(price);
 
   totalPriceElement.textContent = numberWithComma(updatePrice).toString();
