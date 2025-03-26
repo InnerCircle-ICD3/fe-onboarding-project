@@ -65,6 +65,10 @@ const setupEventListeners = () => {
   );
   const priceInput = document.querySelector('.price-input');
 
+  const buttonContainer = document.querySelector(
+    '.vending-machine-button-container'
+  );
+
   // 금액 입력시 콤마 추가
   priceInput.addEventListener('input', handlePriceInputWithComma);
 
@@ -73,6 +77,9 @@ const setupEventListeners = () => {
 
   // 잔돈 반환
   returnMoneyButton.addEventListener('click', handleReturnMoneyClick);
+
+  // 상품 구매
+  buttonContainer.addEventListener('click', handleBuyProductClick);
 };
 
 /** 금액 입력시 콤마 추가 */
@@ -119,6 +126,23 @@ const handleInsertFormSubmit = (e) => {
   renderLog(`${formatter.format(amount)}원이 투입되었습니다.`);
 
   priceInput.value = '';
+};
+
+/** 상품 구매 기능 */
+const handleBuyProductClick = (e) => {
+  const button = e.target.closest('.product-button');
+  if (!button) return;
+
+  const productId = button.dataset.id;
+
+  const product = products.find(
+    (product) => product.id === Number(productId)
+  );
+
+  // 잔액 업데이트
+  balance -= product.price;
+  setVendingMachineBalance(balance);
+  renderLog(`${product.name}을(를) 구매하셨습니다.`);
 };
 
 /** 잔돈 반환 기능 */
