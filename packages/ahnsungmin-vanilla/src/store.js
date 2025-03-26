@@ -10,7 +10,7 @@ export function updateMoney(newAmount) {
     }
     
     currentMoney = newAmount;
-    updateMoneyDisplay(newAmount);
+    updateMoneyDisplay(currentMoney);
 }
 
 // 화면에 표시하는 금액 (돈 있는 상태에서는 잔액을 띄우지만, 돈 없는 상태로 음료수를 누르면 잔액 대신 음료수의 가격을 임시로 표시함)

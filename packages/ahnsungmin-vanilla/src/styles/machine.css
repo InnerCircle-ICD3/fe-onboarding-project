@@ -1,14 +1,14 @@
 /* 1. 좌측 자판기 본체 */
 .machine {
     padding: 20px;
-    background-color: #e8f5e9;  /* 연한 초록색 (영역 확인용) */
+    background: #f8f9fa;
 }
 
 /* 금액 표시창 */
 .machine-money {
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #e3f2fd; /* 연한 파란색 (영역 확인용) */
+    background-color: white;
     text-align: center;
 }
 
@@ -17,26 +17,26 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);   /* 3개의 열, 각각 동일한 너비(1fr) */
     gap: 10px;                               /* 버튼 사이의 간격 */
-    background-color: #fff3e0;             /* 연한 주황색 (영역 확인용) */
+    /* background-color: #fff3e0;             /* 연한 주황색 (영역 확인용) */
 }
 
 /* 개별 상품 버튼 */
 .machine-product {
-    display: flex;                /* flex의 기본값은 가로 배치 */
-    flex-direction: column;       /* flex에서 이 속성을 추가해야 상품명이랑 가격을 세로 배치할 수 있따 */
-    background-color: #ffffff;  /* 흰색 - 기본 상태 */
+    display: flex;
+    flex-direction: column;
+    background-color: #e3f2fd;  /* 연한 하늘색 */
     padding: 10px;
     cursor: pointer;
 }
 
 /* 개별 상품 버튼 - 마우스 올렸을 때 (hover) */
 .machine-product:hover {
-    background-color: #f0f0f0;  /* 매우 연한 회색 - 마우스 오버 시 */
+    background-color: #bbdefb;  /* 좀 더 진한 하늘색 */
 }
 
 /* 개별 상품 버튼 - 클릭했을 때 (active) */
 .machine-product:active {
-    background-color: #e0e0e0;  /* 연한 회색 - 클릭 시 */
+    background-color: #90caf9;  /* 더 진한 하늘색 */
 }
 
 /* 상품명 스타일 */
