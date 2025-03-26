@@ -13,5 +13,5 @@ export const formatNumber = (number) => {
  * @returns {number} 추출된 숫자 (숫자가 아닌 경우 0)
  */
 export const extractNumber = (value) => {
-  return parseInt(value.replace(/[^\d]/g, ""), 10) || 0;
+  return parseInt(value.replace(/\D/g, ""), 10) || 0;
 };
