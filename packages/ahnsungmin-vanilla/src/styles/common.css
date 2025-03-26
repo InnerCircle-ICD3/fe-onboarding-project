@@ -10,5 +10,4 @@
     display: flex;     /* machine과 panel을 좌우로 배치 */
     gap: 20px;         /* machine과 panel 사이의 간격 */
     padding: 20px;
-    background-color: #f0f0f0;
 } 
