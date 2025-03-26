@@ -18,18 +18,18 @@ export const store = {
     return this.balance;
   },
 
-  incrementBalance(price) {
-    this.balance += price;
+  incrementBalance(amount) {
+    this.balance += amount;
     return this.balance;
   },
 
-  decrementBalance(price) {
-    this.balance -= price;
+  decrementBalance(amount) {
+    this.balance -= amount;
     return this.balance;
   },
 
-  resetBalance(defaultPrice = 0) {
-    this.balance = defaultPrice;
+  resetBalance(defaultAmount = 0) {
+    this.balance = defaultAmount;
     return this.balance;
   },
 };
