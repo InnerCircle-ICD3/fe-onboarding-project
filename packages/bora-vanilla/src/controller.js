@@ -8,7 +8,7 @@ import {
 import { setVendingMachineBalance } from './view';
 
 /** 금액 입력시 콤마 추가 */
-export const handlePriceInputWithComma = (e) => {
+const handlePriceInputWithComma = (e) => {
   const value = extractDigitsOnly(e.target.value);
 
   if (value) {
@@ -17,7 +17,7 @@ export const handlePriceInputWithComma = (e) => {
 };
 
 /** 금액 투입 기능 */
-export const handleInsertFormSubmit = (e) => {
+const handleInsertFormSubmit = (e) => {
   e.preventDefault();
 
   const priceInput = document.querySelector('.price-input');
@@ -38,7 +38,7 @@ export const handleInsertFormSubmit = (e) => {
 };
 
 /** 상품 구매 기능 */
-export const handleBuyProductClick = (e) => {
+const handleBuyProductClick = (e) => {
   const button = e.target.closest('.product-button');
   if (!button) return;
 
@@ -58,7 +58,7 @@ export const handleBuyProductClick = (e) => {
 };
 
 /** 잔돈 반환 기능 */
-export const handleReturnMoneyClick = () => {
+const handleReturnMoneyClick = () => {
   const { success, returnBalance, updateBalance, errorCode } =
     returnMoney();
 
@@ -71,4 +71,30 @@ export const handleReturnMoneyClick = () => {
 
   // 자판기 업데이트
   setVendingMachineBalance(updateBalance);
+};
+
+/** 이벤트 리스너 설정 */
+export const setupEventListeners = () => {
+  const insertForm = document.querySelector(
+    '.vending-machine-insert-form'
+  );
+  const returnMoneyButton = document.querySelector(
+    '.return-money-button'
+  );
+  const priceInput = document.querySelector('.price-input');
+  const buttonContainer = document.querySelector(
+    '.vending-machine-button-container'
+  );
+
+  // 금액 입력시 콤마 추가
+  priceInput.addEventListener('input', handlePriceInputWithComma);
+
+  // 금액 투입
+  insertForm.addEventListener('submit', handleInsertFormSubmit);
+
+  // 잔돈 반환
+  returnMoneyButton.addEventListener('click', handleReturnMoneyClick);
+
+  // 상품 구매
+  buttonContainer.addEventListener('click', handleBuyProductClick);
 };
