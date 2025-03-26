@@ -52,7 +52,7 @@ const convertDrinkPrice = () => {
  * @returns {number}
  */
 const getUserAmount = () => {
-  const userAmount = document.querySelector("#user-amount").value;
+  const userAmount = document.getElementById("user-amount").value;
   return userAmount;
 };
 
@@ -66,6 +66,12 @@ const convertUserAmount = () => {
 };
 
 // 투입 기능
+const handleChangeAmount = () => {
+  const userAmount = getUserAmount();
+  totalAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+};
+
 const insertAmount = () => {
   const userAmount = getUserAmount();
   totalAmount += userAmount;
