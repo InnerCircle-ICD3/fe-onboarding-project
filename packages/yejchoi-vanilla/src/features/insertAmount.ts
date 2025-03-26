@@ -22,6 +22,11 @@ export const insertAmount = (props : insertAmountProps) => {
                 return;
             }
 
+            if(totalAmount + value > 100000) {
+                addLog('10만원 이상 넣을 수 없습니다.', 'error');
+                return;
+            }
+
             amountStore.setAmount(totalAmount + value);
 
             updateTotalAmount(totalAmount + value);
