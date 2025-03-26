@@ -1,16 +1,13 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자판기</title>
-</head>
-<body>
-    <main class="vending-machine-container">
+import { beforeEach } from "vitest";
+
+// 테스트 실행 전에 document를 초기화
+beforeEach(() => {
+  document.body.innerHTML = `<div id='app'>
+  <main class="vending-machine-container">
         <!-- 자판기 본체 -->
         <section class="vending-machine">
             <div class="screen">
-                <input type="text" name="" class="numberInput" placeholder="0원" readonly>
+                <input type="text" name="" id="numberInput" placeholder="0원">
             </div>
             <div class="products">
                 <div class="product">
@@ -57,7 +54,7 @@
         <section class="control-panel">
             <div class="money-input">
                 <div class="screen">
-                    <input type="text" name="" class="numberInput" placeholder="0원">
+                    <input type="text" name="" id="numberInput" placeholder="0원">
                 </div>
                 <div class="buttons">
                     <button id="button-insert" class="button-blue">투입</button>
@@ -66,15 +63,21 @@
             </div>
             <div class="log">
                 <ul class="log-list">
+                    <li>2000원을 투입했습니다.</li>
+                    <li>오뎅국물을 구매했습니다.</li>
+                    <li>200원을 반환합니다.</li>
+                    <li>2000원을 투입했습니다.</li>
+                    <li>오뎅국물을 구매했습니다.</li>
+                    <li>200원을 반환합니다.</li>
+                    <li>2000원을 투입했습니다.</li>
+                    <li>오뎅국물을 구매했습니다.</li>
+                    <li>200원을 반환합니다.</li>
+                    <li>2000원을 투입했습니다.</li>
+                    <li>오뎅국물을 구매했습니다.</li>
+                    <li>200원을 반환합니다.</li>
                 </ul>
             </div>
         </section>
     </main>
-    <script type="module" src="/src/main.js"></script>
-    <script type="module">
-        import { setupNumberInput } from "./src/numberInput.js";
-        import "./src/vendingMachine.js";
-        setupNumberInput();
-    </script>
-</body>
-</html>
+  </div>`;
+});
