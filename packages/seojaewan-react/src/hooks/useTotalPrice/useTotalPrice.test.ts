@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import useTotalPrice from ".";
+import { renderHook } from "@testing-library/react";
 
 describe("useTotalPrice 테스트", () => {
     it("Total Price 값 출력", () => {
-        const {totalPrice} = useTotalPrice();
+        const {result} = renderHook(() => useTotalPrice());
 
-        expect(totalPrice).toBe(0);
+        expect(result.current.totalPrice).toBe(0);
     });
 
     it("Total Price 값 증가: 1000", () => {
