@@ -90,6 +90,25 @@ function renderInsertedMoney() {
   };
 }
 
+function renderReturnButton() {
+  const returnBtn = document.getElementsByClassName("return-btn")[0];
+  const moneyPresenter = document.getElementsByClassName(
+    "inserted-money-presenter"
+  )[0];
+
+  returnBtn.onclick = () => {
+    if (insertedMoney === 0) {
+      return;
+    }
+
+    const insertedMoneyStr = moneyPresenter.innerText;
+    addLog(`${insertedMoneyStr}원을 반환합니다.`);
+
+    moneyPresenter.innerText = "0";
+    insertedMoney = 0;
+  };
+}
+
 function addLog(message) {
   const userLogger = document.getElementsByClassName("user-logger")[0];
 
@@ -102,3 +121,4 @@ function addLog(message) {
 
 renderMdButtons();
 renderInsertedMoney();
+renderReturnButton();
