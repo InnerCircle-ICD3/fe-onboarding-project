@@ -6,8 +6,7 @@ function amount() {
 
   function decrease(value: number) {
     if (amount - value < 0) {
-      // TODO : 음수 처리
-      return;
+      throw new Error("잔액이 부족합니다.");
     }
     amount -= value;
     $insertedAmount.value = amount.toLocaleString();
@@ -15,7 +14,7 @@ function amount() {
 
   function increase(value: number) {
     if (value <= 0) {
-      throw new Error("amount is less than 0");
+      throw new Error("금액이 0보다 작습니다.");
     }
     amount += value;
     $insertedAmount.value = amount.toLocaleString();
