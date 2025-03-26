@@ -64,6 +64,13 @@ const convertUserAmount = () => {
   updateAmountDisplay("#user-amount", userAmount);
 };
 
+// 투입 기능
+const insertAmount = () => {
+  const userAmount = getUserAmount();
+  totalAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+};
+
 // 이벤트 리스너 등록
 document.addEventListener("DOMContentLoaded", () => {
   convertVendingMachineTotalAmount();
