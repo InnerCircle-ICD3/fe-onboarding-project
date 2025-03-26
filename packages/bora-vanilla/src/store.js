@@ -1,15 +1,35 @@
-let balance = 0;
+import productsData from './db/productsData';
 
-export const getBalance = () => balance;
+export const store = {
+  products: [...productsData],
+  balance: 0,
 
-export const incrementBalance = (price) => {
-  balance += price;
-};
+  getProducts() {
+    return [...this.products];
+  },
 
-export const decrementBalance = (price) => {
-  balance -= price;
-};
+  getProductById(productId) {
+    return this.products.find(
+      (product) => product.id === Number(productId)
+    );
+  },
 
-export const resetBalance = (defaultPrice = 0) => {
-  balance = defaultPrice;
+  getBalance() {
+    return this.balance;
+  },
+
+  incrementBalance(price) {
+    this.balance += price;
+    return this.balance;
+  },
+
+  decrementBalance(price) {
+    this.balance -= price;
+    return this.balance;
+  },
+
+  resetBalance(defaultPrice = 0) {
+    this.balance = defaultPrice;
+    return this.balance;
+  },
 };

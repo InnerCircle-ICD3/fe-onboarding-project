@@ -1,11 +1,5 @@
 import { ERROR_CODE, MAX_AMOUNT } from './constants';
-import products from './db/productsData';
-import {
-  decrementBalance,
-  getBalance,
-  incrementBalance,
-  resetBalance,
-} from './store';
+import { store } from './store';
 import { createError } from './utils';
 
 /** 상품 투입 */
@@ -20,55 +14,56 @@ const insertMoney = (amount) => {
   }
 
   // 투입 금액 업데이트
-  incrementBalance(amount);
+  const updatedBalance = store.incrementBalance(amount);
 
   return {
     success: true,
     amount,
-    updateBalance: getBalance(),
+    updatedBalance,
   };
 };
 
 /** 상품 구매 */
 const buyProduct = (productId) => {
-  const product = products.find(
-    (product) => product.id === Number(productId)
-  );
+  const product = store.getProductById(productId);
 
+  // 상품 존재 여부 확인
   if (!product) {
     return createError(ERROR_CODE.PRODUCT_NOT_FOUND);
   }
 
-  const currentBalance = getBalance();
+  const currentBalance = store.getBalance();
 
+  // 잔액 부족
   if (currentBalance < product.price) {
     return createError(ERROR_CODE.INSUFFICIENT_BALANCE);
   }
 
   // 잔액 감소 업데이트
-  decrementBalance(product.price);
+  const updatedBalance = store.decrementBalance(product.price);
 
   return {
     success: true,
     product,
-    updatedBalance: getBalance(),
+    updatedBalance,
   };
 };
 
 /** 잔돈 반환 */
 const returnMoney = () => {
-  const currentBalance = getBalance();
+  const currentBalance = store.getBalance();
 
   if (currentBalance === 0) {
     return createError(ERROR_CODE.NO_BALANCE_TO_RETURN);
   }
 
-  resetBalance();
+  // 잔액 초기화
+  const updatedBalance = store.resetBalance();
 
   return {
     success: true,
     returnBalance: currentBalance,
-    updateBalance: getBalance(),
+    updatedBalance,
   };
 };
 

@@ -5,7 +5,7 @@ import {
   parseNumberWithCommas,
   renderLogMessage,
 } from './utils';
-import { updateBalanceDisplay } from './view';
+import { renderBalanceDisplay } from './view';
 
 /** 금액 입력시 콤마 추가 */
 const handlePriceInputWithComma = (e) => {
@@ -23,7 +23,7 @@ const handleInsertFormSubmit = (e) => {
   const priceInput = document.querySelector('.price-input');
   const convertToAmount = parseNumberWithCommas(priceInput.value);
 
-  const { success, amount, updateBalance, errorCode } =
+  const { success, amount, updatedBalance, errorCode } =
     insertMoney(convertToAmount);
 
   if (!success) {
@@ -31,7 +31,7 @@ const handleInsertFormSubmit = (e) => {
     return renderLogMessage(errorMessage);
   }
 
-  updateBalanceDisplay(updateBalance);
+  renderBalanceDisplay(updatedBalance);
   renderLogMessage(`${formatter.format(amount)}원이 투입되었습니다.`);
   priceInput.value = '';
 };
@@ -51,13 +51,13 @@ const handleBuyProductClick = (e) => {
     return renderLogMessage(errorMessage);
   }
 
-  updateBalanceDisplay(updatedBalance);
+  renderBalanceDisplay(updatedBalance);
   renderLogMessage(`${product.name}을(를) 구매하셨습니다.`);
 };
 
 /** 잔돈 반환 기능 */
 const handleReturnMoneyClick = () => {
-  const { success, returnBalance, updateBalance, errorCode } =
+  const { success, returnBalance, updatedBalance, errorCode } =
     returnMoney();
 
   if (!success) {
@@ -69,7 +69,7 @@ const handleReturnMoneyClick = () => {
     `${formatter.format(returnBalance)}원이 반환되었습니다.`
   );
 
-  updateBalanceDisplay(updateBalance);
+  renderBalanceDisplay(updatedBalance);
 };
 
 /** 이벤트 리스너 설정 */
