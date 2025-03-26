@@ -1,10 +1,32 @@
-import { ERROR_CODE } from './constants';
+import { ERROR_CODE, MAX_AMOUNT } from './constants';
 import products from './db/productsData';
-import { decrementBalance, getBalance } from './store';
+import {
+  decrementBalance,
+  getBalance,
+  incrementBalance,
+} from './store';
 import { createError } from './utils';
 
 /** 상품 투입 */
-const insertMoney = () => {};
+const insertMoney = (amount) => {
+  if (!Number.isFinite(amount) || amount <= 0) {
+    return createError(ERROR_CODE.INVALID_AMOUNT);
+  }
+
+  // 최대 금액 제한
+  if (amount > MAX_AMOUNT) {
+    return createError(ERROR_CODE.EXCEED_MAX_AMOUNT);
+  }
+
+  // 투입 금액 업데이트
+  incrementBalance(amount);
+
+  return {
+    success: true,
+    amount,
+    updateBalance: getBalance(),
+  };
+};
 
 /** 상품 구매 */
 const buyProduct = (productId) => {
@@ -35,4 +57,4 @@ const buyProduct = (productId) => {
 /** 잔돈 반환 */
 const returnMoney = () => {};
 
-export { buyProduct };
+export { buyProduct, insertMoney };
