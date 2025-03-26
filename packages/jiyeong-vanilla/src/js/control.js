@@ -1,5 +1,5 @@
-import { store } from "./store";
 import { formatNumber, extractNumber } from "./utils";
+import { store } from "./store";
 
 export const handleInputCoin = () => {
   const inputCoin = document.querySelector(".insert-amount");
