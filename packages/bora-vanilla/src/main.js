@@ -139,6 +139,11 @@ const handleBuyProductClick = (e) => {
     (product) => product.id === Number(productId)
   );
 
+  if (balance < product.price) {
+    renderLog('잔액이 부족합니다.');
+    return;
+  }
+
   // 잔액 업데이트
   balance -= product.price;
   setVendingMachineBalance(balance);
