@@ -1,35 +1,27 @@
-function amount() {
-  let amount = 0;
-  const $insertedAmount = document.getElementById(
-    "inserted-amount"
-  ) as HTMLInputElement;
+import { formatNumberWithCommas } from "./utills/format";
 
-  function decrease(value: number) {
-    if (amount - value < 0) {
-      throw new Error("잔액이 부족합니다.");
-    }
-    amount -= value;
-    $insertedAmount.value = amount.toLocaleString();
+let amount = 0;
+const $insertedAmount = document.getElementById(
+  "inserted-amount"
+) as HTMLInputElement;
+
+export function decrease(value: number) {
+  if (amount - value < 0) {
+    throw new Error("잔액이 부족합니다.");
   }
-
-  function increase(value: number) {
-    if (value <= 0) {
-      throw new Error("금액이 0보다 작습니다.");
-    }
-    amount += value;
-    $insertedAmount.value = amount.toLocaleString();
-  }
-
-  function reset() {
-    amount = 0;
-    $insertedAmount.value = amount.toLocaleString();
-  }
-
-  return {
-    decrease,
-    increase,
-    reset,
-  };
+  amount -= value;
+  $insertedAmount.value = formatNumberWithCommas(amount);
 }
 
-export const { decrease, increase, reset } = amount();
+export function increase(value: number) {
+  if (value <= 0) {
+    throw new Error("금액이 0보다 작습니다.");
+  }
+  amount += value;
+  $insertedAmount.value = formatNumberWithCommas(amount);
+}
+
+export function reset() {
+  amount = 0;
+  $insertedAmount.value = formatNumberWithCommas(amount);
+}
