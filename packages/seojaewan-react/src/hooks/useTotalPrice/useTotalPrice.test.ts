@@ -8,7 +8,7 @@ describe("useTotalPrice 테스트", () => {
         expect(result.current.totalPrice).toBe(0);
     });
 
-    it("increaseTotalPrice에 전달된 1000만큼 totalPrice 값이 증가한다.", () => {
+    it("increaseTotalPrice()에 전달된 1000만큼 totalPrice 값이 증가한다.", () => {
         const {result} = renderHook(() => useTotalPrice());
 
         act(() => result.current.increaseTotalPrice(1000));
@@ -16,7 +16,7 @@ describe("useTotalPrice 테스트", () => {
         expect(result.current.totalPrice).toBe(1000);
     });
 
-    it("decreaseTotalPrice에 전달된 500만큼 totalPrice 값이 감소한다.", () => {
+    it("decreaseTotalPrice()에 전달된 500만큼 totalPrice 값이 감소한다.", () => {
         const {result} = renderHook(() => useTotalPrice());
 
         act(() => result.current.decreaseTotalPrice(500));
@@ -24,7 +24,7 @@ describe("useTotalPrice 테스트", () => {
         expect(result.current.totalPrice).toBe(-500);
     });
 
-    it("increaseTotalPrice로 1000 증가한 totalPrice를 resetTotalPrice로 0으로 초기화된다.", () => {
+    it("increaseTotalPrice()로 1000 증가한 totalPrice를 resetTotalPrice로 0으로 초기화된다.", () => {
         const {result} = renderHook(() => useTotalPrice());
 
         act(() => result.current.increaseTotalPrice(1000));

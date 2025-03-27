@@ -8,7 +8,7 @@ describe("useLogList 테스트", () => {
         expect(result.current.logList).toEqual([]);
     });
 
-    it("addLog에 전달된 'Test Log'가 logList에 추가된다.", () => {
+    it("addLog()에 전달된 'Test Log'가 logList에 추가된다.", () => {
         const {result} = renderHook(() => useLogList());
 
         act(() => result.current.addLog("Test Log"));
