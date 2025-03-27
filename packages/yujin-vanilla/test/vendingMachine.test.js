@@ -5,14 +5,14 @@ import { getNumericValue } from "../src/numberInput.js"; // 숫자 변환 함수
 beforeEach(() => {
   // 테스트 실행 전 가짜 DOM 설정
   document.body.innerHTML = `
-    <input type="text" class="numberInput" placeholder="0원">
+    <input type="text" class="number-input" placeholder="0원">
   `;
 
   setupNumberInput(); // 이벤트 리스너 등록
 });
 
 test("금액은 양수만 입력할 수 있습니다.", () => {
-  const inputElement = document.querySelector(".numberInput");
+  const inputElement = document.querySelector(".number-input");
   inputElement.value = "-1000";
 
   // keyup 이벤트 발생
@@ -25,13 +25,13 @@ test("금액은 양수만 입력할 수 있습니다.", () => {
 
 test("숫자를 입력한 후 투입 버튼을 누르면 금액이 증가합니다.", () => {
   document.body.innerHTML = `
-    <input type="text" class="numberInput" placeholder="0원">
+    <input type="text" class="number-input" placeholder="0원">
     <button id="button-insert">투입</button>
     <div id="screen">0</div>
   `;
 
   let total = 0;
-  const inputElement = document.querySelector(".numberInput");
+  const inputElement = document.querySelector(".number-input");
   const insertButton = document.querySelector("#button-insert");
   const screen = document.querySelector("#screen");
 

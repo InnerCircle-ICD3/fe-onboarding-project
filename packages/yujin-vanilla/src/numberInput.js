@@ -1,5 +1,5 @@
 export const setupNumberInput = () => {
-  const numberInputs = document.querySelectorAll(".numberInput");
+  const numberInputs = document.querySelectorAll(".number-input");
   numberInputs.forEach((each) => {
     each.addEventListener("keyup", function (e) {
       const numericValue = getNumericValue(e.target);
