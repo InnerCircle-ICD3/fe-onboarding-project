@@ -1,88 +1,68 @@
-import { ERROR_MESSAGES, formatter } from './constants';
+import { ERROR_MESSAGES } from './constants';
 import { buyProduct, insertMoney, returnMoney } from './services';
-import { extractDigitsOnly, parseNumberWithCommas } from './utils';
-import { renderBalanceDisplay, renderLogMessage } from './view';
+import { formatDigitsWithCommas, formatter, parseNumberWithCommas } from './utils';
 
-/** 금액 입력시 콤마 추가 */
-const handlePriceInputWithComma = (e) => {
-  const value = extractDigitsOnly(e.target.value);
+export const createVendingMachineController = (view) => {
+  /** 금액 입력시 콤마 추가 */
+  const handleMoneyAmountInput = (value) => {
+    return value ? formatDigitsWithCommas(value) : '';
+  };
 
-  if (value) {
-    e.target.value = formatter.format(value);
-  }
-};
+  /** 금액 투입 기능 */
+  const handleMoneyInsert = (value) => {
+    e.preventDefault();
 
-/** 금액 투입 기능 */
-const handleInsertFormSubmit = (e) => {
-  e.preventDefault();
+    const priceInput = document.querySelector('.price-input');
+    const convertToAmount = parseNumberWithCommas(priceInput.value);
 
-  const priceInput = document.querySelector('.price-input');
-  const convertToAmount = parseNumberWithCommas(priceInput.value);
+    const { success, amount, updatedBalance, errorCode } = insertMoney(convertToAmount);
 
-  const { success, amount, updatedBalance, errorCode } =
-    insertMoney(convertToAmount);
+    if (!success) {
+      const errorMessage = ERROR_MESSAGES[errorCode];
+      return renderLogMessage(errorMessage);
+    }
 
-  if (!success) {
-    const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLogMessage(errorMessage);
-  }
+    renderBalanceDisplay(updatedBalance);
+    renderLogMessage(`${formatter.format(amount)}원이 투입되었습니다.`);
+    priceInput.value = '';
+  };
 
-  renderBalanceDisplay(updatedBalance);
-  renderLogMessage(`${formatter.format(amount)}원이 투입되었습니다.`);
-  priceInput.value = '';
-};
+  /** 상품 구매 기능 */
+  const handleProductPurchase = (e) => {
+    const button = e.target.closest('.product-button');
+    if (!button) return;
 
-/** 상품 구매 기능 */
-const handleBuyProductClick = (e) => {
-  const button = e.target.closest('.product-button');
-  if (!button) return;
+    const productId = button.dataset.id;
 
-  const productId = button.dataset.id;
+    const { success, product, updatedBalance, errorCode } = buyProduct(productId);
 
-  const { success, product, updatedBalance, errorCode } =
-    buyProduct(productId);
+    if (!success) {
+      const errorMessage = ERROR_MESSAGES[errorCode];
+      return renderLogMessage(errorMessage);
+    }
 
-  if (!success) {
-    const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLogMessage(errorMessage);
-  }
+    renderBalanceDisplay(updatedBalance);
+    renderLogMessage(`${product.name}을(를) 구매하셨습니다.`);
+  };
 
-  renderBalanceDisplay(updatedBalance);
-  renderLogMessage(`${product.name}을(를) 구매하셨습니다.`);
-};
+  /** 잔돈 반환 기능 */
+  const handleMoneyReturn = () => {
+    const { success, returnBalance, updatedBalance, errorCode } = returnMoney();
 
-/** 잔돈 반환 기능 */
-const handleReturnMoneyClick = () => {
-  const { success, returnBalance, updatedBalance, errorCode } =
-    returnMoney();
+    if (!success) {
+      const errorMessage = ERROR_MESSAGES[errorCode];
+      return renderLogMessage(errorMessage);
+    }
 
-  if (!success) {
-    const errorMessage = ERROR_MESSAGES[errorCode];
-    return renderLogMessage(errorMessage);
-  }
+    renderLogMessage(`${formatter.format(returnBalance)}원이 반환되었습니다.`);
 
-  renderLogMessage(
-    `${formatter.format(returnBalance)}원이 반환되었습니다.`
-  );
+    renderBalanceDisplay(updatedBalance);
+  };
 
-  renderBalanceDisplay(updatedBalance);
-};
-
-/** 이벤트 리스너 설정 */
-export const setupEventListeners = () => {
-  const insertForm = document.querySelector(
-    '.vending-machine-insert-form'
-  );
-  const returnMoneyButton = document.querySelector(
-    '.return-money-button'
-  );
-  const priceInput = document.querySelector('.price-input');
-  const buttonContainer = document.querySelector(
-    '.vending-machine-button-container'
-  );
-
-  priceInput.addEventListener('input', handlePriceInputWithComma);
-  insertForm.addEventListener('submit', handleInsertFormSubmit);
-  returnMoneyButton.addEventListener('click', handleReturnMoneyClick);
-  buttonContainer.addEventListener('click', handleBuyProductClick);
+  return {
+    handleMoneyAmountInput,
+    handleMoneyInsert,
+    handleProductPurchase,
+    handleMoneyReturn,
+  };
 };

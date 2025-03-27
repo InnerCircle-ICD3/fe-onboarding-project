@@ -62,6 +62,21 @@ export const createVendingMachineView = (domSelector) => {
     logContainer?.appendChild(logItem);
   };
 
+  /** 금액 입력 필드  */
+  const getMoneyInputValue = () => {
+    return domSelector.getMoneyAmountInput().value;
+  };
+
+  /** 금액 입력 필드 설정 */
+  const setMoneyInputValue = (value) => {
+    domSelector.getMoneyAmountInput().value = value;
+  };
+
+  /** 금액 입력 필드 초기화 */
+  const clearMoneyInput = () => {
+    setMoneyInputValue('');
+  };
+
   /** 이벤트 핸들러 설정 */
   const setEventHandlers = (handlers) => {
     eventHandlers = { ...eventHandlers, ...handlers };
@@ -76,7 +91,8 @@ export const createVendingMachineView = (domSelector) => {
 
     // 금액 입력 이벤트
     moneyAmountInput.addEventListener('input', (e) => {
-      eventHandlers.onMoneyAmountInput(e.target.value);
+      const formattedValue = eventHandlers.onMoneyAmountInput(e.target.value);
+      setMoneyInputValue(formattedValue);
     });
 
     // 금액 투입 이벤트
@@ -103,6 +119,8 @@ export const createVendingMachineView = (domSelector) => {
     renderProducts,
     renderBalanceDisplay,
     renderLogMessage,
+    getMoneyInputValue,
+    clearMoneyInput,
     setEventHandlers,
     bindEventListeners,
   };

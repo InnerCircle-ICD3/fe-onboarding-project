@@ -14,6 +14,14 @@ const vendingMachineDomSelectors = {
 
 document.addEventListener('DOMContentLoaded', () => {
   const view = createVendingMachineView(vendingMachineDomSelectors);
+  const controller = createVendingMachineController(view);
+
+  view.setEventHandlers({
+    onMoneyAmountInput: controller.handleMoneyAmountInput,
+    onMoneyInsert: controller.handleMoneyInsert,
+    onProductPurchase: controller.handleProductPurchase,
+    onMoneyReturn: controller.handleMoneyReturn,
+  });
   view.bindEventListeners();
   view.renderProducts(store.getProducts());
   view.renderBalanceDisplay(store.getBalance());
