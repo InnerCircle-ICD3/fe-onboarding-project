@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeVendingMachine();
 });
 
-// 상품 버튼 총 개수
-const totalSlots = 12;  
+// 한 줄에 표시할 상품 수
+const PRODUCTS_PER_ROW = 3;
 
 // 상품 데이터
 const products = [
@@ -24,8 +24,14 @@ const products = [
     // 1개 부족 (disabled 처리)
 ];
 
+// 전체 슬롯 수를 3의 배수로 계산하는 함수
+function calculateTotalSlots(productsLength) {
+    return Math.ceil(productsLength / PRODUCTS_PER_ROW) * PRODUCTS_PER_ROW;  // 예시) 상품이 8개일 때: 8 / 3 = 2.666 → Math.ceil(2.666) = 3 → 3 * 3 = 9개 슬롯
+}
+
 function initializeVendingMachine() {
     const productsContainer = document.querySelector('.machine-products-container');
+    const totalSlots = calculateTotalSlots(products.length);
     
     // A) 먼저 상품 버튼들을 생성
     products.forEach(product => {
@@ -40,7 +46,6 @@ function initializeVendingMachine() {
         productsContainer.appendChild(button);
     }
 }
-
 
 // A) 상품 버튼 생성
 function createProductButton(product) {
