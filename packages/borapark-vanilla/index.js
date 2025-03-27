@@ -55,13 +55,14 @@ const convertUserAmount = () => {
 // 투입 기능
 const handleChangeAmount = () => {
   const userAmount = getUserAmount();
-  totalAmount += userAmount;
-  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+  currentAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", currentAmount);
 };
 
-const insertAmount = () => {
-  const userAmount = getUserAmount();
-  totalAmount += userAmount;
+const handleClickInsertAmountButton = () => {
+  // 버튼을 클릭하면 total Amount가 업데이트 되고 total Amount에 표시된다.
+  totalAmount += currentAmount;
+  console.log(totalAmount, "totla");
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
 };
 
@@ -71,14 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
   convertDrinkPrice();
   convertUserAmount();
 
-  // 투입 기능
-  document.getElementById("insert-amount").addEventListener("change", handleChangeAmount);
+  // 투입 금액 입력 이벤트 리스너
+  document.getElementById("user-amount").addEventListener("change", handleChangeAmount);
 
-  document
-    .querySelector(".vending-machine-button-fieldset > button:nth-child(1)")
-    .addEventListener("click", insertAmount);
-
-  document
-    .querySelector(".vending-machine-button-fieldset > button:nth-child(2)")
-    .addEventListener("click", handleChangeAmount);
+  // 투입 금액 입력 버튼 클릭 이벤트 리스너
+  const insertButton = document.querySelector(".vending-machine-button-fieldset > button:nth-child(1)");
+  insertButton.addEventListener("click", handleClickInsertAmountButton);
 });
