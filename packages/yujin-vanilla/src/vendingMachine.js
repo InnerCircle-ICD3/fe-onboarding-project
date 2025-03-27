@@ -1,4 +1,4 @@
-import { getNumericValue } from "./numberInput.js";
+import { setCurrencyToWon, getNumericValue } from "./numberInput.js";
 import { addLog } from "./logHandler.js";
 
 const numberInput = document.querySelectorAll(".numberInput");
@@ -10,16 +10,20 @@ const handleInsert = () => {
     if (!depositAmount) return;
 
     total += depositAmount;
-    numberInput[0].value = total.toLocaleString("ko-KR");
-    numberInput[1].value = ""; // 입력값 초기화
+    numberInput[0].value = setCurrencyToWon(total);
+    numberInput[1].value = "";
 
-    addLog(`${depositAmount.toLocaleString("ko-KR")}원을 투입했습니다.`);
+    addLog(
+      `${setCurrencyToWon(depositAmount)}원을 투입했습니다.`
+    );
 };
 
 const handleRefund = () => {
     if (total === 0) return;
     
-    addLog(`${total.toLocaleString("ko-KR")}원이 반환되었습니다.`);
+    addLog(
+      `${setCurrencyToWon(total)}원이 반환되었습니다.`
+    );
     total = 0;
     numberInput[0].value = "0";
 };

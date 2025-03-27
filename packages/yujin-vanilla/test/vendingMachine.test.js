@@ -31,7 +31,6 @@ test("숫자를 입력한 후 투입 버튼을 누르면 금액이 증가합니�
   `;
 
   let total = 0;
-
   const inputElement = document.querySelector(".numberInput");
   const insertButton = document.querySelector("#button-insert");
   const screen = document.querySelector("#screen");
