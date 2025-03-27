@@ -1,4 +1,4 @@
-import { updateAmountDisplay } from "./utils.js";
+import {updateAmountDisplay} from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -31,6 +31,7 @@ const updateAmountDisplay = (selector, amount, needUnit = false) => {
   amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
 };
 
+// #region 금액 표시 화면 기능
 /**
  * 금액 표시 화면 금액 변환
  * @returns {void}
@@ -65,20 +66,26 @@ const convertUserAmount = () => {
   const userAmount = getUserAmount();
   updateAmountDisplay("#user-amount", userAmount);
 };
+// #endregion 금액 표시 화면 기능
 
-// 투입 기능
-const handleChangeAmount = () => {
+// #region 투입 기능
+const handleChangeAmount = (event) => {
+  // 입력창에 focus 했을 때 값 초기화
+  if (event.target.focus) {
+    event.target.value = "";
+  }
   const userAmount = getUserAmount();
-  currentAmount += userAmount;
-  updateAmountDisplay(".vending-machine-total-amount", currentAmount);
+  currentAmount = Number(userAmount);
+  console.log(currentAmount);
 };
 
 const handleClickInsertAmountButton = () => {
-  // 버튼을 클릭하면 total Amount가 업데이트 되고 total Amount에 표시된다.
   totalAmount += currentAmount;
-  console.log(totalAmount, "totla");
+  console.log(totalAmount, "total");
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+  currentAmount = 0; // 초기화
 };
+// #endregion 투입 기능
 
 /**
  * 자판기 초기 view 설정
