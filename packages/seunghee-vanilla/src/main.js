@@ -20,7 +20,7 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const mdContainer = document.getElementsByClassName("md-container")[0];
+  const mdContainer = document.querySelector("div.md-container");
   const mdButtons = mdContainer.children;
 
   for (let i = 0; i < mdButtons.length; i++) {
@@ -35,11 +35,11 @@ function renderMdButtons() {
 }
 
 function renderInsertedMoney() {
-  const moneyPresenter = document.getElementsByClassName(
-    "inserted-money-presenter"
-  )[0];
+  const moneyPresenter = document.querySelector(
+    "output.inserted-money-presenter"
+  );
 
-  const moneyInput = document.getElementById("money-input");
+  const moneyInput = document.querySelector("#money-input");
   moneyInput.oninput = (ev) => {
     let value = ev.target.value.replace(/[^0-9]/g, "");
     if (value === "") {
@@ -56,7 +56,7 @@ function renderInsertedMoney() {
     }
   };
 
-  const inputButton = document.getElementsByClassName("input-btn")[0];
+  const inputButton = document.querySelector("button.input-btn");
   inputButton.onclick = () => {
     const money = parseInt(moneyInput.value.replace(/,/g, ""));
     insertedMoney += money;
