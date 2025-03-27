@@ -34,7 +34,7 @@ function renderMdButtons() {
 
     mdButton.addEventListener("mousedown", (ev) => {
       if (insertedMoney < md.price) {
-        moneyPresenter.innerText = md.price.toLocaleString();
+        moneyPresenter.innerText = convertNumToStrForDisplay(md.price);
         isMdPriceShown = true;
         return;
       }
@@ -42,7 +42,7 @@ function renderMdButtons() {
       insertedMoney -= md.price;
     });
     mdButton.addEventListener("mouseup", (ev) => {
-      moneyPresenter.innerText = insertedMoney.toLocaleString();
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
 
       if (isMdPriceShown) {
         isMdPriceShown = false;
@@ -63,13 +63,13 @@ function renderInsertedMoney() {
 
     if (!isNaN(money) && money >= 0) {
       insertedMoney += money;
-      moneyPresenter.innerText = insertedMoney.toLocaleString();
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
     }
 
     moneyInput.value = 0;
 
     if (money !== 0) {
-      addLog(`${money.toLocaleString()}원을 넣었습니다.`);
+      addLog(`${convertNumToStrForDisplay(money)}원을 넣었습니다.`);
     }
   });
 }
@@ -82,6 +82,10 @@ function addLog(message) {
 
   userLogger.appendChild(log);
   userLogger.scrollTop = userLogger.scrollHeight;
+}
+
+function convertNumToStrForDisplay(number) {
+  return number.toLocaleString();
 }
 
 renderMdButtons();
