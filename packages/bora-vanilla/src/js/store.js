@@ -1,4 +1,4 @@
-import productsData from './db/productsData';
+import productsData from '../db/productsData';
 
 export const store = {
   products: [...productsData],
@@ -9,9 +9,7 @@ export const store = {
   },
 
   getProductById(productId) {
-    return this.products.find(
-      (product) => product.id === Number(productId)
-    );
+    return this.products.find((product) => product.id === Number(productId));
   },
 
   getBalance() {

@@ -1,20 +1,12 @@
 import { createVendingMachineController } from './controller';
-import './index.css';
+import '../index.css';
 import { createVendingMachineService } from './services';
 import { store } from './store';
 import { createVendingMachineView } from './view';
-
-const vendingMachineDomSelectors = {
-  getProductButtonContainer: () => document.querySelector('.vending-machine-button-container'),
-  getMoneyAmountInput: () => document.querySelector('.amount-input'),
-  getMoneyInsertForm: () => document.querySelector('.vending-machine-insert-form'),
-  getMoneyReturnButton: () => document.querySelector('.return-money-button'),
-  getVendingMachineBalance: () => document.querySelector('.vending-machine-balance'),
-  getLogContainer: () => document.querySelector('.log-message-container > div'),
-};
+import { domSelectors } from './dom-selectors';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const view = createVendingMachineView(vendingMachineDomSelectors);
+  const view = createVendingMachineView(domSelectors);
   const service = createVendingMachineService(store);
   const controller = createVendingMachineController(service, view);
 
