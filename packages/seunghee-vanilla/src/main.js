@@ -20,7 +20,7 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const mdContainer = document.querySelector("div.md-container");
+  const mdContainer = document.querySelector(".md-container");
   const mdButtons = mdContainer.children;
 
   for (let i = 0; i < mdButtons.length; i++) {
@@ -35,9 +35,7 @@ function renderMdButtons() {
 }
 
 function renderInsertedMoney() {
-  const moneyPresenter = document.querySelector(
-    "output.inserted-money-presenter"
-  );
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
   const moneyInput = document.querySelector("#money-input");
   moneyInput.addEventListener("input", (ev) => {
@@ -49,15 +47,7 @@ function renderInsertedMoney() {
     ev.target.value = Number(value).toLocaleString();
   });
 
-  moneyInput.addEventListener("keydown", (ev) => {
-    const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
-
-    if (!allowedKeys.includes(ev.key) && isNaN(parseInt(ev.key))) {
-      ev.preventDefault();
-    }
-  });
-
-  const inputButton = document.querySelector("button.input-btn");
+  const inputButton = document.querySelector(".input-btn");
   inputButton.addEventListener("click", () => {
     const money = parseInt(moneyInput.value.replace(/,/g, ""));
     insertedMoney += money;
