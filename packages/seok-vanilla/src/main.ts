@@ -1,4 +1,3 @@
-import { decrease, increase } from "./amount";
 import db from "./db.json";
 import "./input-amount";
 import { formatNumberWithCommas } from "./utills/format";
