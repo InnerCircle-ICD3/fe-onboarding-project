@@ -21,16 +21,14 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const mdContainer = document.getElementsByClassName("md-container")[0];
+  const mdContainer = document.querySelector(".md-container");
   const mdButtons = mdContainer.children;
 
   for (let i = 0; i < mdButtons.length; i++) {
     const mdButton = mdButtons[i];
     const md = mds[i];
 
-    const moneyPresenter = document.getElementsByClassName(
-      "inserted-money-presenter"
-    )[0];
+    const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
 
@@ -56,38 +54,24 @@ function renderMdButtons() {
 }
 
 function renderInsertedMoney() {
-  const moneyPresenter = document.getElementsByClassName(
-    "inserted-money-presenter"
-  )[0];
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
+  const moneyInput = document.querySelector("#money-input");
 
-  const moneyInput = document.getElementById("money-input");
-  moneyInput.oninput = (ev) => {
-    let value = ev.target.value.replace(/[^0-9]/g, "");
-    if (value === "") {
-      value = 0;
+  const inputButton = document.querySelector(".input-btn");
+  inputButton.addEventListener("click", () => {
+    const money = moneyInput.valueAsNumber;
+
+    if (!isNaN(money) && money >= 0) {
+      insertedMoney += money;
+      moneyPresenter.innerText = insertedMoney.toLocaleString();
     }
 
-    ev.target.value = Number(value).toLocaleString();
-  };
-  moneyInput.onkeydown = (ev) => {
-    const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
-
-    if (!allowedKeys.includes(ev.key) && isNaN(parseInt(ev.key))) {
-      ev.preventDefault();
-    }
-  };
-
-  const inputButton = document.getElementsByClassName("input-btn")[0];
-  inputButton.onclick = () => {
-    const money = parseInt(moneyInput.value.replace(/,/g, ""));
-    insertedMoney += money;
-    moneyPresenter.innerText = insertedMoney.toLocaleString();
     moneyInput.value = 0;
 
     if (money !== 0) {
       addLog(`${money.toLocaleString()}원을 넣었습니다.`);
     }
-  };
+  });
 }
 
 function addLog(message) {
