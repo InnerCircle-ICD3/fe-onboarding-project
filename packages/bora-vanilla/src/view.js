@@ -1,6 +1,13 @@
-import { formatter } from './constants';
+import { formatter } from './utils';
 
 export const createVendingMachineView = (domSelector) => {
+  let eventHandlers = {
+    onMoneyAmountInput: (value) => value,
+    onMoneyInsert: (amount) => {},
+    onProductPurchase: (productId) => {},
+    onMoneyReturn: () => {},
+  };
+
   /** 상품 버튼 생성 */
   const createProductButton = (product) => {
     const button = document.createElement('button');
@@ -28,7 +35,7 @@ export const createVendingMachineView = (domSelector) => {
 
   /** 상품 버튼 렌더링 */
   const renderProducts = (productsData) => {
-    const buttonContainer = domSelector.getButtonContainer();
+    const buttonContainer = domSelector.getProductButtonContainer();
 
     const fragment = document.createDocumentFragment();
 
@@ -55,9 +62,48 @@ export const createVendingMachineView = (domSelector) => {
     logContainer?.appendChild(logItem);
   };
 
+  /** 이벤트 핸들러 설정 */
+  const setEventHandlers = (handlers) => {
+    eventHandlers = { ...eventHandlers, ...handlers };
+  };
+
+  /** 이벤트 바인딩 */
+  const bindEventListeners = () => {
+    const moneyAmountInput = domSelector.getMoneyAmountInput();
+    const moneyInsertForm = domSelector.getMoneyInsertForm();
+    const productButtonContainer = domSelector.getProductButtonContainer();
+    const moneyReturnButton = domSelector.getMoneyReturnButton();
+
+    // 금액 입력 이벤트
+    moneyAmountInput.addEventListener('input', (e) => {
+      eventHandlers.onMoneyAmountInput(e.target.value);
+    });
+
+    // 금액 투입 이벤트
+    moneyInsertForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      eventHandlers.onMoneyInsert(e.target.value);
+    });
+
+    // 상품 구매 이벤트
+    productButtonContainer.addEventListener('click', (e) => {
+      const button = e.target.closest('.product-button');
+      if (!button) return;
+      const productId = button.dataset.id;
+      eventHandlers.onProductPurchase(productId);
+    });
+
+    // 잔돈 반환 이벤트
+    moneyReturnButton.addEventListener('click', () => {
+      eventHandlers.onMoneyReturn();
+    });
+  };
+
   return {
     renderProducts,
     renderBalanceDisplay,
     renderLogMessage,
+    setEventHandlers,
+    bindEventListeners,
   };
 };
