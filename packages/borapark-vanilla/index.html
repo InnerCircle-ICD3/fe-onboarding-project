@@ -1,15 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>onboarding-vending-machine</title>
-  <link rel="stylesheet" href="./index.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="자판기 시뮬레이션" />
+  <meta name="keywords" content="자판기, 음료, 자동판매기" />
+  <title>자판기</title>
+  <link rel="stylesheet" href="./index.css" />
 </head>
 
 <body>
-  <div>hello world!</div>
+  <main>
+    <section class="vending-machine-layout" aria-label="자판기">
+      <div class="vending-machine-total-amount" role="status" aria-live="polite">
+        15,000
+      </div>
+      <ul role="list" aria-label="음료 목록">
+        <li>
+          <button type="button">
+            <span class="drink-name">콜라</span>
+            <span class="drink-price">1500원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">속이 사이다</span>
+            <span class="drink-price">17000원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">판타지판타</span>
+            <span class="drink-price">1500원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">오뎅국물</span>
+            <span class="drink-price">1800원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">부장라떼</span>
+            <span class="drink-price">800원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">오아시스</span>
+            <span class="drink-price">1000원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">레드뿔</span>
+            <span class="drink-price">2500원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">핫세븐</span>
+            <span class="drink-price">1900원</span>
+          </button>
+        </li>
+        <li>
+          <button type="button">
+            <span class="drink-name">커피우유</span>
+            <span class="drink-price">1400원</span>
+          </button>
+        </li>
+      </ul>
+    </section>
+    <article class="vending-machine-control-panel">
+      <section class="vending-machine-input-box">
+        <form aria-label="금액 입력">
+          <fieldset>
+            <legend>투입 금액</legend>
+            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required aria-invalid="false"
+              placeholder="0" />
+            <label for="user-amount">투입 금액</label>
+          </fieldset>
+          <fieldset>
+            <legend>금액 관리</legend>
+            <button type="submit">투입</button>
+            <button type="button">반환</button>
+          </fieldset>
+        </form>
+      </section>
+      <section class="vending-machine-log-box" role="log" aria-label="거래 내역">
+        <p>2000원을 투입했습니다.</p>
+        <p>오뎅국물을 구매했습니다.</p>
+        <p>200원을 반환합니다.</p>
+      </section>
+    </article>
+  </main>
 </body>
 <script type="module" src="./index.js"></script>
 
