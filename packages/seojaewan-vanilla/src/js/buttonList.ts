@@ -21,6 +21,7 @@ const addButtonList = () => {
     nameElement.textContent = name;
     priceElement.textContent = price.toString();
     buttonElement.value = price.toString();
+    buttonElement.name = name;
 
     buttonListElement.appendChild(clone);
   }

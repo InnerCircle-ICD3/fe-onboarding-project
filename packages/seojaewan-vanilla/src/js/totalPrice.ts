@@ -13,6 +13,11 @@ class TotalPrice {
         this.totalPrice += value;
         return this.totalPrice;
     }
+
+    public resetTotalPrice(): number {
+        this.totalPrice = 0;
+        return this.totalPrice;
+    }
 }
 
 export default TotalPrice;

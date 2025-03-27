@@ -1,6 +1,5 @@
-import { describe, expect, it } from "vitest";
 import useTotalPrice from ".";
-import { renderHook } from "@testing-library/react";
+import { act, renderHook } from "@testing-library/react";
 
 describe("useTotalPrice 테스트", () => {
     it("Total Price 값 출력", () => {
@@ -10,27 +9,27 @@ describe("useTotalPrice 테스트", () => {
     });
 
     it("Total Price 값 증가: 1000", () => {
-        const {totalPrice, increaseTotalPrice} = useTotalPrice();
+        const {result} = renderHook(() => useTotalPrice());
 
-        increaseTotalPrice(1000);
+        act(() => result.current.increaseTotalPrice(1000))
 
-        expect(totalPrice).toBe(1000);
+        expect(result.current.totalPrice).toBe(1000);
     });
 
     it("Total Price 값 감소: 500", () => {
-        const {totalPrice, decreaseTotalPrice} = useTotalPrice();
+        const {result} = renderHook(() => useTotalPrice());
 
-        decreaseTotalPrice(500);
+        act(() => result.current.decreaseTotalPrice(500))
 
-        expect(totalPrice).toBe(-500);
+        expect(result.current.totalPrice).toBe(-500);
     });
 
     it("Total Price 값 초기화", () => {
-        const {totalPrice, increaseTotalPrice, resetTotalPrice} = useTotalPrice();
+        const {result} = renderHook(() => useTotalPrice());
 
-        increaseTotalPrice(1000);
-        resetTotalPrice();
+        act(() => result.current.increaseTotalPrice(1000));
+        act(() => result.current.resetTotalPrice());
 
-        expect(totalPrice).toBe(0);
+        expect(result.current.totalPrice).toBe(0);
     });
 });
