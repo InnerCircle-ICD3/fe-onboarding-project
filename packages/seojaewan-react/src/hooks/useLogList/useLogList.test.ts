@@ -13,6 +13,6 @@ describe("useLogList 테스트", () => {
 
         act(() => result.current.addLog("Test Log"));
 
-        expect(result.current.logList.message).toEqual("Test Log");
+        expect(result.current.logList[0].message).toEqual("Test Log");
     });
 });
