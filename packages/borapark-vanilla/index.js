@@ -1,4 +1,4 @@
-import {formatCurrencyAsLocaleString} from "./utils.js";
+import { updateAmountDisplay } from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -11,6 +11,8 @@ const DRINK_PRICES = {
   RED_BULL: 2000,
   HOT_SEVEN: 1900,
   COFFEE_MILK: 1400,
+  AMERICANO: 2000,
+  SKY_BORI: 1500,
 };
 
 // 상태 관리
@@ -52,8 +54,7 @@ const convertDrinkPrice = () => {
  * @returns {number}
  */
 const getUserAmount = () => {
-  const userAmount = document.getElementById("user-amount").value;
-  return userAmount;
+  return document.getElementById("user-amount").value;
 };
 
 /**
