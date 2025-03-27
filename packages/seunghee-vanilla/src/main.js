@@ -28,9 +28,7 @@ function renderMdButtons() {
     const mdButton = mdButtons[i];
     const md = mds[i];
 
-    const moneyPresenter = document.getElementsByClassName(
-      "inserted-money-presenter"
-    )[0];
+    const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
 
