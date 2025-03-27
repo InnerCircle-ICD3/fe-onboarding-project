@@ -68,27 +68,25 @@ const convertUserAmount = () => {
 // 투입 기능
 const handleChangeAmount = () => {
   const userAmount = getUserAmount();
-  totalAmount += userAmount;
+  currentAmount += userAmount;
+  updateAmountDisplay(".vending-machine-total-amount", currentAmount);
+};
+
+const handleClickInsertAmountButton = () => {
+  // 버튼을 클릭하면 total Amount가 업데이트 되고 total Amount에 표시된다.
+  totalAmount += currentAmount;
+  console.log(totalAmount, "totla");
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
 };
 
-const insertAmount = () => {
-  const userAmount = getUserAmount();
-  totalAmount += userAmount;
-  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+/**
+ * 자판기 초기 view 설정
+ * @returns {void}
+ */
+const initVendingMachineView = () => {
+  convertVendingMachineTotalAmount();
+  convertDrinkPrice();
+  convertUserAmount();
 };
 
-// 이벤트 리스너 등록
-document.addEventListener("DOMContentLoaded", () => {
-  /**
-   * 자판기 초기 view 설정
-   * @returns {void}
-   */
-  const initVendingMachineView = () => {
-    convertVendingMachineTotalAmount();
-    convertDrinkPrice();
-    convertUserAmount();
-  };
-
-  initVendingMachineView();
-
+initVendingMachineView();
