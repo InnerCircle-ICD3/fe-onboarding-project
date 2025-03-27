@@ -28,9 +28,9 @@ function renderMdButtons() {
     const md = mds[i];
 
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
-    mdButton.onclick = () => {
+    mdButton.addEventListener("click", () => {
       console.log(md.price);
-    };
+    });
   }
 }
 
@@ -40,29 +40,30 @@ function renderInsertedMoney() {
   );
 
   const moneyInput = document.querySelector("#money-input");
-  moneyInput.oninput = (ev) => {
+  moneyInput.addEventListener("input", (ev) => {
     let value = ev.target.value.replace(/[^0-9]/g, "");
     if (value === "") {
       value = 0;
     }
 
     ev.target.value = Number(value).toLocaleString();
-  };
-  moneyInput.onkeydown = (ev) => {
+  });
+
+  moneyInput.addEventListener("keydown", (ev) => {
     const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
 
     if (!allowedKeys.includes(ev.key) && isNaN(parseInt(ev.key))) {
       ev.preventDefault();
     }
-  };
+  });
 
   const inputButton = document.querySelector("button.input-btn");
-  inputButton.onclick = () => {
+  inputButton.addEventListener("click", () => {
     const money = parseInt(moneyInput.value.replace(/,/g, ""));
     insertedMoney += money;
     moneyPresenter.innerText = insertedMoney.toLocaleString();
     moneyInput.value = 0;
-  };
+  });
 }
 
 renderMdButtons();
