@@ -1,5 +1,5 @@
 import "./js/insert-money.js";
-import {updateAmountDisplay} from "./js/utils.js";
+import { updateAmountDisplay } from "./js/utils.js";
 
 // 상수 정의
 const DRINK_NAME = {
@@ -14,7 +14,7 @@ const DRINK_NAME = {
   COFFEE_MILK: "커피우유",
   AMERICANO: "아메리카노",
   SKY_BORI: "하늘보리",
-}
+};
 const DRINK_PRICES = {
   COLA: 1500,
   SPRITE: 1700,
@@ -44,6 +44,42 @@ const updateAmountDisplay = (selector, amount, needUnit = false) => {
   const amountElement = document.querySelector(selector);
   amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
 };
+
+// #region 상품 표시 화면 기능
+/**
+ *
+ * @param {string} text
+ * @param {string} className
+ * @param {string | null} drinkName
+ * @returns {HTMLSpanElement}
+ */
+const createSpan = (text, className, drinkName = null) => {
+  const $span = document.createElement("span");
+  $span.classList.add(className);
+  if (drinkName) $span.dataset.drinkName = drinkName;
+  $span.textContent = text;
+  return $span;
+};
+
+const drinkListElement = () => {
+  const $drinkList = document.getElementById("drink-list");
+  const $fragment = document.createDocumentFragment();
+
+  Object.entries(DRINK_PRICES).forEach(([drink_name, drink_price]) => {
+    const $li = document.createElement("li");
+    const $button = document.createElement("button");
+    $button.type = "button";
+
+    $button.appendChild(createSpan(DRINK_NAME[drink_name], "drink-name"));
+    $button.appendChild(createSpan(drink_price, "drink-price", drink_name));
+
+    $li.appendChild($button);
+    $fragment.appendChild($li);
+  });
+
+  $drinkList.appendChild($fragment);
+};
+// #endregion 상품 표시 화면 기능
 
 // #region 금액 표시 화면 기능
 /**
@@ -87,6 +123,10 @@ const convertUserAmount = () => {
  * @returns {void}
  */
 const initVendingMachineView = () => {
+  // 자판기 상품 표시
+  drinkListElement();
+
+  // 자판기 금액 표시
   convertVendingMachineTotalAmount();
   convertDrinkPrice();
   convertUserAmount();
