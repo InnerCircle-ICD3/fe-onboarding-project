@@ -9,13 +9,22 @@ input {
     font-size: 20px;
 }
 
+input[type=number] {
+    text-align: center;
+}
+
 section {
     display: flex;
     flex-direction: column;
 }
 
-.menu-wrapper {
-    gap: 10px;
+.menu-wrapper .balance {
+    display: flex;
+    font-size: 20px;
+    height: 26px;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: flex-end;
 }
 
 .menu-wrapper .menu-btn-wrapper {
