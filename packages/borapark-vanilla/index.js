@@ -1,6 +1,20 @@
-import {updateAmountDisplay} from "./utils.js";
+import "./js/insert-money.js";
+import {updateAmountDisplay} from "./js/utils.js";
 
 // 상수 정의
+const DRINK_NAME = {
+  COLA: "콜라",
+  SPRITE: "속이 사이다",
+  FANTA: "판타지판타",
+  EOMUK: "오뎅국물",
+  LATTE: "부장라떼",
+  WATER: "오아시스",
+  RED_BULL: "레드뿔",
+  HOT_SEVEN: "핫세븐",
+  COFFEE_MILK: "커피우유",
+  AMERICANO: "아메리카노",
+  SKY_BORI: "하늘보리",
+}
 const DRINK_PRICES = {
   COLA: 1500,
   SPRITE: 1700,
@@ -59,32 +73,9 @@ const convertUserAmount = () => {
 
 // 이벤트 리스너 등록
 document.addEventListener("DOMContentLoaded", () => {
+  drinkListElement();
   convertVendingMachineTotalAmount();
   convertDrinkPrice();
   convertUserAmount();
 });
 
-// #region 투입 기능
-const handleChangeAmount = (event) => {
-  // 입력창에 focus 했을 때 값 초기화
-  if(event.target.focus) {
-    event.target.value = "";
-  }
-  const userAmount = getUserAmount();
-  currentAmount = Number(userAmount);
-  console.log(currentAmount);
-};
-
-const handleClickInsertAmountButton = () => {
-  totalAmount += currentAmount;
-  console.log(totalAmount, "total");
-  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
-  currentAmount = 0; // 초기화
-};
-
-  // 투입 금액 입력 이벤트 리스너
-document.getElementById("user-amount").addEventListener("change", handleChangeAmount);
-
-// 투입 금액 입력 버튼 클릭 이벤트 리스너
-const insertButton = document.querySelector(".vending-machine-button-fieldset > button:nth-child(1)");
-insertButton.addEventListener("click", handleClickInsertAmountButton);
