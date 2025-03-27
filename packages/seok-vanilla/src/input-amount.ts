@@ -1,3 +1,4 @@
+import { warn } from "./utills/warn";
 import { increase, reset } from "./amount";
 import { formatNumberWithCommas } from "./utills/format";
 
@@ -23,7 +24,7 @@ $inputAmount?.addEventListener("beforeinput", (e) => {
   const value = e.data;
 
   if (value && !regex.test(value)) {
-    alert("숫자만 입력해주세요");
+    warn("숫자만 입력해주세요");
     e.preventDefault();
   }
 });
