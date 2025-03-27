@@ -1,4 +1,4 @@
-import { updateAmountDisplay } from "./utils.js";
+import {updateAmountDisplay} from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -11,6 +11,8 @@ const DRINK_PRICES = {
   RED_BULL: 2000,
   HOT_SEVEN: 1900,
   COFFEE_MILK: 1400,
+  AMERICANO: 2000,
+  SKY_BORI: 1500,
 };
 
 // 상태 관리
@@ -26,6 +28,8 @@ let drinkInventory = {
   RED_BULL: 10000,
   HOT_SEVEN: 10000,
   COFFEE_MILK: 10000,
+  AMERICANO: 2000,
+  SKY_BORI: 10000,
 };
 
 // 금액 표시 화면 금액 변환
@@ -42,8 +46,7 @@ const convertDrinkPrice = () => {
 
 // 투입 금액 입력창 금액
 const getUserAmount = () => {
-  const userAmount = document.getElementById("user-amount").value;
-  return userAmount;
+  return document.getElementById("user-amount").value;
 };
 
 // 투입 금액 입력창 금액 변환
