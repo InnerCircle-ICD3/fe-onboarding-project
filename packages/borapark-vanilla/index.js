@@ -1,7 +1,7 @@
 import "./js/insert-money.js";
 import { updateAmountDisplay } from "./js/utils.js";
 
-// 상수 정의
+// #region 상수 정의
 const DRINK_NAME = {
   COLA: "콜라",
   SPRITE: "속이 사이다",
@@ -28,22 +28,11 @@ const DRINK_PRICES = {
   AMERICANO: 2000,
   SKY_BORI: 1500,
 };
+// #endregion 상수 정의
 
-// 상태 관리
-let totalAmount = 0;
-let currentAmount = 0;
 
-/**
- * 금액 표시 화면 기능
- * @param {string} selector
- * @param {number} amount
- * @param {boolean} [needUnit]
- */
-const updateAmountDisplay = (selector, amount, needUnit = false) => {
-  const unit = "원";
-  const amountElement = document.querySelector(selector);
-  amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
-};
+export let totalAmount = 0;
+export let currentAmount = 0;
 
 // #region 상품 표시 화면 기능
 /**
