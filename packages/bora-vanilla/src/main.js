@@ -1,5 +1,6 @@
 import { createVendingMachineController } from './controller';
 import './index.css';
+import { createVendingMachineService } from './services';
 import { store } from './store';
 import { createVendingMachineView } from './view';
 
@@ -14,7 +15,8 @@ const vendingMachineDomSelectors = {
 
 document.addEventListener('DOMContentLoaded', () => {
   const view = createVendingMachineView(vendingMachineDomSelectors);
-  const controller = createVendingMachineController(view);
+  const service = createVendingMachineService(store);
+  const controller = createVendingMachineController(service, view);
 
   view.setEventHandlers({
     onMoneyAmountInput: controller.handleMoneyAmountInput,

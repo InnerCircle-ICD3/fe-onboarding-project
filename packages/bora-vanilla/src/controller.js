@@ -1,8 +1,7 @@
 import { ERROR_MESSAGES } from './constants';
-import { buyProduct, insertMoney, returnMoney } from './services';
 import { formatDigitsWithCommas, formatter, parseNumberWithCommas } from './utils';
 
-export const createVendingMachineController = (view) => {
+export const createVendingMachineController = (service, view) => {
   /** 금액 입력시 콤마 추가 */
   const handleMoneyAmountInput = (value) => {
     return value ? formatDigitsWithCommas(value) : '';
@@ -12,7 +11,7 @@ export const createVendingMachineController = (view) => {
   const handleMoneyInsert = (value) => {
     const convertToAmount = parseNumberWithCommas(value);
 
-    const { success, amount, updatedBalance, errorCode } = insertMoney(convertToAmount);
+    const { success, amount, updatedBalance, errorCode } = service.insertMoney(convertToAmount);
 
     if (!success) {
       const errorMessage = ERROR_MESSAGES[errorCode];
@@ -26,7 +25,7 @@ export const createVendingMachineController = (view) => {
 
   /** 상품 구매 기능 */
   const handleProductPurchase = (productId) => {
-    const { success, product, updatedBalance, errorCode } = buyProduct(productId);
+    const { success, product, updatedBalance, errorCode } = service.buyProduct(productId);
 
     if (!success) {
       const errorMessage = ERROR_MESSAGES[errorCode];
@@ -39,7 +38,7 @@ export const createVendingMachineController = (view) => {
 
   /** 잔돈 반환 기능 */
   const handleMoneyReturn = () => {
-    const { success, returnBalance, updatedBalance, errorCode } = returnMoney();
+    const { success, returnBalance, updatedBalance, errorCode } = service.returnMoney();
 
     if (!success) {
       const errorMessage = ERROR_MESSAGES[errorCode];
