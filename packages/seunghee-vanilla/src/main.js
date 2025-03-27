@@ -21,22 +21,20 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const mdContainer = document.getElementsByClassName("md-container")[0];
+  const mdContainer = document.querySelector(".md-container");
   const mdButtons = mdContainer.children;
 
   for (let i = 0; i < mdButtons.length; i++) {
     const mdButton = mdButtons[i];
     const md = mds[i];
 
-    const moneyPresenter = document.getElementsByClassName(
-      "inserted-money-presenter"
-    )[0];
+    const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
 
     mdButton.addEventListener("mousedown", (ev) => {
       if (insertedMoney < md.price) {
-        moneyPresenter.innerText = md.price.toLocaleString();
+        moneyPresenter.innerText = convertNumToStrForDisplay(md.price);
         isMdPriceShown = true;
         return;
       }
@@ -44,7 +42,7 @@ function renderMdButtons() {
       insertedMoney -= md.price;
     });
     mdButton.addEventListener("mouseup", (ev) => {
-      moneyPresenter.innerText = insertedMoney.toLocaleString();
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
 
       if (isMdPriceShown) {
         isMdPriceShown = false;
@@ -56,47 +54,31 @@ function renderMdButtons() {
 }
 
 function renderInsertedMoney() {
-  const moneyPresenter = document.getElementsByClassName(
-    "inserted-money-presenter"
-  )[0];
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
+  const moneyInput = document.querySelector("#money-input");
 
-  const moneyInput = document.getElementById("money-input");
-  moneyInput.oninput = (ev) => {
-    let value = ev.target.value.replace(/[^0-9]/g, "");
-    if (value === "") {
-      value = 0;
+  const inputButton = document.querySelector(".input-btn");
+  inputButton.addEventListener("click", () => {
+    const money = moneyInput.valueAsNumber;
+
+    if (!isNaN(money) && money >= 0) {
+      insertedMoney += money;
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
     }
 
-    ev.target.value = Number(value).toLocaleString();
-  };
-  moneyInput.onkeydown = (ev) => {
-    const allowedKeys = ["Backspace", "Delete", "ArrowLeft", "ArrowRight"];
-
-    if (!allowedKeys.includes(ev.key) && isNaN(parseInt(ev.key))) {
-      ev.preventDefault();
-    }
-  };
-
-  const inputButton = document.getElementsByClassName("input-btn")[0];
-  inputButton.onclick = () => {
-    const money = parseInt(moneyInput.value.replace(/,/g, ""));
-    insertedMoney += money;
-    moneyPresenter.innerText = insertedMoney.toLocaleString();
     moneyInput.value = 0;
 
     if (money !== 0) {
-      addLog(`${money.toLocaleString()}원을 넣었습니다.`);
+      addLog(`${convertNumToStrForDisplay(money)}원을 넣었습니다.`);
     }
-  };
+  });
 }
 
 function renderReturnButton() {
-  const returnBtn = document.getElementsByClassName("return-btn")[0];
-  const moneyPresenter = document.getElementsByClassName(
-    "inserted-money-presenter"
-  )[0];
+  const returnBtn = document.querySelector(".return-btn");
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
-  returnBtn.onclick = () => {
+  returnBtn.addEventListener("click", () => {
     if (insertedMoney === 0) {
       return;
     }
@@ -106,17 +88,21 @@ function renderReturnButton() {
 
     moneyPresenter.innerText = "0";
     insertedMoney = 0;
-  };
+  });
 }
 
 function addLog(message) {
-  const userLogger = document.getElementsByClassName("user-logger")[0];
+  const userLogger = document.querySelector(".user-logger");
 
   const log = document.createElement("div");
   log.innerText = message;
 
   userLogger.appendChild(log);
   userLogger.scrollTop = userLogger.scrollHeight;
+}
+
+function convertNumToStrForDisplay(number) {
+  return number.toLocaleString();
 }
 
 renderMdButtons();
