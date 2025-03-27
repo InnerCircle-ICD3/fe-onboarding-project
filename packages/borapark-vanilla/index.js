@@ -1,7 +1,7 @@
 import "./js/insert-money.js";
 import { updateAmountDisplay } from "./js/utils.js";
 
-// 상수 정의
+// #region 상수 정의
 const DRINK_NAME = {
   COLA: "콜라",
   SPRITE: "속이 사이다",
@@ -28,10 +28,15 @@ const DRINK_PRICES = {
   AMERICANO: 2000,
   SKY_BORI: 1500,
 };
+// #endregion 상수 정의
 
-// 상태 관리
-let totalAmount = 0;
-let currentAmount;
+// #region 전역 변수
+export let totalAmount = 0;
+export let currentAmount = 0;
+export let userAmount = 0;
+// #endregion 전역 변수
+
+// #region 재고 관리
 let drinkInventory = {
   COLA: 10000,
   SPRITE: 10000,
@@ -45,6 +50,7 @@ let drinkInventory = {
   AMERICANO: 2000,
   SKY_BORI: 10000,
 };
+// #endregion 상태 관리
 
 // #region 상품 표시 화면 기능
 /**
