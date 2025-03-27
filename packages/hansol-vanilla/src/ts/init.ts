@@ -3,6 +3,7 @@ import { BalanceManager, formatCurrencyKRW, getInputNumberValue } from "./common
 const currentBalance = BalanceManager.get();
 const vendingMachineDisplay = document.querySelector<HTMLDivElement>('.vending-machine-display');
 const controlInput = document.querySelector<HTMLInputElement>('.control-input');
+const errorSpan = document.querySelector<HTMLSpanElement>('.error-message');
 
 function initVendingMachine() {
   initVendingMachineDisplay();
@@ -23,18 +24,19 @@ function initControlInput() {
 
 function handleInputFormat(e: KeyboardEvent) {
   const target = e.target as HTMLInputElement;
-  let value = getInputNumberValue(target);
+  const value = getInputNumberValue(target);
 
   if(target.value === '') {
     target.classList.remove('input-error');
     return;
   }
 
-  if(!value) {
-    alert('양수만 입력해주세요');
+  if(!value || value <= 0) {
+    errorSpan?.classList.remove('hidden');
     target.classList.add('input-error');
     target.value = '';
   } else {
+    errorSpan?.classList.add('hidden');
     target.classList.remove('input-error');
     target.value = formatCurrencyKRW(value);
   }
