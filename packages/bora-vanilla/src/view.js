@@ -98,7 +98,8 @@ export const createVendingMachineView = (domSelector) => {
     // 금액 투입 이벤트
     moneyInsertForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      eventHandlers.onMoneyInsert(e.target.value);
+      const inputValue = getMoneyInputValue();
+      eventHandlers.onMoneyInsert(inputValue);
     });
 
     // 상품 구매 이벤트
