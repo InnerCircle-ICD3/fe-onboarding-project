@@ -36,22 +36,17 @@ function renderMdButtons() {
 
 function renderInsertedMoney() {
   const moneyPresenter = document.querySelector(".inserted-money-presenter");
-
   const moneyInput = document.querySelector("#money-input");
-  moneyInput.addEventListener("input", (ev) => {
-    let value = ev.target.value.replace(/[^0-9]/g, "");
-    if (value === "") {
-      value = 0;
-    }
-
-    ev.target.value = Number(value).toLocaleString();
-  });
 
   const inputButton = document.querySelector(".input-btn");
   inputButton.addEventListener("click", () => {
-    const money = parseInt(moneyInput.value.replace(/,/g, ""));
-    insertedMoney += money;
-    moneyPresenter.innerText = insertedMoney.toLocaleString();
+    const money = moneyInput.valueAsNumber;
+
+    if (!isNaN(money) && money >= 0) {
+      insertedMoney += money;
+      moneyPresenter.innerText = insertedMoney.toLocaleString();
+    }
+
     moneyInput.value = 0;
   });
 }
