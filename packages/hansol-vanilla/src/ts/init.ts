@@ -27,17 +27,14 @@ function handleInputFormat(e: KeyboardEvent) {
   const value = getInputNumberValue(target);
 
   if(target.value === '') {
-    target.classList.remove('input-error');
     return;
   }
 
   if(!value || value <= 0) {
     errorSpan?.classList.remove('hidden');
-    target.classList.add('input-error');
     target.value = '';
   } else {
     errorSpan?.classList.add('hidden');
-    target.classList.remove('input-error');
     target.value = formatCurrencyKRW(value);
   }
 }
