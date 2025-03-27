@@ -20,5 +20,5 @@ const handleClickInsertAmountButton = () => {
 document.getElementById("user-amount").addEventListener("change", handleChangeAmount);
 
 // 투입 금액 입력 버튼 클릭 이벤트 리스너
-const insertButton = document.querySelector(".vending-machine-button-fieldset > button:nth-child(1)");
-insertButton.addEventListener("click", handleClickInsertAmountButton);
+// const insertButton = document.querySelector(".vending-machine-button-fieldset > button:nth-child(1)");
+// insertButton.addEventListener("click", handleClickInsertAmountButton);
