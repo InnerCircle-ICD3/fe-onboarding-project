@@ -75,7 +75,7 @@ function renderInsertedMoney() {
 }
 
 function addLog(message) {
-  const userLogger = document.getElementsByClassName("user-logger")[0];
+  const userLogger = document.querySelector(".user-logger");
 
   const log = document.createElement("div");
   log.innerText = message;
