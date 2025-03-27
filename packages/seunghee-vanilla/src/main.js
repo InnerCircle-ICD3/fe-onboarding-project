@@ -75,12 +75,10 @@ function renderInsertedMoney() {
 }
 
 function renderReturnButton() {
-  const returnBtn = document.getElementsByClassName("return-btn")[0];
-  const moneyPresenter = document.getElementsByClassName(
-    "inserted-money-presenter"
-  )[0];
+  const returnBtn = document.querySelector(".return-btn");
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
-  returnBtn.onclick = () => {
+  returnBtn.addEventListener("click", () => {
     if (insertedMoney === 0) {
       return;
     }
@@ -90,7 +88,7 @@ function renderReturnButton() {
 
     moneyPresenter.innerText = "0";
     insertedMoney = 0;
-  };
+  });
 }
 
 function addLog(message) {
