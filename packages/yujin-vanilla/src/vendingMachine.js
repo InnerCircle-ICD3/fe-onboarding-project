@@ -16,27 +16,33 @@ const products = [
   { name: "", price: "" },
 ];
 
-const renderProducts = () => {
-  const container = document.querySelector(".products");
-  container.innerHTML = products
-    .map((item) => {
-        if(item.name && item.price){
-            return `<div class="product">
-                <p class="product-title">${item.name}</p>
-                <p class="product-price">${item.price}원</p>
-            </div>`
-        }else{
-            return '<div class="product"></>';
-        }
-        }
-    )
-    .join("");
-}
-renderProducts();
-
 const numberInput = document.querySelectorAll(".number-input");
 const buttonsContainer = document.querySelector(".buttons");
 let total = 0;
+
+buttonsContainer.addEventListener("click", (event) => {
+  if (event.target.id === "button-insert") {
+    handleInsert();
+  } else if (event.target.id === "button-refund") {
+    handleRefund();
+  }
+});
+
+export const renderProducts = () => {
+  const container = document.querySelector(".products");
+  container.innerHTML = products
+    .map((item) => {
+      if (item.name && item.price) {
+        return `<div class="product">
+                <p class="product-title">${item.name}</p>
+                <p class="product-price">${item.price}원</p>
+            </div>`;
+      } else {
+        return '<div class="product"></>';
+      }
+    })
+    .join("");
+}
 
 const handleInsert = () => {
     const depositAmount = getNumericValue(numberInput[1]);
@@ -60,11 +66,3 @@ const handleRefund = () => {
     total = 0;
     numberInput[0].value = "0";
 };
-
-buttonsContainer.addEventListener("click", (event) => {
-    if (event.target.id === "button-insert") {
-        handleInsert();
-    } else if (event.target.id === "button-refund") {
-        handleRefund();
-    }
-});
