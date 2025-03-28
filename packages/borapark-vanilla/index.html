@@ -23,7 +23,7 @@
         <form aria-label="금액 입력">
           <fieldset class="vending-machine-input-fieldset">
             <legend class="fieldset-legend">투입 금액</legend>
-            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required value=0
+            <input type="number" id="user-amount" aria-label="투입 금액" min=0 max=10000000 required value=0
               aria-invalid="false" />
             <label for="user-amount">투입 금액</label>
           </fieldset>
@@ -42,6 +42,8 @@
     </article>
   </main>
 </body>
-<script type="module" src="./index.js"></script>
+<script type="module" src="./js/variables.js"></script>
+<script type="module" src="./js/index.js"></script>
+<script type="module" src="./js/insert-money.js"></script>
 
 </html>

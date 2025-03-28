@@ -1,5 +1,4 @@
-import "./js/insert-money.js";
-import { updateAmountDisplay } from "./js/utils.js";
+import {updateAmountDisplay} from "./utils.js";
 
 // #region 상수 정의
 const DRINK_NAME = {
@@ -29,12 +28,6 @@ const DRINK_PRICES = {
   SKY_BORI: 1500,
 };
 // #endregion 상수 정의
-
-// #region 전역 변수
-export let totalAmount = 0;
-export let currentAmount = 0;
-export let userAmount = 0;
-// #endregion 전역 변수
 
 // #region 재고 관리
 let drinkInventory = {

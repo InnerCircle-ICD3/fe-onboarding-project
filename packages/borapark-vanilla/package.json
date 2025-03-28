@@ -2,7 +2,7 @@
   "name": "borapark-vanilla",
   "version": "1.0.0",
   "description": "fe onboarding project",
-  "main": "index.js",
+  "main": "js/index.js",
   "type": "module",
   "scripts": {
     "start": "webpack serve --open",
