@@ -26,3 +26,16 @@ export const updateAmountDisplay = (selector, amount, needUnit = false) => {
   const amountElement = document.querySelector(selector);
   amountElement.textContent = `${formatLocaleString(amount)}${needUnit ? unit : ""}`;
 };
+
+/**
+ * 비동기 함수
+ * @param {number} ms
+ * @param {function (): void} callback (optional)
+ * @returns {Promise<>}
+ */
+export const sleep = (ms, callback) => {
+  return new Promise((resolve) => setTimeout(() => {
+    if (callback) callback();
+    resolve();
+  }, ms));
+}
