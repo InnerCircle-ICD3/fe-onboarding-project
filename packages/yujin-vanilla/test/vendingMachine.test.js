@@ -1,17 +1,11 @@
 import { test, expect, beforeEach } from "vitest";
-import { setupNumberInput } from "../src/numberInput.js"; // 모듈 가져오기
-import { getNumericValue } from "../src/numberInput.js"; // 숫자 변환 함수
+import { setupNumberInput, getNumericValue } from "../src/numberInput.js"; // 모듈 가져오기
 
 beforeEach(() => {
-  // 테스트 실행 전 가짜 DOM 설정
-  document.body.innerHTML = `
-    <input type="text" class="number-input" placeholder="0원">
-  `;
-
   setupNumberInput(); // 이벤트 리스너 등록
 });
 
-test("금액은 양수만 입력할 수 있습니다.", () => {
+test("음수를 입력할경우 양수로 변횐되어 입력됩니다.", () => {
   const inputElement = document.querySelector(".number-input");
   inputElement.value = "-1000";
 
@@ -21,7 +15,6 @@ test("금액은 양수만 입력할 수 있습니다.", () => {
   // 마이너스 부호 제거 후 포맷팅되어야 함
   expect(inputElement.value).toBe("1,000");
 });
-
 
 test("숫자를 입력한 후 투입 버튼을 누르면 금액이 증가합니다.", () => {
   document.body.innerHTML = `
