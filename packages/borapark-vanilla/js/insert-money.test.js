@@ -1,0 +1,3 @@
+describe("insertMoney", () => {
+  test("insertMoney", () => {})
+})
