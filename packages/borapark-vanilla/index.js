@@ -1,4 +1,4 @@
-import {updateAmountDisplay} from "./utils.js";
+import {updateAmountDisplay} from "./js/utils.js";
 
 // #region 상수 정의
 const DRINK_NAME = {
