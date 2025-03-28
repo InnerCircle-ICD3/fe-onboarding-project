@@ -47,9 +47,15 @@ insertButtonElement.addEventListener("click", () => {
 const returnButtonElement = document.querySelector('#return-button') as HTMLButtonElement
 
 returnButtonElement.addEventListener('click', () => {
-    const value = Number(amountInputElement.value);
-    const balance = totalAmount - value;
+    const balance = totalAmount;
 
+    if(totalAmount <= 0) {
+        addLog(`반환할 잔액이 없습니다.`, 'error');
+
+        return;
+    }
+
+    totalAmount = 0;
     updateTotalAmount(0)
     amountInputElement.value = '0';
     addLog(`${balance.toLocaleString()}원 반환`);
