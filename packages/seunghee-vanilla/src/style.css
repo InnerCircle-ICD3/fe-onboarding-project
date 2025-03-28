@@ -21,6 +21,8 @@
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  align-content: center;
+  text-align: center;
 }
 
 .md-container {
@@ -50,11 +52,12 @@
   grid-template-columns: 50% 1fr 1fr;
 }
 
-.money-input {
+#money-input {
   margin: 8px;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  text-align: center;
 }
 
 .input-btn,
