@@ -1,42 +1,8 @@
 import "./js/insert-money.js";
-import { updateAmountDisplay } from "./js/utils.js";
+import {convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount} from "./js/display-money.js";
 
-// #region 상수 정의
-const DRINK_NAME = {
-  COLA: "콜라",
-  SPRITE: "속이 사이다",
-  FANTA: "판타지판타",
-  EOMUK: "오뎅국물",
-  LATTE: "부장라떼",
-  WATER: "오아시스",
-  RED_BULL: "레드뿔",
-  HOT_SEVEN: "핫세븐",
-  COFFEE_MILK: "커피우유",
-  AMERICANO: "아메리카노",
-  SKY_BORI: "하늘보리",
-};
-const DRINK_PRICES = {
-  COLA: 1500,
-  SPRITE: 1700,
-  FANTA: 1500,
-  EOMUK: 1800,
-  LATTE: 800,
-  WATER: 1000,
-  RED_BULL: 2000,
-  HOT_SEVEN: 1900,
-  COFFEE_MILK: 1400,
-  AMERICANO: 2000,
-  SKY_BORI: 1500,
-};
-// #endregion 상수 정의
-
-
-export let totalAmount = 0;
-export let currentAmount = 0;
-
-// #region 상품 표시 화면 기능
 /**
- *
+ * 자판기 상품
  * @param {string} text
  * @param {string} className
  * @param {string | null} drinkName
@@ -50,6 +16,12 @@ const createSpan = (text, className, drinkName = null) => {
   return $span;
 };
 
+/**
+ * 자판기 상품 목록
+ * @property {string} drink_name - 음료수 이름
+ * @property {number} drink_price - 음료수 가격
+ * @returns {void}
+ */
 const drinkListElement = () => {
   const $drinkList = document.getElementById("drink-list");
   const $fragment = document.createDocumentFragment();
@@ -68,44 +40,6 @@ const drinkListElement = () => {
 
   $drinkList.appendChild($fragment);
 };
-// #endregion 상품 표시 화면 기능
-
-// #region 금액 표시 화면 기능
-/**
- * 금액 표시 화면 금액 변환
- * @returns {void}
- */
-const convertVendingMachineTotalAmount = () => {
-  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
-};
-
-/**
- * 자판기 표시 금액 변환
- * @returns {void}
- */
-const convertDrinkPrice = () => {
-  Object.entries(DRINK_PRICES).forEach(([drink_name, drink_price]) => {
-    updateAmountDisplay(`.drink-price[data-drink-name="${drink_name}"]`, drink_price, true);
-  });
-};
-
-/**
- * 투입 금액 입력창 금액
- * @returns {number}
- */
-const getUserAmount = () => {
-  return document.getElementById("user-amount").value;
-};
-
-/**
- * 투입 금액 입력창 금액 변환
- * @returns {void}
- */
-const convertUserAmount = () => {
-  const userAmount = getUserAmount();
-  updateAmountDisplay("#user-amount", userAmount);
-};
-// #endregion 금액 표시 화면 기능
 
 /**
  * 자판기 초기 view 설정
