@@ -1,5 +1,5 @@
 import {RecipeVariants} from "@vanilla-extract/recipes";
-import {grid} from "../../styles/components/grid.css.ts";
+import {grid} from "./grid.css.ts";
 import {CSSProperties, ReactNode} from "react";
 
 type GridVariants = RecipeVariants<typeof grid>

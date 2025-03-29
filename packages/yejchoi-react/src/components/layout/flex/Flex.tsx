@@ -1,4 +1,4 @@
-import {flex} from "../../styles/components/flex.css.ts";
+import {flex} from "./flex.css.ts";
 import {RecipeVariants} from "@vanilla-extract/recipes";
 
 import {CSSProperties, ReactNode} from "react";

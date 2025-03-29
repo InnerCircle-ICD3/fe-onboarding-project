@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import Button from "./Button.tsx";
+import Button from "../Button.tsx";
+
 
 
 const meta: Meta<typeof Button> = {
@@ -8,7 +9,7 @@ const meta: Meta<typeof Button> = {
   argTypes: {
     size: {
       control: { type: 'radio' },
-      options: ['md', 'lg'], // ✅ recipe에서 정의한 variants
+      options: ['md', 'lg'],
     },
     disabled: {
       control: { type: 'boolean' },

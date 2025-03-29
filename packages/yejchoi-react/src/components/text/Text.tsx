@@ -1,4 +1,4 @@
-import {text} from "../../styles/components/text.css.ts";
+import {text} from "./text.css.ts";
 import {CSSProperties, ReactNode} from "react";
 import {RecipeVariants} from "@vanilla-extract/recipes";
 

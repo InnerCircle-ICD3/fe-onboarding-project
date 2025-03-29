@@ -1,5 +1,5 @@
 import {recipe} from "@vanilla-extract/recipes";
-import {vars} from "../theme.css.ts";
+import {vars} from "../../styles/theme.css.ts";
 
 export const button = recipe({
     base : {

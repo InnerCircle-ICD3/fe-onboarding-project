@@ -1,4 +1,4 @@
-import {vars} from "../theme.css.ts";
+import {vars} from "../../styles/theme.css.ts";
 import {recipe} from "@vanilla-extract/recipes";
 
 export const text = recipe({

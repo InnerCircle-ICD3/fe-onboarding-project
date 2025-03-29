@@ -1,7 +1,7 @@
 
 import {CSSProperties} from "react";
 import {RecipeVariants} from "@vanilla-extract/recipes";
-import {button} from "../../styles/components/button.css.ts";
+import {button} from "./button.css.ts";
 
 type FlexVariants = RecipeVariants<typeof button>
 
