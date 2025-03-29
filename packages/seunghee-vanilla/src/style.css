@@ -39,6 +39,15 @@
   cursor: pointer;
 }
 
+.md-btn:hover {
+  background-color: lightblue;
+}
+
+.md-btn:active {
+  background-color: blue;
+  color: white;
+}
+
 .user-action-section {
   margin: 8px;
   padding: 8px;

@@ -1,6 +1,7 @@
 import "./style.css";
 
 let insertedMoney = 0;
+let isMdPriceShown = false;
 
 const mds = [
   { name: "콜라", price: 1500 },
@@ -27,9 +28,25 @@ function renderMdButtons() {
     const mdButton = mdButtons[i];
     const md = mds[i];
 
+    const moneyPresenter = document.querySelector(".inserted-money-presenter");
+
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
-    mdButton.addEventListener("click", () => {
-      console.log(md.price);
+
+    mdButton.addEventListener("mousedown", (ev) => {
+      if (insertedMoney < md.price) {
+        moneyPresenter.innerText = md.price.toLocaleString();
+        isMdPriceShown = true;
+        return;
+      }
+
+      insertedMoney -= md.price;
+    });
+    mdButton.addEventListener("mouseup", (ev) => {
+      moneyPresenter.innerText = insertedMoney.toLocaleString();
+
+      if (isMdPriceShown) {
+        isMdPriceShown = false;
+      }
     });
   }
 }
