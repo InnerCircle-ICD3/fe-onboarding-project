@@ -55,13 +55,13 @@ const productsData = [
   },
   {
     id: 10,
-    name: '핫세븐',
+    name: '마라탕',
     price: 1900,
     disabled: true,
   },
   {
     id: 11,
-    name: '커피우유',
+    name: '마라샹궈',
     price: 1400,
     disabled: true,
   },
