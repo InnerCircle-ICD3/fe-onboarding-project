@@ -6,7 +6,7 @@ const createStore = (initialState = {}) => {
 
   const setState = (newState) => {
     state = { ...state, ...newState };
-    listeners.forEach((listener) => listener(structuredClone(state)));
+    listeners.forEach((listener) => listener(state));
   };
 
   const subscribe = (listener) => {
@@ -20,6 +20,7 @@ const createStore = (initialState = {}) => {
 const initialState = {
   insertAmount: 0,
   balance: 0,
+  logs: [],
 };
 
 export const store = createStore(initialState);
