@@ -1,39 +1,36 @@
 <!doctype html>
 <html lang="ko">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css">
     <title>자판기</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="app">
-      <main>
-        <section class="menu-wrapper">
-          <input/>
-          <div class="menu-btn-wrapper">
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-            <button class="menu-item">콜라</button>
-          </div>
-        </section>
-        <section class="control-wrapper">
-          <div class="control-box">
-            <input/>
-            <button>투입</button>
-            <button>반환</button>
-          </div>
-          <div class="logging-box">
-          </div>
-        </section>
-      </main>
+        <main>
+            <section class="menu-wrapper">
+                <input type="number" class="balance" value="0" disabled/>
+                <div class="menu-btn-wrapper">
+                </div>
+            </section>
+            <section class="control-wrapper">
+                <div class="control-box">
+                    <input type="number" class="cash" value=""/>
+                    <button class="put-btn">투입</button>
+                    <button class="rtn-btn">반환</button>
+                </div>
+                <div class="warning-box">
+                </div>
+                <div class="logging-box">
+                    <textarea disabled></textarea>
+                </div>
+            </section>
+        </main>
     </div>
-    <script type="module" src="/index.ts"></script>
-  </body>
+    <script type="module" src="/ts/menu.ts"></script>
+    <script type="module" src="/ts/cash.ts"></script>
+</body>
 </html>
