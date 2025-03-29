@@ -71,7 +71,7 @@ export const createVendingMachineService = (store) => {
       const error = createError(ERROR_CODE.PRODUCT_NOT_FOUND);
       return {
         ...error,
-        productPrice: product.price,
+        productPrice: 0,
       };
     }
 
