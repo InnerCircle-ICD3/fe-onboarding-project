@@ -18,12 +18,10 @@ export const returnAmount = (props : returnAmountProps) => {
 
         if(totalAmount <= 0) {
             addLog(`반환할 잔액이 없습니다.`, 'error');
-
             return;
         }
 
         amountStore.resetAmount();
-
         updateTotalAmount(0);
 
         if(amountInputElement) {
