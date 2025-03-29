@@ -11,3 +11,5 @@ const setCurrentAmount = (amount) => {
   currentAmount = amount;
   return currentAmount;
 };
+
+export { totalAmount, currentAmount, setTotalAmount, setCurrentAmount };

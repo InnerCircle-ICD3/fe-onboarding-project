@@ -1,4 +1,5 @@
 import { updateAmountDisplay } from "./utils.js";
+import { setCurrentAmount, setTotalAmount } from "./store.js";
 
 const $form = document.getElementsByTagName("form")[0];
 const $userAmount = document.getElementById("user-amount");
