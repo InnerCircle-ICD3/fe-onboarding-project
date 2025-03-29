@@ -1,7 +1,18 @@
 .vending-machine {
   padding: 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .vending-machine {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .vending-machine {
+    flex-direction: column;
+  }
 }
 
 .status-section {
