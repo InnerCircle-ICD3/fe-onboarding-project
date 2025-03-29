@@ -3,39 +3,42 @@ import { formatNumber } from "./utils";
 import { store } from "./store";
 
 export const handlePressProductButton = () => {
-  const productButtons = document.querySelectorAll(".product-btn");
+  const productContainer = document.querySelector(".products-grid");
   const balanceDisplay = document.querySelector(".balance-display");
+  let originalBalance;
 
-  productButtons.forEach((button) => {
+  productContainer.addEventListener("mousedown", (e) => {
+    const button = e.target.closest(".product-btn");
+    if (!button) return;
+
     const productId = parseInt(button.dataset.productId);
     const product = PRODUCTS.find(({ id }) => id === productId);
-    let originalBalance;
 
     if (!product) {
       console.error(`Error: 상품이 없습니다`);
       return;
     }
 
-    button.addEventListener("mousedown", () => {
-      const currentState = store.getState();
-      // 잔액이 부족한 경우 상품 가격 표시
-      if (currentState.balance < product.price) {
-        originalBalance = currentState.balance; // 원래 잔액 저장
-        balanceDisplay.textContent = formatNumber(product.price);
-      } else {
-        store.setState({
-          ...currentState,
-          balance: currentState.balance - product.price,
-        });
-      }
-    });
+    const { balance } = store.getState();
+    // 잔액이 부족한 경우 상품 가격 표시
+    if (balance < product.price) {
+      originalBalance = balance; // 원래 잔액 저장
+      balanceDisplay.textContent = formatNumber(product.price);
+    } else {
+      store.setState({
+        balance: balance - product.price,
+      });
+    }
+  });
 
-    button.addEventListener("mouseup", () => {
-      // 원래 잔액으로 복원
-      if (originalBalance !== undefined) {
-        balanceDisplay.textContent = formatNumber(originalBalance);
-        originalBalance = undefined;
-      }
-    });
+  productContainer.addEventListener("mouseup", (e) => {
+    const button = e.target.closest(".product-btn");
+    if (!button) return;
+
+    // 원래 잔액으로 복원
+    if (originalBalance !== undefined) {
+      balanceDisplay.textContent = formatNumber(originalBalance);
+      originalBalance = undefined;
+    }
   });
 };
