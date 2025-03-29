@@ -13,7 +13,7 @@ describe("Button 컴포넌트 테스트", () => {
     expect(button).toHaveTextContent(CHILDREN);
   });
 
-  it("onClick props가 전달되면 클릭 이벤트가 발생했을 때 해당 함수가 호출된다.", () => {
+  it("버튼을 클릭하면 onClick 이벤트가 호출된다.", () => {
     const handleClick = vi.fn();
     const { getByRole } = render(
       <Button onClick={handleClick}>{CHILDREN}</Button>
