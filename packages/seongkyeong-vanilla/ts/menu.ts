@@ -1,3 +1,5 @@
+import { convertLocaleTextToNum } from "../util/localeTextConverter";
+
 interface Menu {
     name: string;
     price: number;
@@ -15,6 +17,12 @@ const menuItems: Menu[] = [
     { name: "커피우유", price: 1400 }
 ];
 
+const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
+const $menuBtnWrapper = document.querySelector<HTMLDivElement>(".menu-btn-wrapper");
+const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.menu");
+
+let balanceValue = 0;
+
 const drawMenuButtons = () => {
     const $menuWrapper = document.querySelector(".menu-btn-wrapper");
 
@@ -24,8 +32,11 @@ const drawMenuButtons = () => {
         const $price = document.createElement("p");
         
         $menuBtn.className = "menu-item";
-        $name.innerHTML = menu.name;
-        $price.innerHTML = `${menu.price}원`;
+        $name.className = "menu-name";
+        $name.innerText = menu.name;
+        $price.className = "price";
+        $price.innerText = `${menu.price}원`;
+        
         $menuBtn.appendChild($name);
         $menuBtn.appendChild($price);
 
@@ -34,3 +45,69 @@ const drawMenuButtons = () => {
 }
 
 drawMenuButtons();
+
+$menuBtnWrapper?.addEventListener("mousedown", (e: MouseEvent) => {
+    if (!$balanceOutput) return;
+    
+    const menu: Menu | null = getMenuInfo(e);
+
+    
+    if (menu) {
+        balanceValue = convertLocaleTextToNum($balanceOutput.innerText);
+
+        if (menu.price > balanceValue) {
+            $balanceOutput.innerText = menu.price.toLocaleString();
+        }
+    }
+});
+
+$menuBtnWrapper?.addEventListener("mouseup", (e: MouseEvent) => {
+    if (!$balanceOutput) return;
+    const menu: Menu | null = getMenuInfo(e);
+    
+    if (menu) {
+        if (menu.price > balanceValue) {
+            $balanceOutput.innerText = balanceValue.toLocaleString();
+            setWarning("잔액이 부족합니다.");
+        } else {
+            buy(menu.price);
+        }
+    }
+});
+
+const getMenuInfo = (e: MouseEvent): Menu | null => {
+    const $target = e.target;    
+
+    if ($target instanceof HTMLElement) {
+        const $menuButton = $target.closest(".menu-item");
+
+        if ($menuButton) {
+            const $menu = $menuButton.querySelector(".menu-name");
+            const $price = $menuButton.querySelector(".price");
+            
+            if ($menu instanceof HTMLParagraphElement && $price instanceof HTMLParagraphElement) {
+                return {
+                    name: $menu.innerText,
+                    price: Number($price.innerText.replace("원", ""))
+                };
+            }
+        }
+    }
+
+    return null;
+}
+
+const buy = (price: number) => {
+    const balance = convertLocaleTextToNum($balanceOutput!.innerText) - price;
+    $balanceOutput!.innerText = balance.toLocaleString();
+
+    clearWarning();
+}
+
+const setWarning = (message: string) => {
+    if ($warningContent) $warningContent.innerText = message;
+}
+
+const clearWarning = () => {
+    if ($warningContent) $warningContent.innerText = "";
+}
