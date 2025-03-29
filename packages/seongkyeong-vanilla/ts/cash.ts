@@ -1,4 +1,5 @@
 import { convertLocaleTextToNum } from "../util/localeTextConverter";
+import { LogType, publishLogEvent } from "./log";
 
 const $cashInput = document.querySelector<HTMLInputElement>("input[type=number].cash");
 const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
@@ -12,6 +13,10 @@ $putButton?.addEventListener("click", () => {
     if (cash > 0) {
         putCash(cash);
         clearWarning();
+        publishLogEvent({
+            type: LogType.CASH_PUT,
+            amount: cash
+        });
     } else {
         setWarning("투입 금액은 0 이하일 수 없습니다.");
     }
@@ -19,12 +24,16 @@ $putButton?.addEventListener("click", () => {
 
 $returnButton?.addEventListener("click", () => {
     if (!$balanceOutput) return;
-    
+
     const balance = Number(convertLocaleTextToNum($balanceOutput.innerText) ?? 0);
     
     if (balance > 0) {
         returnCash(balance);
         clearWarning();
+        publishLogEvent({
+            type: LogType.CASH_RETURN,
+            amount: balance,
+        });
     } else {
         setWarning("반환할 금액이 없습니다.");
     }
