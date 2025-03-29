@@ -11,4 +11,17 @@
     gap: 20px;         /* machine과 panel 사이의 간격 */
     padding: 20px;
     background-color: #f0f0f0;
+    align-items: center;    /* 자식 요소들을 세로 중앙 정렬 */
+}
+
+/* 공통으로 적용할 둥근 모서리 스타일 */
+.machine,
+.machine-money,
+.machine-product,
+.log-section,
+#panel-input,
+#panel-insert-btn,
+#panel-return-btn {
+    border: 1px solid #000;
+    border-radius: 5px;
 } 
