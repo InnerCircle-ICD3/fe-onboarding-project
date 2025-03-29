@@ -75,15 +75,6 @@ export const createVendingMachineService = (store) => {
       };
     }
 
-    // 품절 상품인 경우
-    if (product.disabled) {
-      const error = createError(ERROR_CODE.PRODUCT_DISABLED);
-      return {
-        ...error,
-        productPrice: 0,
-      };
-    }
-
     // 잔액이 부족한 경우
     if (currentBalance < product.price) {
       const error = createError(ERROR_CODE.INSUFFICIENT_BALANCE);

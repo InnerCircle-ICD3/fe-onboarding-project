@@ -1,3 +1,4 @@
+import { COLUMNS } from './constants';
 import { formatter } from './utils';
 
 export const createVendingMachineView = (domSelector) => {
@@ -14,11 +15,8 @@ export const createVendingMachineView = (domSelector) => {
   const createProductButton = (product) => {
     const button = document.createElement('button');
 
-    button.className = `product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 ${
-      product.disabled
-        ? 'button-disabled opacity-50 cursor-not-allowed'
-        : 'group hover:border-blue-500 active:border-red-500'
-    }`;
+    button.className =
+      'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200';
 
     button.dataset.id = product.id;
 
@@ -38,15 +36,33 @@ export const createVendingMachineView = (domSelector) => {
     return button;
   };
 
+  const createEmptyCell = () => {
+    const cell = document.createElement('div');
+    cell.className =
+      'empty-button relative flex flex-col items-center justify-center p-4 bg-gray-100 border-2 border-gray-200';
+    return cell;
+  };
+
   /** 상품 버튼 렌더링 */
   const renderProducts = (productsData) => {
     const buttonContainer = domSelector.getProductButtonContainer();
 
     const fragment = document.createDocumentFragment();
 
+    const rows = Math.ceil(productsData.length / COLUMNS);
+    const TOTAL_SLOTS = COLUMNS * rows;
+
+    // 빈 버튼 갯수 계싼
+    const emptyButtonsCount = TOTAL_SLOTS - productsData.length;
+
     for (const product of productsData) {
       const button = createProductButton(product);
       fragment.appendChild(button);
+    }
+
+    for (let i = 0; i < emptyButtonsCount; i++) {
+      const emptyCell = createEmptyCell();
+      fragment.appendChild(emptyCell);
     }
 
     buttonContainer.appendChild(fragment);
