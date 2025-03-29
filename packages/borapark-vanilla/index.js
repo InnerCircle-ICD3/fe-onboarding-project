@@ -1,4 +1,4 @@
-import { formatCurrencyAsLocaleString } from "./utils.js";
+import {formatCurrencyAsLocaleString} from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -64,9 +64,8 @@ const convertUserAmount = () => {
   updateAmountDisplay("#user-amount", userAmount);
 };
 
-// 이벤트 리스너 등록
-document.addEventListener("DOMContentLoaded", () => {
-  convertVendingMachineTotalAmount();
-  convertDrinkPrice();
-  convertUserAmount();
-});
+
+convertVendingMachineTotalAmount();
+convertDrinkPrice();
+convertUserAmount();
+
