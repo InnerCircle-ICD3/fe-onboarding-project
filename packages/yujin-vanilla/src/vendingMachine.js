@@ -45,9 +45,7 @@ export const renderProducts = () => {
     .join("");
 
     document.querySelectorAll(".product").forEach((productElement, index) => {
-        productElement.addEventListener("mousedown", () =>
-          handleMouseDown(index)
-        );
+        productElement.addEventListener("mousedown", () => handleMouseDown(index));
         productElement.addEventListener("mouseup", () => handlePurchase(index));
     });
 }
