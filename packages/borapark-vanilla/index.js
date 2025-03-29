@@ -16,17 +16,6 @@ const DRINK_PRICES = {
 // 상태 관리
 let totalAmount = 0;
 let currentAmount = 0;
-let drinkInventory = {
-  COLA: 10,
-  SPRITE: 10,
-  FANTA: 10,
-  EOMUK: 10,
-  LATTE: 10,
-  WATER: 10,
-  RED_BULL: 10,
-  HOT_SEVEN: 10,
-  COFFEE_MILK: 10,
-};
 
 /**
  * 금액 표시 화면 기능
@@ -47,9 +36,9 @@ const convertVendingMachineTotalAmount = () => {
 
 // 자판기 표시 금액 변환
 const convertDrinkPrice = () => {
-  Object.keys(DRINK_PRICES).forEach((key) => {
-    updateAmountDisplay(`.drink-price[data-drink-name="${key}"]`, DRINK_PRICES[key], true);
-  });
+  Object.entries(DRINK_PRICES).forEach( ([drink_name, drink_price]) => {
+    updateAmountDisplay(`.drink-price[data-drink-name="${drink_name}"]`, drink_price, true);
+  } )
 };
 
 // 투입 금액 입력창 금액
