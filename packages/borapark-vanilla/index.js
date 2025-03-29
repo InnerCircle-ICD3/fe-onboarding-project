@@ -1,8 +1,9 @@
 import "./js/insert-money.js";
 import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
+import {DRINK_NAME, DRINK_PRICES} from "./js/constant.js";
 
 /**
- * 자판기 상품
+ * 자판기 상품 상세 정보 표시
  * @param {string} text
  * @param {string} className
  * @param {string | null} drinkName
