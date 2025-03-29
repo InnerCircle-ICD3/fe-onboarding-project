@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>자판기</title>
-</head>
-<body>
-    <main class="vending-machine-container">
+import { beforeEach } from "vitest";
+
+beforeEach(() => {
+  document.body.innerHTML = `<main class="vending-machine-container">
         <!-- 자판기 본체 -->
         <section class="vending-machine">
             <div class="screen">
@@ -20,7 +15,7 @@
         <section class="control-panel">
             <div class="money-input">
                 <div class="screen">
-                    <input type="text" name="" class="number-input" placeholder="금액을 투입하세요.">
+                    <input type="text" name="" class="number-input" placeholder="0원">
                 </div>
                 <div class="buttons">
                     <button id="button-insert" class="button-blue">투입</button>
@@ -29,16 +24,9 @@
             </div>
             <div class="log">
                 <ul class="log-list">
+                    <li>금액을 입력후 투입버튼을 누르세요.</li>
                 </ul>
             </div>
         </section>
-    </main>
-    <script type="module" src="/src/main.js"></script>
-    <script type="module">
-        import { setupNumberInput } from "./src/numberInput.js";
-        import { renderProducts } from "./src/vendingMachine.js";
-        renderProducts();
-        setupNumberInput();
-    </script>
-</body>
-</html>
+    </main>`;
+});
