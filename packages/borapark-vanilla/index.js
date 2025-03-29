@@ -1,4 +1,4 @@
-import {formatCurrencyAsLocaleString} from "./utils.js";
+import { formatCurrencyAsLocaleString } from "./utils.js";
 
 // 상수 정의
 const DRINK_PRICES = {
@@ -29,32 +29,50 @@ const updateAmountDisplay = (selector, amount, needUnit = false) => {
   amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
 };
 
-// 금액 표시 화면 금액 변환
+/**
+ * 금액 표시 화면 금액 변환
+ * @returns {void}
+ */
 const convertVendingMachineTotalAmount = () => {
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
 };
 
-// 자판기 표시 금액 변환
+/**
+ * 자판기 표시 금액 변환
+ * @returns {void}
+ */
 const convertDrinkPrice = () => {
-  Object.entries(DRINK_PRICES).forEach( ([drink_name, drink_price]) => {
+  Object.entries(DRINK_PRICES).forEach(([drink_name, drink_price]) => {
     updateAmountDisplay(`.drink-price[data-drink-name="${drink_name}"]`, drink_price, true);
   });
 };
 
-// 투입 금액 입력창 금액
+/**
+ * 투입 금액 입력창 금액
+ * @returns {number}
+ */
 const getUserAmount = () => {
   const userAmount = document.querySelector("#user-amount").value;
   return userAmount;
 };
 
-// 투입 금액 입력창 금액 변환
+/**
+ * 투입 금액 입력창 금액 변환
+ * @returns {void}
+ */
 const convertUserAmount = () => {
   const userAmount = getUserAmount();
   updateAmountDisplay("#user-amount", userAmount);
 };
 
+/**
+ * 자판기 초기 view 설정
+ * @returns {void}
+ */
+const initVendingMachineView = () => {
+  convertVendingMachineTotalAmount();
+  convertDrinkPrice();
+  convertUserAmount();
+};
 
-convertVendingMachineTotalAmount();
-convertDrinkPrice();
-convertUserAmount();
-
+initVendingMachineView();
