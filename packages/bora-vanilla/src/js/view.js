@@ -14,8 +14,11 @@ export const createVendingMachineView = (domSelector) => {
   const createProductButton = (product) => {
     const button = document.createElement('button');
 
-    button.className =
-      'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 hover:border-blue-500 active:border-red-500';
+    button.className = `product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 ${
+      product.disabled
+        ? 'button-disabled opacity-50 cursor-not-allowed'
+        : 'group hover:border-blue-500 active:border-red-500'
+    }`;
 
     button.dataset.id = product.id;
 
@@ -107,7 +110,9 @@ export const createVendingMachineView = (domSelector) => {
     // 상품 구매 이벤트
     productButtonContainer.addEventListener('click', (e) => {
       const button = e.target.closest('.product-button');
+
       if (!button) return;
+
       const productId = button.dataset.id;
       eventHandlers.onProductPurchase(productId);
     });
@@ -120,7 +125,10 @@ export const createVendingMachineView = (domSelector) => {
     // 상품 버튼 마우스 이벤트
     productButtonContainer.addEventListener('mousedown', (e) => {
       const button = e.target.closest('.product-button');
+
       if (!button) return;
+      if (button.classList.contains('button-disabled')) return;
+
       const productId = button.dataset.id;
       eventHandlers.onPurchaseValidate(productId);
     });
