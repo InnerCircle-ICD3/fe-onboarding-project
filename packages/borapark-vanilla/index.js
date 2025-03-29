@@ -32,7 +32,7 @@ let drinkInventory = {
  * 금액 표시 화면 기능
  * @param {string} selector
  * @param {number} amount
- * @param {boolean} needUnit (optional)
+ * @param {boolean} [needUnit]
  */
 const updateAmountDisplay = (selector, amount, needUnit = false) => {
   const unit = "원";
