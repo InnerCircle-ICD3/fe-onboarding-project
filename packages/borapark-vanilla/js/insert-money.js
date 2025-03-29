@@ -1,4 +1,4 @@
-import {updateAmountDisplay, sleep} from "./utils.js";
+import { updateAmountDisplay, sleep } from "./utils.js";
 
 const $form = document.getElementsByTagName("form")[0];
 const $userAmount = document.getElementById("user-amount");

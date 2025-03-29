@@ -1,5 +1,5 @@
 import "./js/insert-money.js";
-import {convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount} from "./js/display-money.js";
+import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
 
 /**
  * 자판기 상품

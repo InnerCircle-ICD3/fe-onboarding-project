@@ -3,13 +3,8 @@
  * @param {number} currency
  * @param {string} [locale]
  */
-export const formatCurrencyAsLocaleString = (currency, locale='ko-KR') => {
-  if (
-    typeof currency !== "number" ||
-    isNaN(currency) ||
-    currency < 0 ||
-    !Number.isInteger(currency)
-  ) {
+export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
+  if (typeof currency !== "number" || isNaN(currency) || currency < 0 || !Number.isInteger(currency)) {
     throw new Error("Invalid currency: only non-negative integers are allowed");
   }
   return currency.toLocaleString(locale);
@@ -34,8 +29,10 @@ export const updateAmountDisplay = (selector, amount, needUnit = false) => {
  * @returns {Promise<>}
  */
 export const sleep = (ms, callback) => {
-  return new Promise((resolve) => setTimeout(() => {
-    if (callback) callback();
-    resolve();
-  }, ms));
-}
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      if (callback) callback();
+      resolve();
+    }, ms)
+  );
+};
