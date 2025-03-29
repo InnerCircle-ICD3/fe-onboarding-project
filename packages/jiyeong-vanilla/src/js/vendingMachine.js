@@ -7,9 +7,14 @@ export const handlePressProductButton = () => {
   const balanceDisplay = document.querySelector(".balance-display");
 
   productButtons.forEach((button) => {
-    const productId = parseInt(button.dataset.productId) - 1;
-    const product = PRODUCTS[productId];
+    const productId = parseInt(button.dataset.productId);
+    const product = PRODUCTS.find(({ id }) => id === productId);
     let originalBalance;
+
+    if (!product) {
+      console.error(`Error: 상품이 없습니다`);
+      return;
+    }
 
     button.addEventListener("mousedown", () => {
       const currentState = store.getState();

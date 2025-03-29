@@ -9,7 +9,6 @@ export const handleInputCoin = () => {
     e.target.value = formatNumber(numericValue);
 
     store.setState({
-      ...store.getState(),
       insertAmount: numericValue,
     });
   });
@@ -24,7 +23,6 @@ export const handleInsertButton = () => {
 
     if (insertAmount > 0) {
       store.setState({
-        ...currentState,
         insertAmount: 0,
         balance: currentState.balance + insertAmount,
       });
@@ -37,7 +35,6 @@ export const handleReturnButton = () => {
 
   returnButton.addEventListener("click", () => {
     store.setState({
-      ...store.getState(),
       insertAmount: 0,
       balance: 0,
     });
