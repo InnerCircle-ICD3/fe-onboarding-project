@@ -1,6 +1,6 @@
 import numberWithCommas from ".";
 
-const NUMBER_PRICE = 1000;
+const NUMBER_PRICE = 1_000;
 const STRING_PRICE = "1000";
 const RESULT = "1,000";
 const STRING_TEXT = "test";
