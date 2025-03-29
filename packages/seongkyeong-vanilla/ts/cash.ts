@@ -1,3 +1,5 @@
+import { convertLocaleTextToNum } from "../util/localeTextConverter";
+
 const $cashInput = document.querySelector<HTMLInputElement>("input[type=number].cash");
 const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
 const $putButton = document.querySelector<HTMLButtonElement>(".put-btn");
@@ -16,8 +18,10 @@ $putButton?.addEventListener("click", () => {
 });
 
 $returnButton?.addEventListener("click", () => {
-    const balance = Number($balanceOutput?.innerText ?? 0);
-
+    if (!$balanceOutput) return;
+    
+    const balance = Number(convertLocaleTextToNum($balanceOutput.innerText) ?? 0);
+    
     if (balance > 0) {
         returnCash(balance);
         clearWarning();
