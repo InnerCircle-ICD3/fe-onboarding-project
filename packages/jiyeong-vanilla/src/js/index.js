@@ -1,18 +1,18 @@
-import { handleInputCoin, handleInsertButton } from "./control";
+import {
+  handleInputCoin,
+  handleInsertButton,
+  handleReturnButton,
+} from "./control";
+import { renderUI, renderProducts } from "./render";
 import { store } from "./store";
-import { formatNumber } from "./utils";
-
-const renderUI = (state) => {
-  const insertAmount = document.querySelector(".insert-amount");
-  insertAmount.value = formatNumber(state.insertAmount || 0);
-
-  const balanceDisplay = document.querySelector(".balance-display");
-  balanceDisplay.textContent = formatNumber(state.balance || 0);
-};
+import { handlePressProductButton } from "./vendingMachine";
 
 const initApp = () => {
+  renderProducts();
   handleInputCoin();
   handleInsertButton();
+  handleReturnButton();
+  handlePressProductButton();
   store.subscribe(renderUI);
   renderUI(store.getState());
 };
