@@ -2,8 +2,12 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   root: './src',
-  publicDir: '../public',
   build: {
     outDir: '../dist',
+  },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    include: ['__test__/*.spec.js?(x)'],
   },
 });

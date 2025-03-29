@@ -21,7 +21,7 @@ export const formatDigitsWithCommas = (value) => {
 /** 에러 코드 생성 */
 export const createError = (errorCode) => {
   if (!Object.values(ERROR_CODE).includes(errorCode)) {
-    console.error(`유효하지 않은 에러 코드: ${errorCode}`);
+    throw new Error(`유효하지 않은 에러 코드: ${errorCode}`);
   }
 
   return { success: false, errorCode };

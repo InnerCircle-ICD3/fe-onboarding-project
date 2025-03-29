@@ -163,6 +163,7 @@ export const createVendingMachineView = (domSelector) => {
     renderBalanceDisplay,
     renderLogMessage,
     getMoneyInputValue,
+    setMoneyInputValue,
     clearMoneyInput,
     setEventHandlers,
     bindEventListeners,
