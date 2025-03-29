@@ -1,1 +1,39 @@
-안녕하세요!
+# 자판기 프로젝트 (Vending Machine Project)
+
+온보딩 프로젝트로, **바닐라 자바스크립트**를 사용하여 주어진 명세를 만족하는 자판기를 구현합니다.
+
+## 기술 스택
+- **CSS**: SCSS
+- **빌드 도구**: Vite
+- **테스트 도구**: Jest
+
+## 기능 개요
+- 상품 버튼을 클릭하여 아이템을 구매할 수 있습니다.
+- 금액 입력 후 투입하여 잔액을 증가시킬 수 있습니다.
+- 잔액 부족 시 경고 메시지가 표시됩니다.
+- 반환 버튼을 누르면 잔액과 로그가 초기화됩니다.
+
+## 실행 방법
+1. 패키지 설치:
+   ```sh
+   npm install
+   ```
+2. 개발 서버 실행:
+    ```sh
+   npm run dev
+   ```
+3. 테스트 실행
+    ```sh
+   npm run test
+   ```
+
+📂 프로젝트 루트
+ ┣ 📂 src
+ ┃ ┣ 📜 style.scss
+ ┃ ┣ 📜 main.js
+ ┃ ┗ 📜 vendingMachine.js
+ ┣ 📂 tests
+ ┃ ┗ 📜 vendingMachine.test.js
+ ┣ 📜 index.html
+ ┣ 📜 package.json
+ ┗ 📜 README.md

@@ -1,5 +1,7 @@
 import "./style.css";
 
+let insertedMoney = 0;
+
 const mds = [
   { name: "콜라", price: 1500 },
   { name: "사이다", price: 1700 },
@@ -18,7 +20,7 @@ const mds = [
 ];
 
 function renderMdButtons() {
-  const mdContainer = document.getElementsByClassName("md-container")[0];
+  const mdContainer = document.querySelector(".md-container");
   const mdButtons = mdContainer.children;
 
   for (let i = 0; i < mdButtons.length; i++) {
@@ -26,10 +28,28 @@ function renderMdButtons() {
     const md = mds[i];
 
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
-    mdButton.onclick = () => {
+    mdButton.addEventListener("click", () => {
       console.log(md.price);
-    };
+    });
   }
 }
 
+function renderInsertedMoney() {
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
+  const moneyInput = document.querySelector("#money-input");
+
+  const inputButton = document.querySelector(".input-btn");
+  inputButton.addEventListener("click", () => {
+    const money = moneyInput.valueAsNumber;
+
+    if (!isNaN(money) && money >= 0) {
+      insertedMoney += money;
+      moneyPresenter.innerText = insertedMoney.toLocaleString();
+    }
+
+    moneyInput.value = 0;
+  });
+}
+
 renderMdButtons();
+renderInsertedMoney();

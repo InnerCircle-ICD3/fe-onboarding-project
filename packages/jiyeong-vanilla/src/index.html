@@ -9,7 +9,7 @@
   <body>
     <div class="vending-machine-wrapper">
       <div class="vending-machine">
-        <div class="balance-display">15,000</div>
+        <div class="balance-display">0</div>
         <div class="products-grid">
           <button class="product-btn">콜라<span>1500원</span></button>
           <button class="product-btn">쥬시아이다<span>1700원</span></button>
@@ -24,10 +24,16 @@
       </div>
       <div class="control-panel">
         <div class="control-panel-top">
-          <div class="input-display">3,000</div>
+          <input
+            type="text"
+            class="insert-amount"
+            value="0"
+            pattern="[0-9]*"
+            min="0"
+          />
           <div class="control-buttons">
-            <button class="control-btn">투입</button>
-            <button class="control-btn">반환</button>
+            <button class="control-btn btn-insert">투입</button>
+            <button class="control-btn btn-return">반환</button>
           </div>
         </div>
         <ol class="transaction-history">
@@ -37,6 +43,6 @@
         </ol>
       </div>
     </div>
-    <script type="module" src="/index.js"></script>
+    <script type="module" src="/js/index.js"></script>
   </body>
 </html>

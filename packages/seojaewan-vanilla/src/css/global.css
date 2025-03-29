@@ -29,6 +29,8 @@ ul {
   width: 100%;
 
   padding: 10px 20px;
+  margin: 0;
+  
   border: 1px solid #ffffff;
   border-radius: 15px;
 
@@ -68,4 +70,8 @@ ul {
 .button > *:last-child {
   font-size: 0.8rem;
   font-weight: 600;
+}
+
+.size--third {
+  width: calc((100% - 20px) / 3);
 }
