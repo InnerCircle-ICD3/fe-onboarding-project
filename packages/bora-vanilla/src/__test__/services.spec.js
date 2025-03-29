@@ -69,4 +69,89 @@ describe('VendingMachineService', () => {
       });
     });
   });
+
+  // 상품 구매 테스트
+  describe('buyProduct', () => {
+    it('해당 상품을 구매하고 성공 응답을 반환해야 한다.', () => {
+      const productId = 1;
+      const product = {
+        id: 1,
+        name: '콜라',
+        price: 1500,
+        disabled: false,
+      };
+      const updatedBalance = 3000;
+
+      mockStore.getProductById.mockReturnValue(product);
+      mockStore.decrementBalance.mockReturnValue(updatedBalance);
+
+      const result = vendingMachineService.buyProduct(productId);
+
+      expect(mockStore.getProductById).toHaveBeenCalledWith(productId);
+      expect(mockStore.decrementBalance).toHaveBeenCalledWith(product.price);
+      expect(result).toEqual({
+        success: true,
+        product,
+        updatedBalance,
+      });
+    });
+
+    it('상품이 존재하지 않으면 에러를 반환해야 한다.', () => {
+      mockStore.getProductById.mockReturnValue(null);
+
+      const result = vendingMachineService.buyProduct(null);
+
+      expect(mockStore.getProductById).toHaveBeenCalledWith(null);
+      expect(mockStore.decrementBalance).not.toHaveBeenCalled();
+      expect(result).toEqual({
+        success: false,
+        errorCode: 'PRODUCT_NOT_FOUND',
+        productPrice: 0,
+      });
+    });
+
+    it('상품이 구매 불가능 상태면 에러를 반환해야 한다.', () => {
+      const productId = 1;
+      const product = {
+        id: 1,
+        name: '콜라',
+        price: 1500,
+        disabled: true,
+      };
+
+      mockStore.getProductById.mockReturnValue(product);
+      const result = vendingMachineService.buyProduct(productId);
+
+      expect(mockStore.getProductById).toHaveBeenCalledWith(productId);
+      expect(result).toEqual({
+        success: false,
+        errorCode: 'PRODUCT_DISABLED',
+        productPrice: 0,
+      });
+    });
+
+    it('잔액이 부족하면 에러를 반환해야 한다.', () => {
+      const productId = 1;
+      const product = {
+        id: 1,
+        name: '콜라',
+        price: 1500,
+        disabled: false,
+      };
+
+      mockStore.getProductById.mockReturnValue(product);
+      mockStore.getBalance.mockReturnValue(1000);
+
+      const result = vendingMachineService.buyProduct(productId);
+
+      expect(mockStore.getProductById).toHaveBeenCalledWith(productId);
+      expect(mockStore.decrementBalance).not.toHaveBeenCalled();
+
+      expect(result).toEqual({
+        success: false,
+        errorCode: 'INSUFFICIENT_BALANCE',
+        productPrice: product.price,
+      });
+    });
+  });
 });
