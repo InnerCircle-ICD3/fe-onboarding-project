@@ -6,6 +6,8 @@ export const createVendingMachineView = (domSelector) => {
     onMoneyInsert: (amount) => {},
     onProductPurchase: (productId) => {},
     onMoneyReturn: () => {},
+    onPurchaseValidate: (productId) => {},
+    onPurchaseValidateEnd: (product) => {},
   };
 
   /** 상품 버튼 생성 */
@@ -113,6 +115,22 @@ export const createVendingMachineView = (domSelector) => {
     // 잔돈 반환 이벤트
     moneyReturnButton.addEventListener('click', () => {
       eventHandlers.onMoneyReturn();
+    });
+
+    // 상품 버튼 마우스 이벤트
+    productButtonContainer.addEventListener('mousedown', (e) => {
+      const button = e.target.closest('.product-button');
+      if (!button) return;
+      const productId = button.dataset.id;
+      eventHandlers.onPurchaseValidate(productId);
+    });
+
+    productButtonContainer.addEventListener('mouseup', () => {
+      eventHandlers.onPurchaseValidateEnd();
+    });
+
+    productButtonContainer.addEventListener('mouseleave', () => {
+      eventHandlers.onPurchaseValidateEnd();
     });
   };
 

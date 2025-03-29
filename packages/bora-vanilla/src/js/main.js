@@ -8,13 +8,15 @@ import { domSelectors } from './dom-selectors';
 document.addEventListener('DOMContentLoaded', () => {
   const view = createVendingMachineView(domSelectors);
   const service = createVendingMachineService(store);
-  const controller = createVendingMachineController(service, view);
+  const controller = createVendingMachineController(service, view, store);
 
   view.setEventHandlers({
     onMoneyAmountInput: controller.handleMoneyAmountInput,
     onMoneyInsert: controller.handleMoneyInsert,
     onProductPurchase: controller.handleProductPurchase,
     onMoneyReturn: controller.handleMoneyReturn,
+    onPurchaseValidate: controller.handlePurchaseValidate,
+    onPurchaseValidateEnd: controller.handleProductValidateEnd,
   });
   view.bindEventListeners();
   view.renderProducts(store.getProducts());
