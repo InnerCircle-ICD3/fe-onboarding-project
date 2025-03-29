@@ -13,6 +13,8 @@ export function addLogMessage(message: string) {
   
   li.innerHTML = `<span class="log-message">${ message }</span>`;
   logList.appendChild(li);
+
+  logList.scrollTop = logList.scrollHeight;
 }
 
 export function getInputNumberValue(input: HTMLInputElement | null): number {
