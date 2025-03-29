@@ -1,12 +1,21 @@
 .vending-machine {
-  height: 100%;
   padding: 8px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .vending-machine {
+    flex-direction: row;
+  }
+}
+
+@media (max-width: 767px) {
+  .vending-machine {
+    flex-direction: column;
+  }
 }
 
 .status-section {
-  height: 100%;
   margin: 8px;
   padding: 8px;
   display: grid;
@@ -21,6 +30,8 @@
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  align-content: center;
+  text-align: center;
 }
 
 .md-container {
@@ -37,6 +48,15 @@
   cursor: pointer;
 }
 
+.md-btn:hover {
+  background-color: lightblue;
+}
+
+.md-btn:active {
+  background-color: blue;
+  color: white;
+}
+
 .user-action-section {
   margin: 8px;
   padding: 8px;
@@ -46,15 +66,17 @@
 }
 
 .money-function-container {
+  margin-bottom: 8px;
   display: grid;
   grid-template-columns: 50% 1fr 1fr;
 }
 
-.money-input {
+#money-input {
   margin: 8px;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
+  text-align: center;
 }
 
 .input-btn,
@@ -68,7 +90,10 @@
 }
 
 .user-logger {
-  margin: 8px;
+  height: 300px;
+  overflow-y: auto;
+  margin-left: 8px;
+  margin-right: 8px;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;

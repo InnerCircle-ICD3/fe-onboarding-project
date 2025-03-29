@@ -12,22 +12,25 @@
     <div id="app">
         <main>
             <section class="menu-wrapper">
-                <input type="number" class="balance" value="0"/>
+                <input type="number" class="balance" value="0" disabled/>
                 <div class="menu-btn-wrapper">
                 </div>
             </section>
             <section class="control-wrapper">
                 <div class="control-box">
-                    <input type="number" class="cash" value="0"/>
+                    <input type="number" class="cash" value=""/>
                     <button class="put-btn">투입</button>
                     <button class="rtn-btn">반환</button>
                 </div>
+                <div class="warning-box">
+                </div>
                 <div class="logging-box">
-                    <textarea></textarea>
+                    <textarea disabled></textarea>
                 </div>
             </section>
         </main>
     </div>
-    <script type="module" src="/index.ts"></script>
+    <script type="module" src="/ts/menu.ts"></script>
+    <script type="module" src="/ts/cash.ts"></script>
 </body>
 </html>
