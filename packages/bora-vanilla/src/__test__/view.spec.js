@@ -69,5 +69,40 @@ describe('VendingMachineView', () => {
     });
   });
 
-  // 이벤트 핸들러
+  // 잔액 표시
+  describe('renderBalanceDisplay', () => {
+    it('현재 잔액을 자판기 금액 표시창에 렌더링 해야 한다.', () => {
+      const balance = 5000;
+      view.renderBalanceDisplay(balance);
+      expect(mockVendingMachineBalance.textContent).toBe('5,000원');
+    });
+  });
+
+  // 로그 메시지
+  describe('renderLogMessage', () => {
+    it('로그 메세지가 성공적으로 렌더링 되어야 한다.', () => {
+      const message = '테스트 메시지입니다.';
+      view.renderLogMessage(message);
+      expect(mockLogContainer.lastChild.textContent).toBe(message);
+    });
+  });
+
+  // 금액 입력 필드
+  describe('금액 입력 필드 관련 기능', () => {
+    it('getMoneyInputValue는 입력 필드의 현재 값을 반환해야 한다', () => {
+      mockMoneyAmountInput.value = '1000';
+      expect(view.getMoneyInputValue()).toBe('1000');
+    });
+
+    it('setMoneyInputValue는 입력 필드의 값을 설정해야 한다', () => {
+      view.setMoneyInputValue('2000');
+      expect(mockMoneyAmountInput.value).toBe('2000');
+    });
+
+    it('clearMoneyInput은 입력 필드의 값을 비워야 한다', () => {
+      mockMoneyAmountInput.value = '1000';
+      view.clearMoneyInput();
+      expect(mockMoneyAmountInput.value).toBe('');
+    });
+  });
 });
