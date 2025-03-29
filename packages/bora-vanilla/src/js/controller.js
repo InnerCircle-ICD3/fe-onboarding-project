@@ -1,7 +1,7 @@
 import { ERROR_MESSAGES } from './constants';
 import { formatDigitsWithCommas, formatter, parseNumberWithCommas } from './utils';
 
-export const createVendingMachineController = (service, view) => {
+export const createVendingMachineController = (service, view, store) => {
   /** 금액 입력시 콤마 추가 */
   const handleMoneyAmountInput = (value) => {
     return value ? formatDigitsWithCommas(value) : '';
@@ -49,10 +49,28 @@ export const createVendingMachineController = (service, view) => {
     view.renderBalanceDisplay(updatedBalance);
   };
 
+  /** 상품 구매 검증 */
+  const handlePurchaseValidate = (productId) => {
+    const { success, product, updatedBalance } = service.validatePurchase(productId);
+
+    if (!success) {
+      return view.renderBalanceDisplay(product.price);
+    }
+
+    view.renderBalanceDisplay(updatedBalance);
+  };
+
+  const handleProductValidateEnd = () => {
+    const currentBalance = store.getBalance();
+    view.renderBalanceDisplay(currentBalance);
+  };
+
   return {
     handleMoneyAmountInput,
     handleMoneyInsert,
     handleProductPurchase,
     handleMoneyReturn,
+    handlePurchaseValidate,
+    handleProductValidateEnd,
   };
 };
