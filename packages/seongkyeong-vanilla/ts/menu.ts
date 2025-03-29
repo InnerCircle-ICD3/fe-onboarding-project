@@ -15,7 +15,9 @@ const menuItems: Menu[] = [
     { name: "판타지판타", price: 1500 },
     { name: "레드뿔", price: 2500 },
     { name: "핫세븐", price: 1900 },
-    { name: "커피우유", price: 1400 }
+    { name: "커피우유", price: 1400 },
+    { name: "몬스터드링크", price: 1400 },
+    { name: "사과주스", price: 1000 }
 ];
 
 const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
