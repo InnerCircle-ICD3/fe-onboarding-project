@@ -40,9 +40,11 @@ const LeftSide = () => {
         >
             <Flex direction={'column'} gap={'20px'}>
                 <Flex grow={'wFull'} justify={'center'} style={{   border: '2px solid #000'}}>
+
                     <Text weight={'bold'} size={'2xl'}>
                         0
                     </Text>
+
                 </Flex>
                 <Grid gridColumns={3} gap={'15px'}>
                     {productList?.map((product) => (
