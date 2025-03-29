@@ -1,7 +1,7 @@
-import priceLayout from "../../atoms/priceLayout"
+import priceLayout from "../../atoms/priceLayout";
 
 const TotalPrice = () => {
-    return <h1 className={priceLayout}>1000</h1>
-}
+  return <h1 className={priceLayout}>1000</h1>;
+};
 
-export default  TotalPrice
+export default TotalPrice;

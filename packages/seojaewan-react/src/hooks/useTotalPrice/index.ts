@@ -1,5 +1,3 @@
-const useTotalPrice = () => {
-   
-}
+const useTotalPrice = () => {};
 
-export default useTotalPrice
+export default useTotalPrice;

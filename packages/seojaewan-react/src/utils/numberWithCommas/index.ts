@@ -1,5 +1,3 @@
-const numberWithCommas = () => {
+const numberWithCommas = () => {};
 
-}
-
-export default numberWithCommas
+export default numberWithCommas;

@@ -1,5 +1,3 @@
-const useLogList = () => {
+const useLogList = () => {};
 
-}
-
-export default useLogList
+export default useLogList;
