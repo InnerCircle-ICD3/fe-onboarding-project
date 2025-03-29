@@ -9,9 +9,8 @@ const handleChangeAmount = (event) => {
 };
 
 const resetAmount = () => {
-  setCurrentAmount(0);
+  $form.reset();
   updateAmountDisplay("#user-amount", currentAmount);
-  console.log(currentAmount, "<<<<?")
 };
 
 const handleSubmitInsertAmount = (event) => {
