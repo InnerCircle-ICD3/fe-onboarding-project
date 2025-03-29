@@ -95,7 +95,44 @@ describe('VendingMachineService', () => {
         updatedBalance,
       });
     });
+  });
 
+  // 잔돈 반환 테스트
+  describe('returnMoney', () => {
+    it('잔돈을 반환하고 성공 응답을 반환해야 한다.', () => {
+      const currentBalance = 3000;
+      const updatedBalance = 0;
+
+      mockStore.getBalance.mockReturnValue(currentBalance);
+      mockStore.resetBalance.mockReturnValue(updatedBalance);
+
+      const result = vendingMachineService.returnMoney();
+
+      expect(mockStore.getBalance).toHaveBeenCalled();
+      expect(mockStore.resetBalance).toHaveBeenCalled();
+      expect(result).toEqual({
+        success: true,
+        returnBalance: currentBalance,
+        updatedBalance,
+      });
+    });
+
+    it('잔돈이 없으면 에러를 반환해야 한다.', () => {
+      mockStore.getBalance.mockReturnValue(0);
+
+      const result = vendingMachineService.returnMoney();
+
+      expect(mockStore.getBalance).toHaveBeenCalled();
+      expect(mockStore.resetBalance).not.toHaveBeenCalled();
+      expect(result).toEqual({
+        success: false,
+        errorCode: 'NO_BALANCE_TO_RETURN',
+      });
+    });
+  });
+
+  // 상품 구매 검증 테스트
+  describe('validatePurchase', () => {
     it('상품이 존재하지 않으면 에러를 반환해야 한다.', () => {
       mockStore.getProductById.mockReturnValue(null);
 
@@ -151,40 +188,6 @@ describe('VendingMachineService', () => {
         success: false,
         errorCode: 'INSUFFICIENT_BALANCE',
         productPrice: product.price,
-      });
-    });
-  });
-
-  // 잔돈 반환 테스트
-  describe('returnMoney', () => {
-    it('잔돈을 반환하고 성공 응답을 반환해야 한다.', () => {
-      const currentBalance = 3000;
-      const updatedBalance = 0;
-
-      mockStore.getBalance.mockReturnValue(currentBalance);
-      mockStore.resetBalance.mockReturnValue(updatedBalance);
-
-      const result = vendingMachineService.returnMoney();
-
-      expect(mockStore.getBalance).toHaveBeenCalled();
-      expect(mockStore.resetBalance).toHaveBeenCalled();
-      expect(result).toEqual({
-        success: true,
-        returnBalance: currentBalance,
-        updatedBalance,
-      });
-    });
-
-    it('잔돈이 없으면 에러를 반환해야 한다.', () => {
-      mockStore.getBalance.mockReturnValue(0);
-
-      const result = vendingMachineService.returnMoney();
-
-      expect(mockStore.getBalance).toHaveBeenCalled();
-      expect(mockStore.resetBalance).not.toHaveBeenCalled();
-      expect(result).toEqual({
-        success: false,
-        errorCode: 'NO_BALANCE_TO_RETURN',
       });
     });
   });
