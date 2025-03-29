@@ -2,13 +2,11 @@ import { addLogMessage, getRequiredElement, updateDisplay } from "./common";
 import { BalanceManager } from "./store";
 
 function handleRefundBalance() {
-  const controlInput = getRequiredElement<HTMLInputElement>('.control-input');
-
-  if(!controlInput.value) {
+  let currentBalance = BalanceManager.get();
+  
+  if(!currentBalance) {
     return;
   }
-
-  let currentBalance = BalanceManager.get();
   addLogMessage(`${currentBalance} 원을 반환합니다.`);
   updateDisplay(0);
   BalanceManager.reset();
