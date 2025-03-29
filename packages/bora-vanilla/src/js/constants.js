@@ -1,5 +1,6 @@
 export const MAX_AMOUNT = 1000000;
 const MAX_AMOUNT_FORMAT = '1,000,000';
+export const COLUMNS = 3;
 
 export const ERROR_CODE = {
   PRODUCT_NOT_FOUND: 'PRODUCT_NOT_FOUND',
@@ -7,7 +8,6 @@ export const ERROR_CODE = {
   INVALID_AMOUNT: 'INVALID_AMOUNT',
   EXCEED_MAX_AMOUNT: 'EXCEED_MAX_AMOUNT',
   NO_BALANCE_TO_RETURN: 'NO_BALANCE_TO_RETURN',
-  PRODUCT_DISABLED: 'PRODUCT_DISABLED',
 };
 
 export const ERROR_MESSAGES = {
@@ -16,5 +16,4 @@ export const ERROR_MESSAGES = {
   [ERROR_CODE.INVALID_AMOUNT]: '올바른 금액을 입력해주세요.',
   [ERROR_CODE.EXCEED_MAX_AMOUNT]: `최대 ${MAX_AMOUNT_FORMAT}원까지만 투입 가능합니다.`,
   [ERROR_CODE.NO_BALANCE_TO_RETURN]: '반환할 잔액이 없습니다.',
-  [ERROR_CODE.PRODUCT_DISABLED]: '품절된 상품은 구매할 수 없습니다.',
 };
