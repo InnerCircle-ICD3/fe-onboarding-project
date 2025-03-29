@@ -9,12 +9,16 @@ export const renderProduct  = async () => {
         const productGrid = document.querySelector("#productGrid");
 
         productList.forEach(product => {
-            const btn = document.createElement("button");
 
+            const btn = document.createElement("button");
+            const enabled  = product?.isUsed;
+
+            btn.disabled = !enabled;
             btn.className = "product-button";
             btn.id = `product-${product.id}`;
-            btn.innerHTML = `${product.name}<br/>${product.price}원`;
+            btn.innerHTML = enabled ? `${product.name}<br/>${product.price}원` : `${product.name}`;
             productGrid?.appendChild(btn);
+
 
             handleProductButton(product);
         });
