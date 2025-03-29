@@ -15,7 +15,7 @@ const Text = (props: TextProps) => {
 
     return (
         <p className={text(textVariants)} style={style} onClick={onClick}>
-             children
+            {children}
         </p>
     );
 };
