@@ -18,7 +18,7 @@ const Flex = (props : FlexProps) => {
 
     return (
         <div className={flex(variants)} style={{ width, height, gap, ...style}}>
-            children
+            {children}
         </div>
     )
 }
