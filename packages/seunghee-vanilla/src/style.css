@@ -1,12 +1,10 @@
 .vending-machine {
-  height: 100%;
   padding: 8px;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 
 .status-section {
-  height: 100%;
   margin: 8px;
   padding: 8px;
   display: grid;
@@ -57,6 +55,7 @@
 }
 
 .money-function-container {
+  margin-bottom: 8px;
   display: grid;
   grid-template-columns: 50% 1fr 1fr;
 }
@@ -80,7 +79,10 @@
 }
 
 .user-logger {
-  margin: 8px;
+  height: 300px;
+  overflow-y: auto;
+  margin-left: 8px;
+  margin-right: 8px;
   background-color: white;
   border: 1px solid black;
   border-radius: 5px;
