@@ -1,24 +1,28 @@
-import './style.css'
-import typescriptLogo from './typescript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.ts'
+import './style.css';
 
-document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://www.typescriptlang.org/" target="_blank">
-      <img src="${typescriptLogo}" class="logo vanilla" alt="TypeScript logo" />
-    </a>
-    <h1>Vite + TypeScript</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite and TypeScript logos to learn more
-    </p>
-  </div>
-`
+// 타입 및 데이터 가져오기
+import { PRODUCT_LIST } from './data/products';
 
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+// UI 렌더링 함수 가져오기
+import { initializeProductContainer, renderProductList } from './ui/productRenderer';
+
+/**
+ * 애플리케이션 초기화 함수
+ */
+function initApp(): void {
+  try {
+    // 제품 컨테이너
+    const productContainer = initializeProductContainer();
+    
+    // 제품 목록 렌더링
+    renderProductList(PRODUCT_LIST, productContainer);
+    
+    console.log('애플리케이션이 성공적으로 초기화되었습니다.');
+  } catch (error) {
+    console.error('애플리케이션 초기화 중 오류 발생:', error);
+  }
+}
+
+// 애플리케이션 시작
+initApp();
+
