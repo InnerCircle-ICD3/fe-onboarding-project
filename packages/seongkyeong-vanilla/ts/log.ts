@@ -38,7 +38,7 @@ const createLog = (logInfo: LogInfo) => {
 
 const writeLog = (line: string) => {
     if (!($logBox instanceof HTMLTextAreaElement)) return;
-    $logBox.value = `${$logBox.value}${$logBox.value === "" ? "" : "\n"}${line}`
+    $logBox.value = `${$logBox.value}${$logBox.value === "" ? "" : "\n"}${line}`;
 }
 
 const scrollDown = () => {

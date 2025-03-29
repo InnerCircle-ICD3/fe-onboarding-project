@@ -28,20 +28,17 @@ let balanceValue = 0;
 
 const drawMenuButtons = () => {
     const $menuWrapper = document.querySelector(".menu-btn-wrapper");
+    const $buttonTemplate = document.querySelector(".button-template");
+
+    if (!($buttonTemplate instanceof HTMLTemplateElement)) return;
 
     for (const menu of menuItems) {
-        const $menuBtn = document.createElement("button");
-        const $name = document.createElement("p");
-        const $price = document.createElement("p");
+        const $menuBtn = $buttonTemplate.content.cloneNode(true) as HTMLButtonElement;
+        const $name = $menuBtn.querySelector(".menu-name") as HTMLParagraphElement;
+        const $price = $menuBtn.querySelector(".price") as HTMLParagraphElement;
         
-        $menuBtn.className = "menu-item";
-        $name.className = "menu-name";
         $name.innerText = menu.name;
-        $price.className = "price";
         $price.innerText = `${menu.price}원`;
-        
-        $menuBtn.appendChild($name);
-        $menuBtn.appendChild($price);
 
         $menuWrapper?.appendChild($menuBtn);
     }
