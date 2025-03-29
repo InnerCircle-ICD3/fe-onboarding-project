@@ -25,19 +25,13 @@ export const createVendingMachineService = (store) => {
 
   /** 상품 구매 */
   const buyProduct = (productId) => {
-    const product = store.getProductById(productId);
+    const validationResult = validatePurchase(productId);
 
-    // 상품 존재 여부 확인
-    if (!product) {
-      return createError(ERROR_CODE.PRODUCT_NOT_FOUND);
+    if (!validationResult.success) {
+      return validationResult;
     }
 
-    const currentBalance = store.getBalance();
-
-    // 잔액 부족
-    if (currentBalance < product.price) {
-      return createError(ERROR_CODE.INSUFFICIENT_BALANCE);
-    }
+    const { product } = validationResult;
 
     // 잔액 감소 업데이트
     const updatedBalance = store.decrementBalance(product.price);
@@ -67,9 +61,35 @@ export const createVendingMachineService = (store) => {
     };
   };
 
+  /** 상품 구매 검증 */
+  const validatePurchase = (productId) => {
+    const product = store.getProductById(productId);
+
+    if (!product) {
+      return createError(ERROR_CODE.PRODUCT_NOT_FOUND);
+    }
+
+    const currentBalance = store.getBalance();
+
+    if (currentBalance < product.price) {
+      const error = createError(ERROR_CODE.INSUFFICIENT_BALANCE);
+      return {
+        ...error,
+        product,
+      };
+    }
+
+    return {
+      success: true,
+      product,
+      updatedBalance: currentBalance,
+    };
+  };
+
   return {
     buyProduct,
     insertMoney,
     returnMoney,
+    validatePurchase,
   };
 };
