@@ -38,7 +38,7 @@ const convertVendingMachineTotalAmount = () => {
 const convertDrinkPrice = () => {
   Object.entries(DRINK_PRICES).forEach( ([drink_name, drink_price]) => {
     updateAmountDisplay(`.drink-price[data-drink-name="${drink_name}"]`, drink_price, true);
-  } )
+  });
 };
 
 // 투입 금액 입력창 금액
