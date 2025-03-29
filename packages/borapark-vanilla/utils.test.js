@@ -1,6 +1,6 @@
 import { formatCurrencyAsLocaleString } from "./utils.js";
 
-describe("formatCurrencyAsLocaleString", () => {
+describe("formatCurrencyAsLocaleString()", () => {
   test("숫자를 천 단위 구분자와 함께 포맷팅한다", () => {
     const currency1 = 1000000;
     const currency2 = 384729343;
