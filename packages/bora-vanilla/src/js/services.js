@@ -65,8 +65,22 @@ export const createVendingMachineService = (store) => {
   const validatePurchase = (productId) => {
     const product = store.getProductById(productId);
 
+    // 상품이 존재하지 않는 경우
     if (!product) {
-      return createError(ERROR_CODE.PRODUCT_NOT_FOUND);
+      const error = createError(ERROR_CODE.PRODUCT_NOT_FOUND);
+      return {
+        ...error,
+        product,
+      };
+    }
+
+    // 품절 상품인 경우
+    if (product.disabled) {
+      const error = createError(ERROR_CODE.PRODUCT_DISABLED);
+      return {
+        ...error,
+        product,
+      };
     }
 
     const currentBalance = store.getBalance();

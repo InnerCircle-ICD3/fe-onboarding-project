@@ -114,6 +114,7 @@ export const createVendingMachineView = (domSelector) => {
       if (!button) return;
 
       const productId = button.dataset.id;
+
       eventHandlers.onProductPurchase(productId);
     });
 
@@ -127,7 +128,6 @@ export const createVendingMachineView = (domSelector) => {
       const button = e.target.closest('.product-button');
 
       if (!button) return;
-      if (button.classList.contains('button-disabled')) return;
 
       const productId = button.dataset.id;
       eventHandlers.onPurchaseValidate(productId);
