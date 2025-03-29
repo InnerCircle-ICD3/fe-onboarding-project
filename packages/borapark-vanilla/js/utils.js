@@ -29,8 +29,10 @@ export const updateAmountDisplay = (selector, amount, needUnit = false) => {
  * @returns {Promise<>}
  */
 export const sleep = (ms, callback) => {
-  return new Promise((resolve) => setTimeout(() => {
-    if (callback) callback();
-    resolve();
-  }, ms));
-}
+  return new Promise((resolve) =>
+    setTimeout(() => {
+      if (callback) callback();
+      resolve();
+    }, ms)
+  );
+};

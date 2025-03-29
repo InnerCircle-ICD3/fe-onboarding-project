@@ -6,10 +6,8 @@ let currentAmount = 0;
 const setTotalAmount = () => {
   totalAmount += currentAmount;
   return totalAmount;
-}
+};
 const setCurrentAmount = (amount) => {
   currentAmount = amount;
   return currentAmount;
-}
-
-
+};
