@@ -1,13 +1,18 @@
-import { warn } from "./utills/warn";
-import { increase, reset } from "./amount";
-import { formatNumberWithCommas } from "./utills/format";
+import { warn } from "../utills/warn";
+import { getAmount, increase, reset } from "./amount";
+import { formatNumberWithCommas } from "../utills/format";
 
 const $inputAmount = document.querySelector<HTMLInputElement>("#input-amount");
 const $btnInsert = document.querySelector<HTMLButtonElement>("#btn-insert");
 const $btnRefund = document.querySelector<HTMLButtonElement>("#btn-refund");
 
+if ($inputAmount) {
+  $inputAmount.value = formatNumberWithCommas(getAmount());
+}
+
 $btnInsert?.addEventListener("click", () => {
   if (!$inputAmount) return;
+
   const amount = inputToNumber($inputAmount.value);
   increase(amount);
   $inputAmount.value = "0";

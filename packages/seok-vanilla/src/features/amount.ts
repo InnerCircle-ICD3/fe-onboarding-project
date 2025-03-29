@@ -1,13 +1,16 @@
-import { formatNumberWithCommas } from "./utills/format";
+import { NotEnoughtMoneyError } from "../erros/NotEnoughtMoney.error";
+import { formatNumberWithCommas } from "../utills/format";
 
 let amount = 0;
 const $insertedAmount = document.getElementById(
   "inserted-amount"
 ) as HTMLInputElement;
 
+$insertedAmount.value = formatNumberWithCommas(amount);
+
 export function decrease(value: number) {
   if (amount - value < 0) {
-    throw new Error("잔액이 부족합니다.");
+    throw new NotEnoughtMoneyError();
   }
   amount -= value;
   $insertedAmount.value = formatNumberWithCommas(amount);
@@ -24,4 +27,8 @@ export function increase(value: number) {
 export function reset() {
   amount = 0;
   $insertedAmount.value = formatNumberWithCommas(amount);
+}
+
+export function getAmount() {
+  return amount;
 }
