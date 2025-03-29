@@ -19,5 +19,5 @@ export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
 export const updateAmountDisplay = (selector, amount, needUnit = false) => {
   const unit = "원";
   const amountElement = document.querySelector(selector);
-  amountElement.textContent = `${formatLocaleString(amount)}${needUnit ? unit : ""}`;
+  amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
 };

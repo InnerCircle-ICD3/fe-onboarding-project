@@ -1,5 +1,6 @@
 import { updateAmountDisplay } from "./utils.js";
 import { DRINK_PRICES } from "./constant.js";
+import { totalAmount } from "./store.js";
 
 /**
  * 금액 표시 화면 금액 변환
