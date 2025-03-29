@@ -12,6 +12,9 @@ input {
 section {
     display: flex;
     flex-direction: column;
+}
+
+.menu-wrapper {
     gap: 10px;
 }
 
@@ -29,19 +32,19 @@ section {
     background-color: skyblue;
 }
 
-.control-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
 .control-box {
     display: flex;
     justify-content: space-between;
-}
 
+}
 .control-box input {
     width: 70%;
+}
+
+.warning-box {
+    height: 28px;
+    font-size: 12px;
+    color: red;
 }
 
 .logging-box {
