@@ -44,6 +44,16 @@ const productsData = [
     name: '커피우유',
     price: 1400,
   },
+  {
+    id: 10,
+    name: '마라탕',
+    price: 1900,
+  },
+  {
+    id: 11,
+    name: '마라샹궈',
+    price: 1400,
+  },
 ];
 
 export default productsData;

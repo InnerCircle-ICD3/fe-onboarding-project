@@ -51,10 +51,10 @@ export const createVendingMachineController = (service, view, store) => {
 
   /** 상품 구매 검증 */
   const handlePurchaseValidate = (productId) => {
-    const { success, product, updatedBalance } = service.validatePurchase(productId);
+    const { success, productPrice, updatedBalance } = service.validatePurchase(productId);
 
     if (!success) {
-      return view.renderBalanceDisplay(product.price);
+      return view.renderBalanceDisplay(productPrice);
     }
 
     view.renderBalanceDisplay(updatedBalance);

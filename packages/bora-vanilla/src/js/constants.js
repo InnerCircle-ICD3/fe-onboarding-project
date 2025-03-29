@@ -1,5 +1,6 @@
 export const MAX_AMOUNT = 1000000;
 const MAX_AMOUNT_FORMAT = '1,000,000';
+export const COLUMNS = 3;
 
 export const ERROR_CODE = {
   PRODUCT_NOT_FOUND: 'PRODUCT_NOT_FOUND',
