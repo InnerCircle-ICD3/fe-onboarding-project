@@ -13,6 +13,8 @@ export function addLogMessage(message: string) {
   
   li.innerHTML = `<span class="log-message">${ message }</span>`;
   logList.appendChild(li);
+
+  logList.scrollTop = logList.scrollHeight;
 }
 
 export function getInputNumberValue(input: HTMLInputElement | null): number {
@@ -29,4 +31,10 @@ export function getRequiredElement<T extends HTMLElement>(selector: string): T {
   const el = document.querySelector<T>(selector);
   if (!el) throw new Error(`${selector} 요소를 찾을 수 없습니다.`);
   return el;
+}
+
+export function appendParticle(str: string) {
+  const lastCharCode = str.charCodeAt(str.length - 1);
+  const particle = (lastCharCode - 44032) % 28 ? '을' : '를';
+  return str + particle;
 }
