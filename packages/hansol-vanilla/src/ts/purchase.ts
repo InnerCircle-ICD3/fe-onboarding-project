@@ -8,7 +8,7 @@ function handlePurchase(e: Event) {
   const target = e.target as HTMLElement;
   const productButton = target.closest<HTMLButtonElement>('.product-button');
 
-  if (!productButton) throw new Error('상품 버튼을 찾을 수 없습니다.');
+  if (!productButton)return;
 
   const productName = productButton.querySelector<HTMLSpanElement>('.product-name')?.textContent;
   const productPrice = productButton.querySelector<HTMLSpanElement>('.product-price')?.textContent;
