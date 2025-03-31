@@ -43,4 +43,33 @@ describe("PriceForm 컴포넌트 테스트", () => {
 
     expect(handleSubmit).not.toHaveBeenCalled();
   });
+
+  it("양수값인 100을 입력하고, '투입'버튼을 누르면 form이 제출된다.", async () => {
+    const handleSubmit = vi.fn((e: React.FormEvent<HTMLFormElement>) => {});
+    const { getByRole } = render(<PriceForm onSubmit={handleSubmit} />);
+
+    const input = getByRole("spinbutton");
+    const insertButton = getByRole("button", { name: "투입" });
+
+    await userEvent.type(input, "100");
+
+    fireEvent.click(insertButton);
+
+    expect(handleSubmit).toHaveBeenCalledTimes(1);
+  });
+
+  // 위 테스트와 동일한 플로우인데, 합치는게 좋을까?
+  it("투입 버튼을 누르고 제출되면 input의 값이 초기화된다.", async () => {
+    const handleSubmit = vi.fn((e: React.FormEvent<HTMLFormElement>) => {});
+    const { getByRole } = render(<PriceForm onSubmit={handleSubmit} />);
+
+    const input = getByRole("spinbutton");
+    const insertButton = getByRole("button", { name: "투입" });
+
+    await userEvent.type(input, "100");
+
+    fireEvent.click(insertButton);
+
+    expect(input).toHaveValue(0);
+  });
 });
