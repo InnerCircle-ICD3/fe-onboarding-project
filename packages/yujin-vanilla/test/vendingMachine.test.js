@@ -1,8 +1,8 @@
 import { test, expect, beforeEach } from "vitest";
-import { setupNumberInput, getNumericValue } from "../src/numberInput.js"; // 모듈 가져오기
+import { setupNumberInput } from "../src/numberInput.js"; // 모듈 가져오기
 
 beforeEach(() => {
-  setupNumberInput(); // 이벤트 리스너 등록
+  setupNumberInput();
 });
 
 test("음수를 입력할경우 양수로 변횐되어 입력됩니다.", () => {
@@ -17,29 +17,14 @@ test("음수를 입력할경우 양수로 변횐되어 입력됩니다.", () => 
 });
 
 test("숫자를 입력한 후 투입 버튼을 누르면 금액이 증가합니다.", () => {
-  document.body.innerHTML = `
-    <input type="text" class="number-input" placeholder="0원">
-    <button id="button-insert">투입</button>
-    <div id="screen">0</div>
-  `;
-
-  let total = 0;
-  const inputElement = document.querySelector(".number-input");
+  const numberInput = document.querySelectorAll(".number-input");
   const insertButton = document.querySelector("#button-insert");
-  const screen = document.querySelector("#screen");
 
-  inputElement.value = "1000";
-  inputElement.dispatchEvent(new Event("keyup"));
+  numberInput[0].value = "1000";
+  numberInput[0].dispatchEvent(new Event("keyup"));
 
-  insertButton.addEventListener("click", () => {
-    const depositAmount = getNumericValue(inputElement);
-    total += depositAmount;
-    screen.textContent = total.toLocaleString("ko-KR");
-    inputElement.value = "";
-  });
+  insertButton.click()
 
-  insertButton.click(); // 버튼 클릭 이벤트 실행
-
-  expect(screen.textContent).toBe("1,000");
-  expect(inputElement.value).toBe(""); // 입력창 초기화 확인
+  expect(numberInput[0].value).toBe("1,000");
+  expect(numberInput[1].value).toBe(""); // 입력창 초기화 확인
 });
