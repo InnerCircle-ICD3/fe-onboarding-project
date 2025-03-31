@@ -3,14 +3,17 @@ import Button from "../../../../components/button/Button.tsx";
 import Text from "../../../../components/text/Text.tsx";
 import {useAtom} from "jotai";
 import { messageState, totalAmountState} from "../../../../stores/commonState.ts";
-import {useState} from "react";
+import { useState} from "react";
 
 
 const RightSide = () => {
 
-    const [totalAmount, setTotalAmount] = useAtom(totalAmountState);
+    const [totalAmount, setTotalAmount] = useAtom(totalAmountState)
+
     const [message, setMessage] = useAtom(messageState)
+
     const [inputData, setInputData] = useState(0)
+
 
     const handleChange = (event : React.ChangeEvent<HTMLInputElement>) => {
 
@@ -38,7 +41,7 @@ const RightSide = () => {
             return;
         }
 
-        setTotalAmount((currVal) => currVal +  inputData);
+        setTotalAmount((currVal) => currVal +  inputData)
         setInputData(0)
 
         const message= `${inputData}원 을 충전하였습니다.`
@@ -107,7 +110,6 @@ const RightSide = () => {
                 grow={'wFull'}
                 direction={'column'}
                 height={'100px'}
-
                 style={{
                     border: '2px solid #000',
                     background: '#fefefe',

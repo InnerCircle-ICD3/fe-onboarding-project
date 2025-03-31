@@ -2,8 +2,9 @@ import Flex from "../../../../components/layout/flex/Flex.tsx";
 import Text from "../../../../components/text/Text.tsx";
 import Button from "../../../../components/button/Button.tsx";
 import Grid from "../../../../components/layout/gird/Grid.tsx";
-import {useAtomValue} from "jotai/index";
-import {totalAmountState} from "../../../../stores/commonState.ts";
+import {messageState, totalAmountState} from "../../../../stores/commonState.ts";
+import {useAtom, useSetAtom} from "jotai";
+import {useState} from "react";
 
 export interface Product {
     name : string;
@@ -14,7 +15,11 @@ export interface Product {
 
 const LeftSide = () => {
 
-    const totalAmount = useAtomValue(totalAmountState);
+    const [totalAmount, setTotalAmount] = useAtom(totalAmountState)
+
+    const  setMessage = useSetAtom(messageState)
+
+    const [tempAmount, setTempAmount] = useState(0)
 
     const productList: Product[] = [
         {"id" : 1, "name": "쿨라", "price": 1500, isUsed : true },
@@ -30,6 +35,25 @@ const LeftSide = () => {
         {"id" : 11, "name": "렌덤", "price": 1400, isUsed : true },
         {"id" : 12, "name": "", "price": 0 ,isUsed : false  },
     ]
+
+
+
+    const onClick  = (product : Product) => {
+
+        if(totalAmount < product?.price) {
+            return;
+        }
+
+        setTotalAmount((currVal) => currVal - product?.price)
+
+        setMessage((currVal ) => [
+            ...currVal,
+            { message : `${product.name} 상품을 구매하였습니다. -${product?.price}원` , state: "info" }
+        ])
+
+    }
+
+
 
     return (
         <Flex
@@ -56,6 +80,18 @@ const LeftSide = () => {
                             key={product.id}
                             label={product.name}
                             disabled={!product.isUsed}
+                            onClick ={() => onClick(product)}
+                            onMouseDown={() => {
+                                if (totalAmount < product.price) {
+                                    setTempAmount(totalAmount);
+                                    setTotalAmount(product.price);
+                                }
+                            }}
+                            onMouseUp={() => {
+                                if (totalAmount < product.price) {
+                                    setTotalAmount(tempAmount);
+                                }
+                            }}
                             style={{
                                 padding: '10px',
                                 backgroundColor: '#bce0fd',
