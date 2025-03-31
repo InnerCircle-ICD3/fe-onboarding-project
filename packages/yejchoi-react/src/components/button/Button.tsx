@@ -10,13 +10,14 @@ type ButtonProps =  FlexVariants & {
     style?: CSSProperties;
     width?: string;
     height?: string;
+    onClick?: () => void;
 }
 
 const Button = (props : ButtonProps) => {
-    const {label, style, width,height , ...variants} = props
+    const {label, style, width, onClick ,height , ...variants} = props
 
 
-    return <button className={button(variants)} style={{...style, width, height}}>{label}</button>
+    return <button className={button(variants)} onClick={onClick} style={{...style, width, height}}>{label}</button>
 
 }
 
