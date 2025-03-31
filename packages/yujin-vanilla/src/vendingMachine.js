@@ -16,18 +16,19 @@ const products = [
   { name: "", price: "" },
 ];
 
-const numberInput = document.querySelectorAll(".number-input");
-const buttonsContainer = document.querySelector(".buttons");
 let total = 0;
 let previousAmount = 0;
 
-buttonsContainer.addEventListener("click", (event) => {
-  if (event.target.id === "button-insert") {
-    handleInsert();
-  } else if (event.target.id === "button-refund") {
-    handleRefund();
-  }
-});
+const buttonsContainer = document.querySelector(".buttons");
+if (buttonsContainer) {
+  buttonsContainer.addEventListener("click", (event) => {
+    if (event.target.id === "button-insert") {
+      handleInsert();
+    } else if (event.target.id === "button-refund") {
+      handleRefund();
+    }
+  });
+}
 
 export const renderProducts = () => {
   const container = document.querySelector(".products");
@@ -83,20 +84,24 @@ const handlePurchase = (index) => {
   toggleInputColor(false);
 };
 
-const handleInsert = () => {
+export const handleInsert = () => {
+    const numberInput = document.querySelectorAll(".number-input");
+
     const depositAmount = getNumericValue(numberInput[1]);
     if (!depositAmount) return;
 
     total += depositAmount;
     numberInput[0].value = setCurrencyToWon(total);
-    numberInput[1].value = "";
+    numberInput[1].value = "0";
 
     addLog(
       `${setCurrencyToWon(depositAmount)}원을 투입했습니다.`
     );
 };
 
-const handleRefund = () => {
+export const handleRefund = () => {
+    const numberInput = document.querySelectorAll(".number-input");
+
     if (total === 0) return;
     
     addLog(
