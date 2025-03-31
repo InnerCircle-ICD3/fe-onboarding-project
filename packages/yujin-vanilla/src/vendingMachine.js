@@ -16,20 +16,18 @@ const products = [
   { name: "", price: "" },
 ];
 
-let total = 0;
-let previousAmount = 0;
-
 const buttonsContainer = document.querySelector(".buttons");
 let total = 0;
 let previousAmount = 0;
 
-buttonsContainer.addEventListener("click", (event) => {
-  if (event.target.id === "button-insert") {
-    handleInsert();
-  } else if (event.target.id === "button-refund") {
-    handleRefund();
-  }
-});
+if (buttonsContainer)
+  buttonsContainer.addEventListener("click", (event) => {
+    if (event.target.id === "button-insert") {
+      handleInsert();
+    } else if (event.target.id === "button-refund") {
+      handleRefund();
+    }
+  });
 
 export const renderProducts = () => {
   const container = document.querySelector(".products");
@@ -47,9 +45,7 @@ export const renderProducts = () => {
     .join("");
 
     document.querySelectorAll(".product").forEach((productElement, index) => {
-        productElement.addEventListener("mousedown", () =>
-          handleMouseDown(index)
-        );
+        productElement.addEventListener("mousedown", () => handleMouseDown(index));
         productElement.addEventListener("mouseup", () => handlePurchase(index));
     });
 }
@@ -57,10 +53,12 @@ export const renderProducts = () => {
 const getSelectedProduct = (index) => products[index] || null;
 
 const toggleInputColor = (isHighlight) => {
+  const numberInput = document.querySelectorAll(".number-input");
   numberInput[0].style.color = isHighlight ? "orange" : "black";
 };
 
 const handleMouseDown = (index) => {
+  const numberInput = document.querySelectorAll(".number-input");
   const selectedProduct = getSelectedProduct(index);
   if (!selectedProduct) return;
 
@@ -73,6 +71,7 @@ const handleMouseDown = (index) => {
 };
 
 const handlePurchase = (index) => {
+  const numberInput = document.querySelectorAll(".number-input");
   const selectedProduct = getSelectedProduct(index);
   if (!selectedProduct) return;
 
