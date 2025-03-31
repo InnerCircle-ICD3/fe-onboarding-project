@@ -2,6 +2,8 @@ import Flex from "../../../../components/layout/flex/Flex.tsx";
 import Text from "../../../../components/text/Text.tsx";
 import Button from "../../../../components/button/Button.tsx";
 import Grid from "../../../../components/layout/gird/Grid.tsx";
+import {useAtomValue} from "jotai/index";
+import {totalAmountState} from "../../../../stores/commonState.ts";
 
 export interface Product {
     name : string;
@@ -11,6 +13,8 @@ export interface Product {
 }
 
 const LeftSide = () => {
+
+    const totalAmount = useAtomValue(totalAmountState);
 
     const productList: Product[] = [
         {"id" : 1, "name": "쿨라", "price": 1500, isUsed : true },
@@ -42,7 +46,7 @@ const LeftSide = () => {
                 <Flex grow={'wFull'} justify={'center'} style={{   border: '2px solid #000'}}>
 
                     <Text weight={'bold'} size={'2xl'}>
-                        0
+                        {totalAmount.toLocaleString()}
                     </Text>
 
                 </Flex>

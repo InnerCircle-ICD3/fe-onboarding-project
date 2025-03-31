@@ -4,6 +4,7 @@ import {recipe} from "@vanilla-extract/recipes";
 export const text = recipe({
     base: {
         display: 'inline-block',
+        margin: 0
     },
     variants: {
         weight: {
@@ -21,6 +22,7 @@ export const text = recipe({
             '2xl': { fontSize: vars.fontSize['2xl'], lineHeight: '32px' },
             '3xl': { fontSize: vars.fontSize['3xl'], lineHeight: '34px' },
         },
+
         color: {
             primary: { color: vars.themeColor.color.primary },
             title: { color: vars.themeColor.color.text.title },
@@ -29,6 +31,7 @@ export const text = recipe({
             white: { color: vars.color.white },
             red: { color: vars.color.red },
         },
+
         align: {
             left: { textAlign: 'left' },
             center: { textAlign: 'center' },
