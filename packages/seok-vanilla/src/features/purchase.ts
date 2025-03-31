@@ -2,6 +2,7 @@ import db from "../db.json";
 import { NotEnoughtMoneyError } from "../erros/NotEnoughtMoney.error";
 import { formatNumberWithCommas } from "../utills/format";
 import { decrease, getAmount } from "./amount";
+import { addLog } from "./print-logs";
 
 const $productList = document.querySelector<HTMLUListElement>("#product-list");
 
@@ -36,12 +37,14 @@ $productList?.addEventListener("mousedown", (e) => {
 
   try {
     decrease(product.price);
+    addLog("info", `${product.name}를 구매했습니다.`);
   } catch (error) {
     if (error instanceof NotEnoughtMoneyError) {
       const $insertedAmount =
         document.querySelector<HTMLInputElement>("#inserted-amount");
       if ($insertedAmount) {
         $insertedAmount.value = formatNumberWithCommas(product.price);
+        addLog("error", "잔액이 부족합니다.");
       }
     }
   }
