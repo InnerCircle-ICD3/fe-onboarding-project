@@ -10,13 +10,17 @@ type ButtonProps =  FlexVariants & {
     style?: CSSProperties;
     width?: string;
     height?: string;
+    onClick?: () => void;
+    onMouseDown ?: (data : any) => void;
+    onMouseUp?: (data : any) => void;
+
 }
 
 const Button = (props : ButtonProps) => {
-    const {label, style, width,height , ...variants} = props
+    const {label, style, width,onClick, onMouseDown ,  onMouseUp ,height , ...variants} = props
 
 
-    return <button className={button(variants)} style={{...style, width, height}}>{label}</button>
+    return <button className={button(variants)} onClick={onClick} onMouseDown={onMouseDown} onMouseUp={onMouseUp} style={{...style, width, height}}>{label}</button>
 
 }
 
