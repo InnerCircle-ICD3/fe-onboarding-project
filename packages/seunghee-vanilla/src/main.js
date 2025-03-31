@@ -22,14 +22,15 @@ const mds = [
 
 function renderMdButtons() {
   const mdContainer = document.querySelector(".md-container");
-  const mdButtons = mdContainer.children;
 
-  for (let i = 0; i < mdButtons.length; i++) {
-    const mdButton = mdButtons[i];
+  let mdButtons = [];
+  for (let i = 0; i < mds.length; i++) {
+    const mdButton = document.createElement("button");
     const md = mds[i];
 
     const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
+    mdButton.className = "md-btn";
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
 
     mdButton.addEventListener("mousedown", (ev) => {
@@ -50,7 +51,11 @@ function renderMdButtons() {
         addLog(`${md.name}을(를) 구매했습니다.`);
       }
     });
+
+    mdButtons.push(mdButton);
   }
+
+  mdContainer.append(...mdButtons);
 }
 
 function renderInsertedMoney() {
