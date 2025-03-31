@@ -5,7 +5,7 @@ beforeEach(() => {
         <!-- 자판기 본체 -->
         <section class="vending-machine">
             <div class="screen">
-                <input type="text" name="" class="number-input" placeholder="0원" readonly>
+                <input type="text" name="" class="number-input" value="0" readonly>
             </div>
             <div class="products">
             </div>
@@ -15,7 +15,7 @@ beforeEach(() => {
         <section class="control-panel">
             <div class="money-input">
                 <div class="screen">
-                    <input type="text" name="" class="number-input" placeholder="0원">
+                    <input type="text" name="" class="number-input" value="0">
                 </div>
                 <div class="buttons">
                     <button id="button-insert" class="button-blue">투입</button>
