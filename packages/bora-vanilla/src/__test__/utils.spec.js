@@ -1,16 +1,6 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { formatter, extractDigitsOnly, parseNumberWithCommas, formatDigitsWithCommas, createError } from '../js/utils';
+import { extractDigitsOnly, parseNumberWithCommas, formatDigitsWithCommas, createError } from '../js/utils';
 import { ERROR_CODE } from '../js/constants';
-
-vi.mock('../js/constants', () => ({
-  ERROR_CODE: {
-    PRODUCT_NOT_FOUND: 'PRODUCT_NOT_FOUND',
-    INSUFFICIENT_BALANCE: 'INSUFFICIENT_BALANCE',
-    INVALID_AMOUNT: 'INVALID_AMOUNT',
-    EXCEED_MAX_AMOUNT: 'EXCEED_MAX_AMOUNT',
-    NO_BALANCE_TO_RETURN: 'NO_BALANCE_TO_RETURN',
-  },
-}));
 
 describe('Utils', () => {
   describe('extractDigitsOnly', () => {

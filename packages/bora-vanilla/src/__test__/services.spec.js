@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { createVendingMachineService } from '../js/services';
-import { MAX_AMOUNT } from '../js/constants';
+import { ERROR_CODE, MAX_AMOUNT } from '../js/constants';
 
 describe('VendingMachineService', () => {
   let mockStore;
@@ -50,7 +50,7 @@ describe('VendingMachineService', () => {
         expect(mockStore.incrementBalance).not.toHaveBeenCalled();
         expect(result).toEqual({
           success: false,
-          errorCode: 'INVALID_AMOUNT',
+          errorCode: ERROR_CODE.INVALID_AMOUNT,
         });
 
         mockStore.incrementBalance.mockClear();
@@ -65,7 +65,7 @@ describe('VendingMachineService', () => {
       expect(mockStore.incrementBalance).not.toHaveBeenCalled();
       expect(result).toEqual({
         success: false,
-        errorCode: 'EXCEED_MAX_AMOUNT',
+        errorCode: ERROR_CODE.EXCEED_MAX_AMOUNT,
       });
     });
   });
@@ -126,7 +126,7 @@ describe('VendingMachineService', () => {
       expect(mockStore.resetBalance).not.toHaveBeenCalled();
       expect(result).toEqual({
         success: false,
-        errorCode: 'NO_BALANCE_TO_RETURN',
+        errorCode: ERROR_CODE.NO_BALANCE_TO_RETURN,
       });
     });
   });
@@ -142,7 +142,7 @@ describe('VendingMachineService', () => {
       expect(mockStore.decrementBalance).not.toHaveBeenCalled();
       expect(result).toEqual({
         success: false,
-        errorCode: 'PRODUCT_NOT_FOUND',
+        errorCode: ERROR_CODE.PRODUCT_NOT_FOUND,
         productPrice: 0,
       });
     });
@@ -166,7 +166,7 @@ describe('VendingMachineService', () => {
 
       expect(result).toEqual({
         success: false,
-        errorCode: 'INSUFFICIENT_BALANCE',
+        errorCode: ERROR_CODE.INSUFFICIENT_BALANCE,
         productPrice: product.price,
       });
     });
