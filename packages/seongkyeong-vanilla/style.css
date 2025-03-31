@@ -33,11 +33,11 @@ section {
     gap: 10px;
 }
 
-.menu-wrapper .menu-btn-wrapper .menu-item:hover {
+.menu-wrapper .menu-btn-wrapper .menu-item:not(:disabled):hover {
     border: 2px solid black;
 }
 
-.menu-wrapper .menu-btn-wrapper .menu-item:active {
+.menu-wrapper .menu-btn-wrapper .menu-item:not(:disabled):active {
     background-color: skyblue;
 }
 

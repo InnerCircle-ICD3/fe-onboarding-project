@@ -4,6 +4,7 @@ import { LogType, publishLogEvent } from "./log";
 interface Menu {
     name: string;
     price: number;
+    isBlank?: boolean;
 }
 
 const menuItems: Menu[] = [
@@ -27,10 +28,14 @@ const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.men
 let balanceValue = 0;
 
 const drawMenuButtons = () => {
-    const $menuWrapper = document.querySelector(".menu-btn-wrapper");
-    const $buttonTemplate = document.querySelector(".button-template");
+    const $menuWrapper = document.querySelector<HTMLDivElement>(".menu-btn-wrapper");
+    const $buttonTemplate = document.querySelector<HTMLTemplateElement>(".button-template");
 
-    if (!($buttonTemplate instanceof HTMLTemplateElement)) return;
+    if (!($menuWrapper instanceof HTMLDivElement) || !($buttonTemplate instanceof HTMLTemplateElement)) return;
+
+    if (menuItems.length % 3 !== 0) {
+        appendBlankButtons(3 - menuItems.length % 3);
+    }
 
     for (const menu of menuItems) {
         const $menuBtn = $buttonTemplate.content.cloneNode(true) as HTMLButtonElement;
@@ -38,9 +43,22 @@ const drawMenuButtons = () => {
         const $price = $menuBtn.querySelector(".price") as HTMLParagraphElement;
         
         $name.innerText = menu.name;
-        $price.innerText = `${menu.price}원`;
+        $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
-        $menuWrapper?.appendChild($menuBtn);
+        $menuWrapper.appendChild($menuBtn);
+        ($menuWrapper.lastElementChild as HTMLButtonElement).disabled = menu.isBlank ? true : false;
+    }
+}
+
+const appendBlankButtons = (count: number) => {
+    const blankMenu = {
+        name: "",
+        price: 0,
+        isBlank: true
+    };
+
+    for (let i = 0; i < count; i++) {
+        menuItems.push(blankMenu);
     }
 }
 
