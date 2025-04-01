@@ -13,7 +13,7 @@ function renderProductList() {
     button.innerHTML = `${product.name}<br/>${formatNumberWithCommas(
       product.price
     )}`;
-    button.classList.add("btn-product");
+    button.classList.add("btn-product", "btn-color");
     button.dataset.productId = product.id.toString();
     li.append(button);
     $productList?.append(li);
