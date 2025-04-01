@@ -38,14 +38,14 @@ const drawMenuButtons = () => {
     }
 
     for (const menu of menuItems) {
-        const $menuBtn = $buttonTemplate.content.cloneNode(true) as HTMLButtonElement;
-        const $name = $menuBtn.querySelector(".menu-name") as HTMLParagraphElement;
-        const $price = $menuBtn.querySelector(".price") as HTMLParagraphElement;
+        const $template = document.importNode($buttonTemplate.content, true);
+        const $name = $template.querySelector(".menu-name") as HTMLParagraphElement;
+        const $price = $template.querySelector(".price") as HTMLParagraphElement;
         
         $name.innerText = menu.name;
         $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
-        $menuWrapper.appendChild($menuBtn);
+        $menuWrapper.appendChild($template);
         ($menuWrapper.lastElementChild as HTMLButtonElement).disabled = menu.isBlank ? true : false;
     }
 }
