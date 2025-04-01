@@ -1,5 +1,5 @@
 function InsertedMoneyPresenter({ money }) {
-  return <output>{money}</output>;
+  return <output className="inserted-money-presenter">{money}</output>;
 }
 
 export default InsertedMoneyPresenter;

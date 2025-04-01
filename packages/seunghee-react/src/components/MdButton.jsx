@@ -1,6 +1,7 @@
 function MdButton({ item, onButtonMouseDown, onButtonMouseUp }) {
   return (
     <button
+      className="md-btn"
       onMouseDown={() => onButtonMouseDown(item)}
       onMouseUp={() => onButtonMouseUp(item)}
     >

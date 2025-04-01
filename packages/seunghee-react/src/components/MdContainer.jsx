@@ -2,7 +2,7 @@ import MdButton from "./MdButton";
 
 function MdContainer({ items, onButtonMouseDown, onButtonMouseUp }) {
   return (
-    <div>
+    <div className="md-container">
       {items.map((item, index) => (
         <MdButton
           key={index}

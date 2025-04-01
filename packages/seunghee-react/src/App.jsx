@@ -76,8 +76,8 @@ function App() {
   }, [money]);
 
   return (
-    <div>
-      <section>
+    <div className="vending-machine">
+      <section className="status-section">
         <InsertedMoneyPresenter money={tempMoney ?? money} />
         <MdContainer
           items={items}
@@ -85,7 +85,7 @@ function App() {
           onButtonMouseUp={onButtonMouseUp}
         />
       </section>
-      <section>
+      <section className="user-action-section">
         <MoneyFunctionContainer
           moneyInput={moneyInput}
           onMoneyInputChange={onInputChange}
