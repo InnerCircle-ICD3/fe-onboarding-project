@@ -32,7 +32,7 @@ $returnButton?.addEventListener("click", () => {
 
 const putCash = (cash: number) => {
     if ($cashInput && $balanceOutput) {
-        let balance = Number($balanceOutput.innerText);
+        let balance = convertLocaleTextToNum($balanceOutput.innerText);
 
         $cashInput.value = "";
         balance += cash;
