@@ -1,6 +1,9 @@
-function MdButton({ item, onSelect }) {
+function MdButton({ item, onButtonMouseDown, onButtonMouseUp }) {
   return (
-    <button onClick={() => onSelect(item)}>
+    <button
+      onMouseDown={() => onButtonMouseDown(item)}
+      onMouseUp={() => onButtonMouseUp(item)}
+    >
       <div>{item.name}</div>
       <div>{item.price}</div>
     </button>

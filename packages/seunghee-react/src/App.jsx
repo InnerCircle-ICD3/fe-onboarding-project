@@ -26,11 +26,31 @@ function App() {
   const [money, setMoney] = useState(0);
   const [moneyInput, setMoneyInput] = useState(0);
   const [log, setLog] = useState([]);
+  const [tempMoney, setTempMoney] = useState(null);
 
-  const onButtonClick = useCallback((item) => {
-    setMoney((prevMoney) => prevMoney - item.price);
-    setLog((prevLog) => [...prevLog, `${item.name}을 구입했습니다.`]);
-  }, []);
+  const onButtonMouseDown = useCallback(
+    (item) => {
+      if (money < item.price) {
+        setTempMoney(item.price);
+        return;
+      }
+
+      setMoney((prevMoney) => prevMoney - item.price);
+    },
+    [money]
+  );
+
+  const onButtonMouseUp = useCallback(
+    (item) => {
+      if (tempMoney) {
+        setTempMoney(null);
+        return;
+      }
+
+      setLog((prevLog) => [...prevLog, `${item.name}을 구입했습니다.`]);
+    },
+    [tempMoney]
+  );
 
   const onInputChange = (e) => {
     setMoneyInput(Number(e.target.value));
@@ -58,8 +78,12 @@ function App() {
   return (
     <div>
       <section>
-        <InsertedMoneyPresenter money={money} />
-        <MdContainer items={items} onSelect={onButtonClick} />
+        <InsertedMoneyPresenter money={tempMoney ?? money} />
+        <MdContainer
+          items={items}
+          onButtonMouseDown={onButtonMouseDown}
+          onButtonMouseUp={onButtonMouseUp}
+        />
       </section>
       <section>
         <MoneyFunctionContainer
