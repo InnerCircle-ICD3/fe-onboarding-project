@@ -37,12 +37,20 @@ function App() {
   };
 
   const onInsert = useCallback(() => {
+    if (moneyInput <= 0) {
+      return;
+    }
+
     setMoney((prevMoney) => prevMoney + moneyInput);
     setLog((prevLog) => [...prevLog, `${moneyInput}원이 투입되었습니다.`]);
     setMoneyInput(0);
   }, [moneyInput]);
 
   const onReturn = useCallback(() => {
+    if (money <= 0) {
+      return;
+    }
+
     setLog((prevLog) => [...prevLog, `${money}원이 반환되었습니다.`]);
     setMoney(0);
   }, [money]);
