@@ -1,0 +1,22 @@
+function MoneyFunctionContainer({
+  moneyInput,
+  onMoneyInputChange,
+  onInsert,
+  onReturn,
+}) {
+  return (
+    <div>
+      <input
+        type="number"
+        value={moneyInput}
+        onChange={onMoneyInputChange}
+        min={0}
+        step={10}
+      ></input>
+      <button onClick={onInsert}>투입</button>
+      <button onClick={onReturn}>반환</button>
+    </div>
+  );
+}
+
+export default MoneyFunctionContainer;
