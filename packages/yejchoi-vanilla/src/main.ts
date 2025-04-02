@@ -64,7 +64,7 @@ returnButtonElement?.addEventListener('click', () => {
 
 // 상품버튼 클릭 이벤트
 const handleProductButton = (product : Product) => {
-    const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLDivElement
+    const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLButtonElement
 
     productButtonElement.addEventListener("mousedown", () => {
         if(totalAmount < product.price) {
