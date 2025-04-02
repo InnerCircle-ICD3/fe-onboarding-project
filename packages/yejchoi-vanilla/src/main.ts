@@ -5,21 +5,32 @@ interface Product {
 }
 
 let totalAmount = 0;
+const amountInputElement = document.querySelector<HTMLInputElement>(".amount-inner-input");
 
+//금액입력 input 정수만 넣을 수 있도록 처리
+amountInputElement?.addEventListener('keydown', (event) => {
+    if (['e', 'E', '-', '.'].includes(event.key)) {
+        event.preventDefault();
+    }
+});
+
+//TODO 유틸 함수로 빼기
 // 금액 표시창 관리 영역
-
 const totalAmountElement = document.querySelector(".total-amount") as HTMLDivElement
 
 const updateTotalAmount = (value : number) => {
+
     totalAmountElement.textContent = value.toLocaleString()
 }
 
+//TODO 유틸 함수로 빼기
 // 로그 기록 함수 처리
-
 const logBoxElement = document.querySelector(".log-box") as HTMLDivElement
 
-const addLog = (message : string) => {
+const addLog = (message : string, state?: string) => {
     const logElement = document.createElement("div");
+
+    logElement.className = `${state === 'error' ? 'error' : ''} log-message`;
     logElement.textContent = message;
     logBoxElement.appendChild(logElement);
     logBoxElement.scrollTop = logBoxElement.scrollHeight;
@@ -27,7 +38,6 @@ const addLog = (message : string) => {
 
 // 금액 투입 처리
 const insertButtonElement = document.querySelector('#insert-button') as HTMLButtonElement
-const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
 
 insertButtonElement.addEventListener("click", () => {
     const value = Number(amountInputElement.value);
