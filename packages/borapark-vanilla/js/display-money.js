@@ -25,7 +25,16 @@ export const convertDrinkPrice = () => {
  * @returns {number}
  */
 export const getUserAmount = () => {
-  return document.getElementById("user-amount").value;
+  const input = document.getElementById("user-amount");
+  const value = input.value;
+
+  // 숫자가 아닌 값이 입력된 경우 0을 반환
+  if (isNaN(value) || value === "") {
+    input.value = "";
+    return 0;
+  }
+
+  return Number(value);
 };
 
 /**
