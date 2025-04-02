@@ -16,7 +16,7 @@ export const createVendingMachineView = (domSelector) => {
     const button = document.createElement('button');
 
     button.className =
-      'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200';
+      'product-button relative flex flex-col items-center justify-center p-4 bg-white border-2 border-gray-200 hover:border-blue-500 active:border-red-500';
 
     button.dataset.id = product.id;
 
