@@ -17,7 +17,6 @@ function handlePurchase(e: Event) {
 
   let currentBalance = BalanceManager.get();
   const priceValue = Number(productPrice.replace(/[^0-9]/g, ''));
-  const logText = appendParticle(productName);
 
   if (priceValue > currentBalance) {
     vendingMachineDisplay?.classList.add('error-border');
@@ -26,7 +25,7 @@ function handlePurchase(e: Event) {
     BalanceManager.purchase(priceValue);
 
     currentBalance = BalanceManager.get();
-    addLogMessage(`${logText} 구매했습니다.`);
+    addLogMessage(`${appendParticle(productName)} 구매했습니다.`);
     updateDisplay(currentBalance);
   }
 }
