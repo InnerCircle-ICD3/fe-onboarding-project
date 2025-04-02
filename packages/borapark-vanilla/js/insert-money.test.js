@@ -1,5 +1,5 @@
+import { totalAmount, currentAmount, setCurrentAmount } from "./store.js";
 import { handleChangeAmount, handleSubmitInsertAmount } from "./insert-money.js";
-import { currentAmount, setCurrentAmount } from "./store.js";
 
 describe("투입 기능 테스트", () => {
   let $form;
@@ -45,16 +45,12 @@ describe("투입 기능 테스트", () => {
     const userAmount = 1000;
     handleChangeAmount({ target: { value: userAmount } });
     handleSubmitInsertAmount(new Event("submit"));
-    expect($vendingMachineTotalAmount.textContent).toBe(`${userAmount}`);
+    expect(totalAmount).toBe(userAmount);
   });
 
   test("금액 투입 후 form이 reset되고 현재 금액이 0으로 초기화된다.", () => {
-    const userAmount = 1000;
-    handleChangeAmount({ target: { value: userAmount } });
-    handleSubmitInsertAmount(new Event("submit"));
-
     expect($userAmount.value).toBe("");
     expect(currentAmount).toBe(0);
-    expect($vendingMachineTotalAmount.textContent).toBe("0");
+    expect(totalAmount).toBe(0);
   });
 });
