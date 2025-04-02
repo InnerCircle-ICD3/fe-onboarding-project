@@ -44,9 +44,9 @@ insertButtonElement.addEventListener("click", () => {
 })
 
 // 반환 버튼 로직 처리
-const returnButtonElement = document.querySelector('#return-button') as HTMLButtonElement
+const returnButtonElement = document.querySelector<HTMLButtonElement>('#return-button');
 
-returnButtonElement.addEventListener('click', () => {
+returnButtonElement?.addEventListener('click', () => {
     const balance = totalAmount;
 
     if(totalAmount <= 0) {
