@@ -12,12 +12,21 @@ export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
 
 /**
  * 금액 표시 화면 기능
- * @param {string} selector
+ * @param {HTMLElement|string} element
  * @param {number} amount
  * @param {boolean} needUnit (optional)
  */
-export const updateAmountDisplay = (selector, amount, needUnit = false) => {
+export const updateAmountDisplay = (element, amount, needUnit = false) => {
+  if (typeof amount !== "number" || isNaN(amount) || amount < 0 || !Number.isInteger(amount)) {
+    throw new Error("Invalid currency: only non-negative integers are allowed");
+  }
+
   const unit = "원";
-  const amountElement = document.querySelector(selector);
+  const amountElement = typeof element === "string" ? document.querySelector(element) : element;
+
+  if (!amountElement) {
+    throw new Error("Invalid element: element not found");
+  }
+
   amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
 };
