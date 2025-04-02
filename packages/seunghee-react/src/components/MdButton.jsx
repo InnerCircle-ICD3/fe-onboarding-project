@@ -6,7 +6,7 @@ function MdButton({ item, onButtonMouseDown, onButtonMouseUp }) {
       onMouseUp={() => onButtonMouseUp(item)}
     >
       <h3>{item.name}</h3>
-      <p>{item.price}</p>
+      <p>{`${item.price}원`}</p>
     </button>
   );
 }

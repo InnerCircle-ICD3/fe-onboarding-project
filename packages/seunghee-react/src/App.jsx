@@ -28,6 +28,8 @@ function App() {
   const [log, setLog] = useState([]);
   const [tempMoney, setTempMoney] = useState(null);
 
+  const displayMoney = (tempMoney ?? money).toLocaleString();
+
   const onButtonMouseDown = useCallback(
     (item) => {
       if (money < item.price) {
@@ -78,7 +80,7 @@ function App() {
   return (
     <div className="vending-machine">
       <section className="status-section">
-        <InsertedMoneyPresenter money={tempMoney ?? money} />
+        <InsertedMoneyPresenter money={displayMoney} />
         <MdContainer
           items={items}
           onButtonMouseDown={onButtonMouseDown}
