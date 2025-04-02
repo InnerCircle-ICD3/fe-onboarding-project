@@ -1,8 +1,13 @@
 import { test, expect, beforeEach } from "vitest";
 import { setupNumberInput } from "../src/numberInput.js"; // 모듈 가져오기
-import { handleInsert, handleRefund } from "../src/vendingMachine.js";
+import { handleInsert, handleRefund, resetCount } from "../src/vendingMachine.js";
+import fs from "fs";
+import path from "path";
+const html = fs.readFileSync(path.resolve(__dirname, "../index.html"), "utf8");
 
 beforeEach(() => {
+  document.body.innerHTML = html.toString();
+  resetCount()
   setupNumberInput();
 });
 
@@ -36,13 +41,7 @@ test("빈 문자열 입력 시 투입 버튼을 누르면 변화가 없어야 �
 
 test("숫자를 입력한 후 투입 버튼을 누르면 금액이 증가합니다.", () => {
   const numberInput = document.querySelectorAll(".number-input");
-  const insertButton = document.querySelector("#button-insert");
-
-  numberInput[1].value = "1000";
-  numberInput[1].dispatchEvent(new Event("keyup"));
-
-  insertButton.click()
-  handleInsert();
+  insertMoney(1000)
   expect(numberInput[0].value).toBe("1,000");
   expect(numberInput[1].value).toBe("0"); // 입력창 초기화 확인
 });
@@ -57,21 +56,22 @@ test("반환 버튼을 누르면 투입금액창이 초기화됩니다.", ()=> {
     expect(numberInput[0].value).toBe("0")
 })
 
-
-test("연속 투입 시 누적 금액이 올바르게 계산됩니다", () => {
+test("연속 투입 시 금액 표시창에 투입된 금액이 모두 합산되서 표시됩니다.", () => {
   const numberInput = document.querySelectorAll(".number-input");
-  const insertButton = document.querySelector("#button-insert");
 
-  numberInput[1].value = "1000";
-  numberInput[1].dispatchEvent(new Event("keyup"));
-  insertButton.click();
-  handleInsert();
-
-  numberInput[1].value = "500";
-  numberInput[1].dispatchEvent(new Event("keyup"));
-  insertButton.click();
-  handleInsert();
+  insertMoney("1000");
+  insertMoney("500");
 
   expect(numberInput[0].value).toBe("1,500");
   expect(numberInput[1].value).toBe("0"); // 입력창 초기화 확인
 });
+
+const insertMoney = (amount) => {
+  const numberInput = document.querySelectorAll(".number-input");
+  const insertButton = document.querySelector("#button-insert");
+
+  numberInput[1].value = amount;
+  numberInput[1].dispatchEvent(new Event("keyup"));
+  insertButton.click();
+  handleInsert();
+};

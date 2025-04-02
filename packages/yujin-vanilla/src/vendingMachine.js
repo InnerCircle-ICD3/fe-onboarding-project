@@ -28,21 +28,35 @@ if (buttonsContainer) {
   });
 }
 
+export const resetCount = () => {
+  total = 0;
+}
+
 export const renderProducts = () => {
   const container = document.querySelector(".products");
-  container.innerHTML = products
-    .map((item) => {
-      if (item.name && item.price) {
-        return `<div class="product">
-                <p class="product-title">${item.name}</p>
-                <p class="product-price">${item.price}원</p>
-            </div>`;
-      } else {
-        return '<div class="product"></>';
-      }
-    })
-    .join("");
-}
+
+  products.forEach((item) => {
+    const button = document.createElement("button");
+    button.className = "product";
+
+    if (item.name && item.price) {
+      const title = document.createElement("span");
+      title.className = "product-title";
+      title.textContent = item.name;
+
+      const price = document.createElement("span");
+      price.className = "product-price";
+      price.textContent = `${item.price}원`;
+
+      button.appendChild(title);
+      button.appendChild(price);
+    } else {
+      button.disabled = true;
+    }
+
+    container.appendChild(button);
+  });
+};
 
 export const handleInsert = () => {
     const numberInput = document.querySelectorAll(".number-input");
