@@ -1,6 +1,6 @@
-import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
 import { DRINK_NAME, DRINK_PRICES } from "./js/constant.js";
-
+import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
+import { $form, $userAmount, handleChangeAmount, handleSubmitInsertAmount } from "./js/insert-money.js";
 /**
  * 자판기 상품 상세 정보 표시
  * @param {string | number} text
@@ -56,3 +56,17 @@ const initVendingMachineView = () => {
 };
 
 initVendingMachineView();
+
+/**
+ * 투입 기능
+ */
+
+const insertMoney = () => {
+  // 투입 금액 입력 이벤트 리스너
+  $userAmount.addEventListener("change", handleChangeAmount);
+
+  // 투입 금액 입력 폼 제출 이벤트 리스너
+  $form.addEventListener("submit", handleSubmitInsertAmount);
+};
+
+insertMoney();
