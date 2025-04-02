@@ -30,8 +30,8 @@ export const flex = recipe({
     },
     defaultVariants: {
         direction: 'row',
-        align: 'center',
-        justify: 'center',
+        align: 'start',
+        justify: 'start',
     },
 })
 
