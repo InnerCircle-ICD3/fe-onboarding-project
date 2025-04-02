@@ -24,7 +24,7 @@ describe("MenuButton 컴포넌트 테스트", () => {
   });
 
   it("버튼을 클릭하면 onClick 함수가 호출되고 event에서 name과 value를 받아올 수 있다.", () => {
-    const handleClick = vi.fn((e: MouseEvent<HTMLButtonElement>) => {});
+    const handleClick = vi.fn();
 
     render(
       <MenuButton name={PROPS.name} value={PROPS.value} onClick={handleClick} />
@@ -33,11 +33,14 @@ describe("MenuButton 컴포넌트 테스트", () => {
     const button = screen.getByRole("button");
 
     fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledTimes(1);
-
-    const event = handleClick.mock.calls[0][0] as MouseEvent<HTMLButtonElement>;
-    expect(event.currentTarget.name).toBe(PROPS.name);
-    expect(event.currentTarget.value).toBe(PROPS.value.toString());
+    expect(handleClick).toHaveBeenCalledWith(
+      expect.objectContaining({
+        currentTarget: expect.objectContaining({
+          name: PROPS.name,
+          value: PROPS.value.toString(),
+        }),
+      })
+    );
   });
 
   it("disabled props가 true일 때 버튼의 컨텐츠는 아무것도 없다.", () => {

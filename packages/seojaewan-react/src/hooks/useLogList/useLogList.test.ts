@@ -11,11 +11,13 @@ describe("useLogList 테스트", () => {
     expect(result.current.logList).toEqual([]);
   });
 
-  it("addLog()에 전달된 'Test Log'가 logList에 추가된다.", () => {
+  it("addLog()에 전달된 문자열이 logList에 추가된다.", () => {
     const { result } = renderHook(() => useLogList());
 
     act(() => result.current.addLog(MESSAGE));
-    expect(result.current.logList[0].message).toEqual(MESSAGE);
+    expect(result.current.logList).toEqual([
+      expect.objectContaining({ message: MESSAGE }),
+    ]);
   });
 
   // boolean을 대표적으로 테스트 케이스로 작성했는데, number, object ... 다른 타입들도 다 테스트해야 할까?

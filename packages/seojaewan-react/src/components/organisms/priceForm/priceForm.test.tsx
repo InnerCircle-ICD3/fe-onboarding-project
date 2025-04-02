@@ -30,7 +30,7 @@ describe("PriceForm 컴포넌트 테스트", () => {
     expect(form).toContainElement(returnButton);
   });
 
-  it("음수값인 -100을 입력하고, '투입'버튼을 누르면 양수를 입력할 수 없어서 form이 제출되지 않는다.", async () => {
+  it("음수값을 입력하고, '투입'버튼을 누르면 양수를 입력할 수 없어서 form이 제출되지 않는다.", async () => {
     const handleSubmit = vi.fn((e: React.FormEvent<HTMLFormElement>) => {});
     const { getByRole } = render(<PriceForm onSubmit={handleSubmit} />);
 
@@ -44,7 +44,7 @@ describe("PriceForm 컴포넌트 테스트", () => {
     expect(handleSubmit).not.toHaveBeenCalled();
   });
 
-  it("양수값인 100을 입력하고, '투입'버튼을 누르면 form이 제출된다.", async () => {
+  it("양수값을 입력하고, '투입'버튼을 누르면 form이 제출된다.", async () => {
     const handleSubmit = vi.fn((e: React.FormEvent<HTMLFormElement>) => {});
     const { getByRole } = render(<PriceForm onSubmit={handleSubmit} />);
 
