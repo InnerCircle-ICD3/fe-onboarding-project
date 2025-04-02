@@ -12,15 +12,10 @@ describe("formatCurrencyAsLocaleString()", () => {
   });
 
   test("0 또는 양의 정수가 아닌 값을 전달하면 예외가 발생한다", () => {
-    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000"];
+    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000", {}, []];
     for (const value of disallowed) {
       expect(() => formatCurrencyAsLocaleString(value)).toThrow();
     }
-  });
-
-  test("객체나 배열을 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString({})).toThrow();
-    expect(() => formatCurrencyAsLocaleString([])).toThrow();
   });
 });
 
@@ -55,8 +50,8 @@ describe("updateAmountDisplay", () => {
     expect(() => updateAmountDisplay($element, 1_000)).not.toThrow();
   });
 
-  test("양수, 0이 아닌 값(음수, 소수, NaN, null, undefined, 문자열)을 전달하면 예외가 발생한다.", () => {
-    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000"];
+  test("양수 또는 0이 아닌 값(음수, 소수, NaN, null, undefined, 문자열, 객체, 배열)을 전달하면 예외가 발생한다.", () => {
+    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000", {}, []];
     for (const value of disallowed) {
       expect(() => updateAmountDisplay($element, value)).toThrow();
     }
