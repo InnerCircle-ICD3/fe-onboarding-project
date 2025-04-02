@@ -56,7 +56,7 @@ returnButtonElement?.addEventListener('click', () => {
     }
 
     totalAmount = 0;
-    updateTotalAmount(0)
+    updateTotalAmount(0);
     amountInputElement.value = '0';
     addLog(`${balance.toLocaleString()}원 반환`);
 })
