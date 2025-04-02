@@ -18,7 +18,7 @@ const $returnButton = document.querySelector<HTMLButtonElement>(".rtn-btn");
 const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.control");
 
 describe("Cash", () => {
-    beforeEach(async () => {
+    beforeEach(() => {
         vi.clearAllMocks();
         if ($cashInput) $cashInput.value = "";
         if ($balanceOutput) $balanceOutput.innerText = "0";
@@ -26,7 +26,7 @@ describe("Cash", () => {
     });
 
     describe("투입 버튼을 클릭했을 때", () => {
-        describe("금액칸에 양수가 입력되어 있다면", async () => {
+        describe("금액칸에 양수가 입력되어 있다면", () => {
             if ($cashInput && $putButton && $balanceOutput) {
                 $balanceOutput.innerText = "2,000";
                 $cashInput.value = "1000";
@@ -91,7 +91,7 @@ describe("Cash", () => {
                     });
                 });
 
-                it("input에 잔액이 입력되고 잔액은 0으로 초기화된다", () => {
+                it("금액칸 밑에 있는 경고 메시지가 사라진다", () => {
                     vi.waitFor(() => {
                         expect($warningContent?.innerText).toBe("");
                     });
