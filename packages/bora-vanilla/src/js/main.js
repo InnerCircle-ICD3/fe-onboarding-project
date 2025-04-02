@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onProductPurchase: controller.handleProductPurchase,
     onMoneyReturn: controller.handleMoneyReturn,
     onPurchaseValidate: controller.handlePurchaseValidate,
-    onPurchaseValidateEnd: controller.handleProductValidateEnd,
+    onPurchaseValidateEnd: controller.handlePurchaseValidateEnd,
   });
   view.bindEventListeners();
   view.renderProducts(store.getProducts());
