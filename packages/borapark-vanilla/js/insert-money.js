@@ -5,7 +5,11 @@ export const $form = document.getElementsByTagName("form")[0];
 export const $userAmount = document.getElementById("user-amount");
 
 export const handleChangeAmount = (event) => {
-  const userAmount = event.target.value;
+  let userAmount = event.target.value;
+  if (isNaN(userAmount) || userAmount === "") {
+    userAmount = 0;
+  }
+
   setCurrentAmount(parseInt(userAmount));
 };
 
