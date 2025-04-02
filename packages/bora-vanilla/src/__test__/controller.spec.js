@@ -35,6 +35,18 @@ describe('VendingMachineController', () => {
     controller = createVendingMachineController(mockService, mockView, mockStore);
   });
 
+  describe('handleMoneyAmountInput', () => {
+    it('값이 없을 때 빈 문자열을 반환해야 한다', () => {
+      const result = controller.handleMoneyAmountInput('');
+      expect(result).toBe('');
+    });
+
+    it('값이 있을 때 콤마가 포함된 형식으로 반환해야 한다', () => {
+      const result = controller.handleMoneyAmountInput('1000');
+      expect(result).toBe('1,000');
+    });
+  });
+
   describe('handleMoneyInsert()', () => {
     it('성공적으로 금액을 투입해야 한다.', () => {
       mockService.insertMoney.mockReturnValue({
@@ -111,6 +123,19 @@ describe('VendingMachineController', () => {
       expect(mockService.returnMoney).toHaveBeenCalled();
       expect(mockView.renderLogMessage).toHaveBeenCalledWith('5,000원이 반환되었습니다.');
       expect(mockView.renderBalanceDisplay).toHaveBeenCalledWith(0);
+    });
+
+    it('잔돈 반환 실패시 에러 메시지를 표시해야 한다', () => {
+      mockService.returnMoney.mockReturnValue({
+        success: false,
+        errorCode: ERROR_CODE.NO_BALANCE_TO_RETURN,
+      });
+
+      controller.handleMoneyReturn();
+
+      expect(mockService.returnMoney).toHaveBeenCalled();
+      expect(mockView.renderLogMessage).toHaveBeenCalledWith(ERROR_MESSAGES[ERROR_CODE.NO_BALANCE_TO_RETURN]);
+      expect(mockView.renderBalanceDisplay).not.toHaveBeenCalled();
     });
   });
 
