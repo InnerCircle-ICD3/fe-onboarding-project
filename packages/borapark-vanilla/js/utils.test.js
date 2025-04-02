@@ -11,28 +11,11 @@ describe("formatCurrencyAsLocaleString()", () => {
     expect(formatCurrencyAsLocaleString(0)).toBe("0");
   });
 
-  test("음수를 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString(-1000)).toThrow();
-  });
-
-  test("소수점을 포함한 숫자를 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString(1234.56)).toThrow();
-  });
-
-  test("NaN을 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString(NaN)).toThrow();
-  });
-
-  test("null을 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString(null)).toThrow();
-  });
-
-  test("undefined를 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString(undefined)).toThrow();
-  });
-
-  test("숫자 형태의 문자열을 전달하면 예외가 발생한다.", () => {
-    expect(() => formatCurrencyAsLocaleString("1000")).toThrow();
+  test("0 또는 양의 정수가 아닌 값을 전달하면 예외가 발생한다", () => {
+    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000"];
+    for (const value of disallowed) {
+      expect(() => formatCurrencyAsLocaleString(value)).toThrow();
+    }
   });
 
   test("객체나 배열을 전달하면 예외가 발생한다.", () => {
