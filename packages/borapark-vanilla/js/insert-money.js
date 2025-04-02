@@ -14,7 +14,9 @@ export const handleChangeAmount = (event) => {
 };
 
 const resetAmount = () => {
-  $form.reset();
+  if ($form) {
+    $form.reset();
+  }
 };
 
 export const handleSubmitInsertAmount = (event) => {
