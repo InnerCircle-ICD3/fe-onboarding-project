@@ -5,7 +5,7 @@ function MoneyFunctionContainer({
   onReturn,
 }) {
   return (
-    <div>
+    <div className="money-function-container">
       <input
         id="money-input"
         type="number"
