@@ -51,25 +51,14 @@ describe("updateAmountDisplay", () => {
     expect($element.textContent).toBe("0");
   });
 
-  test("유효하지 않은 selector를 전달하면 오류가 발생하지 않는다.", () => {
+  test("양수를 전달하면 예외가 발생하지 않는다.", () => {
     expect(() => updateAmountDisplay($element, 1_000)).not.toThrow();
   });
 
-  test("음수 값을 전달하면 에러가 발생한다.", () => {
-    expect(() => updateAmountDisplay($element, -500_000)).toThrow(
-      "Invalid currency: only non-negative integers are allowed"
-    );
-  });
-
-  test("소수 값을 전달하면 에러가 발생한다.", () => {
-    expect(() => updateAmountDisplay($element, 1_000.5)).toThrow(
-      "Invalid currency: only non-negative integers are allowed"
-    );
-  });
-
-  test("숫자가 아닌 값을 전달하면 에러가 발생한다.", () => {
-    expect(() => updateAmountDisplay($element, "1_000")).toThrow(
-      "Invalid currency: only non-negative integers are allowed"
-    );
+  test("양수, 0이 아닌 값(음수, 소수, NaN, null, undefined, 문자열)을 전달하면 예외가 발생한다.", () => {
+    const disallowed = [-1000, 1234.56, NaN, null, undefined, "1000"];
+    for (const value of disallowed) {
+      expect(() => updateAmountDisplay($element, value)).toThrow();
+    }
   });
 });
