@@ -49,8 +49,16 @@ describe("투입 기능 테스트", () => {
   });
 
   test("금액 투입 후 form이 reset되고 현재 금액이 0으로 초기화된다.", () => {
+    // 1. 먼저 금액을 입력하고
+    const userAmount = 1000;
+    handleChangeAmount({ target: { value: userAmount } });
+
+    // 2. submit 이벤트를 발생시켜 reset을 실행
+    handleSubmitInsertAmount(new Event("submit"));
+
+    // 3. reset 후의 상태를 검증
     expect($userAmount.value).toBe("");
     expect(currentAmount).toBe(0);
-    expect(totalAmount).toBe(0);
+    expect(totalAmount).toBe(userAmount); // totalAmount는 누적되어야 함
   });
 });
