@@ -4,7 +4,7 @@
  * @param {string} [locale]
  */
 export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
-  if (typeof currency !== "number" || isNaN(currency) || currency < 0 || !Number.isInteger(currency)) {
+  if (!Number.isInteger(currency) || currency < 0) {
     throw new Error("Invalid currency: only non-negative integers are allowed");
   }
   return currency.toLocaleString(locale);
@@ -17,7 +17,7 @@ export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
  * @param {boolean} needUnit (optional)
  */
 export const updateAmountDisplay = (element, amount, needUnit = false) => {
-  if (typeof amount !== "number" || isNaN(amount) || amount < 0 || !Number.isInteger(amount)) {
+  if (!Number.isInteger(amount) || amount < 0) {
     throw new Error("Invalid currency: only non-negative integers are allowed");
   }
 
