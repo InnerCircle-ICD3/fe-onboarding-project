@@ -48,7 +48,7 @@ function initializeVendingMachine() {
 }
 
 // A) 상품 버튼 생성
-function createProductButton(product) {
+export function createProductButton(product) {
     // 1. template 태그를 가져온 뒤, template 태그 안에 있던 내용(button 태그)만 쏙 빼와서 복사
     const template = document.getElementById('product-button-template');
     const button = template.content.cloneNode(true);  // 참고: true는 자식 요소까지 모두 복사한다는 의미 (깊은 복사)
@@ -83,7 +83,7 @@ function createProductButton(product) {
 }
 
 // B) disabled 버튼 생성
-function createDisabledButton() {
+export function createDisabledButton() {
     const template = document.getElementById('product-button-template');
     const clone = template.content.cloneNode(true);
     const buttonElement = clone.querySelector('button');

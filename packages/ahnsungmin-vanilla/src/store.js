@@ -31,3 +31,8 @@ export function addLog(message) {
     // 스크롤을 맨 아래로 이동
     logSection.scrollTop = logSection.scrollHeight;
 }
+
+// 테스트 코드를 위한 초기화 함수 추가
+export function initializeStore() {
+    currentMoney = 0;
+}
