@@ -74,6 +74,23 @@ function renderInsertedMoney() {
   });
 }
 
+function renderReturnButton() {
+  const returnBtn = document.querySelector(".return-btn");
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
+
+  returnBtn.addEventListener("click", () => {
+    if (insertedMoney === 0) {
+      return;
+    }
+
+    const insertedMoneyStr = moneyPresenter.innerText;
+    addLog(`${insertedMoneyStr}원을 반환합니다.`);
+
+    moneyPresenter.innerText = "0";
+    insertedMoney = 0;
+  });
+}
+
 function addLog(message) {
   const userLogger = document.querySelector(".user-logger");
 
@@ -90,3 +107,4 @@ function convertNumToStrForDisplay(number) {
 
 renderMdButtons();
 renderInsertedMoney();
+renderReturnButton();

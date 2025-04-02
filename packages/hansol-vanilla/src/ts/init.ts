@@ -15,6 +15,8 @@ function initVendingMachine() {
 }
 
 function drawProductButton() {
+  const fragment = document.createDocumentFragment();
+  
   for (let i = 0; i < TOTAL_SLOT; i++) {
     const product = products[i];
 
@@ -26,15 +28,17 @@ function drawProductButton() {
       if(buttonName) buttonName.textContent = product.name;
       if(buttonPrice) buttonPrice.textContent = product.price;
 
-      productGrid.appendChild(buttonClone);
+      fragment.appendChild(buttonClone);
     } else {
       const disabledButton = document.createElement('button');
       disabledButton.classList.add('product-button');
       disabledButton.disabled = true;
 
-      productGrid.appendChild(disabledButton);
+      fragment.appendChild(disabledButton);
     }
   }
+
+  productGrid.appendChild(fragment);
 }
 
 function initVendingMachineDisplay() {
