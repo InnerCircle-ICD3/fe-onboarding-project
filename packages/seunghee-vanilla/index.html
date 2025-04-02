@@ -10,7 +10,7 @@
   <body>
     <div class="vending-machine">
       <section class="status-section">
-        <div class="inserted-money-presenter"></div>
+        <output class="inserted-money-presenter">0</output>
         <div class="md-container">
           <button class="md-btn" id="md-r1c1"></button>
           <button class="md-btn" id="md-r1c2"></button>
@@ -25,7 +25,7 @@
       </section>
       <section class="user-action-section">
         <div class="money-function-container">
-          <input class="money-input" />
+          <input type="number" id="money-input" value="0" min="0" step="10" />
           <button class="input-btn">투입</button>
           <button class="return-btn">반환</button>
         </div>

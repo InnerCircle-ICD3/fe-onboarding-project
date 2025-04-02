@@ -20,7 +20,7 @@ body {
 
 .vending-machine {
   background: repeating-linear-gradient(-45deg, #aee1ff 0px, #aee1ff 0.1px, #fff 1px, #fff 2px);
-  flex: 2;
+  flex: 1.5;
   padding: 20px;
 }
 
@@ -68,7 +68,7 @@ body {
   flex-direction: column;
   justify-content: center;
   flex: 1;
-  gap: 20px;
+  gap: 5px;
 }
 
 .balance {
@@ -85,11 +85,20 @@ body {
 }
 
 .control-input {
-  flex: 1;
+  width: 100%;
   padding: 8px;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
+  box-sizing: border-box;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.8em;
+  visibility: visible;
+  text-align: center;
+  width: 100%;
 }
 
 .control-button {
@@ -121,4 +130,12 @@ body {
 .log {
   border-radius: 10px;
   border: 1px solid #000;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.error-border {
+  border: 2px solid red;
 }
