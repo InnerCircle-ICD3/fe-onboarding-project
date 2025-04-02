@@ -34,7 +34,9 @@ export function getRequiredElement<T extends HTMLElement>(selector: string): T {
 }
 
 export function appendParticle(str: string) {
+  const firstHangulCode = '가'.charCodeAt(0);
+  const hanguleLastConsonantCount = 28;
   const lastCharCode = str.charCodeAt(str.length - 1);
-  const particle = (lastCharCode - 44032) % 28 ? '을' : '를';
+  const particle = (lastCharCode - firstHangulCode) % hanguleLastConsonantCount ? '을' : '를';
   return str + particle;
 }
