@@ -90,6 +90,7 @@ export const createVendingMachineView = () => {
     logItem.className = 'p-1 border-gray-200 text-sm';
     logItem.textContent = `${message}`;
     logContainer?.appendChild(logItem);
+    logContainer.scrollTop = logContainer.scrollHeight;
   };
 
   /** 금액 입력 필드  */
