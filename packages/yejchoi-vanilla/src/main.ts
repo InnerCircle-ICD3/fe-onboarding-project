@@ -5,14 +5,14 @@ interface Product {
 }
 
 let totalAmount = 0;
-const amountInputElement = document.querySelector(".amount-inner-input") as HTMLInputElement;
+const amountInputElement = document.querySelector<HTMLInputElement>(".amount-inner-input");
 
 //금액입력 input 정수만 넣을 수 있도록 처리
-amountInputElement.addEventListener('keydown', (event) => {
+amountInputElement?.addEventListener('keydown', (event) => {
     if (['e', 'E', '-', '.'].includes(event.key)) {
         event.preventDefault();
     }
-})
+});
 
 //TODO 유틸 함수로 빼기
 // 금액 표시창 관리 영역
@@ -54,7 +54,10 @@ insertButtonElement.addEventListener("click", () => {
 })
 
 // 반환 버튼 로직 처리
-const returnButtonElement = document.querySelector('#return-button') as HTMLButtonElement
+const returnButtonElement = document.querySelector<HTMLButtonElement>('#return-button');
+
+returnButtonElement?.addEventListener('click', () => {
+    const balance = totalAmount;
 
 returnButtonElement.addEventListener('click', () => {
     const balance = totalAmount;
@@ -66,7 +69,7 @@ returnButtonElement.addEventListener('click', () => {
     }
 
     totalAmount = 0;
-    updateTotalAmount(0)
+    updateTotalAmount(0)；
     amountInputElement.value = '0';
     addLog(`${balance.toLocaleString()}원 반환`);
 })
