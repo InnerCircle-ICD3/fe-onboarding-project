@@ -7,7 +7,6 @@ interface Product {
 let totalAmount = 0;
 
 // 금액 표시창 관리 영역
-
 const totalAmountElement = document.querySelector(".total-amount") as HTMLDivElement
 
 const updateTotalAmount = (value : number) => {
@@ -15,11 +14,12 @@ const updateTotalAmount = (value : number) => {
 }
 
 // 로그 기록 함수 처리
-
 const logBoxElement = document.querySelector(".log-box") as HTMLDivElement
 
-const addLog = (message : string) => {
+const addLog = (message : string, state?: string) => {
     const logElement = document.createElement("div");
+
+    logElement.className = `${state === 'error' ? 'error' : ''} log-message`;
     logElement.textContent = message;
     logBoxElement.appendChild(logElement);
     logBoxElement.scrollTop = logBoxElement.scrollHeight;
@@ -33,18 +33,36 @@ insertButtonElement.addEventListener("click", () => {
     const value = Number(amountInputElement.value);
 
     if(value <= 0) {
-        addLog('1원 이상 투입해주세요')
+        addLog('1원 이상 투입해주세요', 'error')
         return
     }
 
     totalAmount += value;
     updateTotalAmount(totalAmount)
-    amountInputElement.value = "";
+    amountInputElement.value = '0';
     addLog(`${value.toLocaleString()}원 투입`);
 })
 
-// 상품버튼 클릭 이벤트
+// 반환 버튼 로직 처리
+const returnButtonElement = document.querySelector<HTMLButtonElement>('#return-button');
 
+returnButtonElement?.addEventListener('click', () => {
+    const balance = totalAmount;
+
+    if(totalAmount <= 0) {
+        addLog(`반환할 잔액이 없습니다.`, 'error');
+
+        return;
+    }
+
+    totalAmount = 0;
+    updateTotalAmount(0);
+    amountInputElement.value = '0';
+    addLog(`${balance.toLocaleString()}원 반환`);
+})
+
+
+// 상품버튼 클릭 이벤트
 const handleProductButton = (product : Product) => {
     const productButtonElement = document.querySelector(`#product-${product.id}`) as HTMLButtonElement
 
@@ -60,13 +78,9 @@ const handleProductButton = (product : Product) => {
     productButtonElement.addEventListener('mouseup', () => {
         updateTotalAmount(totalAmount)
     })
-
 }
 
-
-
 // 상품버튼 표출 영역
-
 try {
     const response = await fetch("/data/productData.json");
 
