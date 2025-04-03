@@ -20,16 +20,7 @@ describe('VendingMachineView', () => {
     mockMoneyInsertForm = document.createElement('form');
     mockMoneyReturnButton = document.createElement('button');
 
-    mockDomSelector = {
-      getProductButtonContainer: vi.fn(() => mockProductButtonContainer),
-      getVendingMachineBalance: vi.fn(() => mockVendingMachineBalance),
-      getLogContainer: vi.fn(() => mockLogContainer),
-      getMoneyAmountInput: vi.fn(() => mockMoneyAmountInput),
-      getMoneyInsertForm: vi.fn(() => mockMoneyInsertForm),
-      getMoneyReturnButton: vi.fn(() => mockMoneyReturnButton),
-    };
-
-    view = createVendingMachineView(mockDomSelector);
+    view = createVendingMachineView();
   });
 
   // 초기화
