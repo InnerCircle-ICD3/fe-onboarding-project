@@ -23,14 +23,21 @@ const mds = [
 function renderMdButtons() {
   const mdContainer = document.querySelector(".md-container");
 
+  const btnCount = Math.ceil(mds.length / 3) * 3;
+
   let mdButtons = [];
-  for (let i = 0; i < mds.length; i++) {
+  for (let i = 0; i < btnCount; i++) {
     const mdButton = document.createElement("button");
-    const md = mds[i];
+    mdButton.className = "md-btn";
+
+    if (i > mds.length - 1) {
+      mdButtons.push(mdButton);
+      continue;
+    }
 
     const moneyPresenter = document.querySelector(".inserted-money-presenter");
 
-    mdButton.className = "md-btn";
+    const md = mds[i];
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
 
     mdButton.addEventListener("mousedown", (ev) => {
