@@ -1,42 +1,49 @@
-import { BalanceManager, formatCurrencyKRW, getInputNumberValue } from "./common";
+import { formatCurrencyKRW, getRequiredElement } from "./common";
+import { BalanceManager, products } from "./store";
+
+const PRODUCT_COLUMNS = 3;
+const PRODUCT_ROWS = Math.ceil(products.length / PRODUCT_COLUMNS);
+const TOTAL_SLOT = PRODUCT_COLUMNS * PRODUCT_ROWS;
 
 const currentBalance = BalanceManager.get();
-const vendingMachineDisplay = document.querySelector<HTMLDivElement>('.vending-machine-display');
-const controlInput = document.querySelector<HTMLInputElement>('.control-input');
-const errorSpan = document.querySelector<HTMLSpanElement>('.error-message');
+const productGrid = getRequiredElement<HTMLUListElement>('.product-grid');
+const productTemplate = getRequiredElement<HTMLTemplateElement>('.product-template');
 
 function initVendingMachine() {
   initVendingMachineDisplay();
-  initControlInput();
+  drawProductButton();
+}
+
+function drawProductButton() {
+  const fragment = document.createDocumentFragment();
+  for (let i = 0; i < TOTAL_SLOT; i++) {
+    const product = products[i];
+
+    if (product) {
+      const buttonClone = productTemplate.content.cloneNode(true) as DocumentFragment;
+      const buttonName = buttonClone.querySelector<HTMLSpanElement>('.product-name');
+      const buttonPrice = buttonClone.querySelector<HTMLSpanElement>('.product-price');
+
+      if(buttonName) buttonName.textContent = product.name;
+      if(buttonPrice) buttonPrice.textContent = product.price;
+
+      fragment.appendChild(buttonClone);
+    } else {
+      const disabledButton = document.createElement('button');
+      disabledButton.classList.add('product-button');
+      disabledButton.disabled = true;
+
+      fragment.appendChild(disabledButton);
+    }
+  }
+
+  productGrid.appendChild(fragment);
 }
 
 function initVendingMachineDisplay() {
-  if(!vendingMachineDisplay) throw new Error('자판기 금액창을 찾을 수 없습니다.');
+  const vendingMachineDisplay = getRequiredElement<HTMLDivElement>('.vending-machine-display');
 
   vendingMachineDisplay.innerText = formatCurrencyKRW(currentBalance);
-}
-
-function initControlInput() {
-  if(!controlInput) throw new Error('금액 입력창을 찾을 수 없습니다.');
-  
-  controlInput.addEventListener('keyup', handleInputFormat);
-}
-
-function handleInputFormat(e: KeyboardEvent) {
-  const target = e.target as HTMLInputElement;
-  const value = getInputNumberValue(target);
-
-  if(target.value === '') {
-    return;
-  }
-
-  if(!value || value <= 0) {
-    errorSpan?.classList.remove('hidden');
-    target.value = '';
-  } else {
-    errorSpan?.classList.add('hidden');
-    target.value = formatCurrencyKRW(value);
-  }
 }
 
 initVendingMachine();

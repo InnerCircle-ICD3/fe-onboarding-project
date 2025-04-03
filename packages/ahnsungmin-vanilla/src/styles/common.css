@@ -11,7 +11,8 @@
     gap: 20px;         /* machine과 panel 사이의 간격 */
     padding: 20px;
     background-color: #f0f0f0;
-    align-items: center;    /* 자식 요소들을 세로 중앙 정렬 */
+    align-items: center;       /* 자식 요소들을 세로 중앙 정렬 */
+    justify-content: center;   /* 자식 요소들을 가로 중앙 정렬 */
 }
 
 /* 공통으로 적용할 둥근 모서리 스타일 */
@@ -24,4 +25,23 @@
 #panel-return-btn {
     border: 1px solid #000;
     border-radius: 5px;
+}
+
+/* 태블릿 크기 (768px 이하) 화면에서 적용될 스타일 */
+@media screen and (max-width: 768px) {
+    .total-container {
+        flex-direction: column;  /* 기존 가로 배치(row)에서 세로 배치(column)로 변경 */
+        gap: 30px;               /* 자판기와 패널 사이 간격 30px로 설정 */
+    }
+
+    .machine, .panel {
+        width: 100%;            /* 자판기와 패널이 화면 전체 너비 사용 */
+    }
+}
+
+/* 모바일 크기 (480px 이하) 화면에서 적용될 스타일 */
+@media screen and (max-width: 480px) {
+    .panel-amount {
+        flex-direction: column; /* 금액 입력창과 버튼들을 세로로 배치 */
+    }
 } 
