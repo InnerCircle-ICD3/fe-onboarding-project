@@ -39,14 +39,16 @@ const drawMenuButtons = () => {
 
     for (const menu of menuItems) {
         const $template = document.importNode($buttonTemplate.content, true);
+        
+        const $button = $template.querySelector(".menu-item") as HTMLButtonElement;
         const $name = $template.querySelector(".menu-name") as HTMLParagraphElement;
         const $price = $template.querySelector(".price") as HTMLParagraphElement;
         
+        $button.disabled = menu.isBlank ? true : false;
         $name.innerText = menu.name;
         $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
         $menuWrapper.appendChild($template);
-        ($menuWrapper.lastElementChild as HTMLButtonElement).disabled = menu.isBlank ? true : false;
     }
 }
 
