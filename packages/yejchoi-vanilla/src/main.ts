@@ -25,54 +25,59 @@ const updateTotalAmount = (value : number) => {
 
 //TODO 유틸 함수로 빼기
 // 로그 기록 함수 처리
-const logBoxElement = document.querySelector(".log-box") as HTMLDivElement
+const logBoxElement = document.querySelector<HTMLDivElement>(".log-box")
 
-const addLog = (message : string, state?: string) => {
-    const logElement = document.createElement("div");
+const addLog = (message : string, state?: 'error') => {
 
-    logElement.className = `${state === 'error' ? 'error' : ''} log-message`;
-    logElement.textContent = message;
-    logBoxElement.appendChild(logElement);
-    logBoxElement.scrollTop = logBoxElement.scrollHeight;
+    if(logBoxElement) {
+        const logElement = document.createElement("div");
+
+        logElement.className = `${state === 'error' ? 'error' : ''} log-message`;
+        logElement.textContent = message;
+        logBoxElement.appendChild(logElement);
+        logBoxElement.scrollTop = logBoxElement.scrollHeight;
+    }
 }
 
 // 금액 투입 처리
-const insertButtonElement = document.querySelector('#insert-button') as HTMLButtonElement
+const insertButtonElement = document.querySelector<HTMLButtonElement>('#insert-button');
 
-insertButtonElement.addEventListener("click", () => {
-    const value = Number(amountInputElement.value);
+    if(insertButtonElement && amountInputElement) {
 
-    if(value <= 0) {
-        addLog('1원 이상 투입해주세요', 'error')
-        return
+        insertButtonElement.addEventListener("click", () => {
+            const value = Number(amountInputElement.value);
+
+            if(value <= 0) {
+                addLog('1원 이상 투입해주세요', 'error')
+                return
+            }
+
+            totalAmount += value;
+            updateTotalAmount(totalAmount)
+            amountInputElement.value = '0';
+            addLog(`${value.toLocaleString()}원 투입`);
+        })
     }
-
-    totalAmount += value;
-    updateTotalAmount(totalAmount)
-    amountInputElement.value = '0';
-    addLog(`${value.toLocaleString()}원 투입`);
-})
 
 // 반환 버튼 로직 처리
 const returnButtonElement = document.querySelector<HTMLButtonElement>('#return-button');
 
-returnButtonElement?.addEventListener('click', () => {
-    const balance = totalAmount;
+    if(amountInputElement) {
+        returnButtonElement?.addEventListener('click', () => {
+            const balance = totalAmount;
 
-returnButtonElement.addEventListener('click', () => {
-    const balance = totalAmount;
+            if(totalAmount <= 0) {
+                addLog(`반환할 잔액이 없습니다.`, 'error');
 
-    if(totalAmount <= 0) {
-        addLog(`반환할 잔액이 없습니다.`, 'error');
+                return;
+            }
 
-        return;
+            totalAmount = 0;
+            updateTotalAmount(0);
+            amountInputElement.value = '0';
+            addLog(`${balance.toLocaleString()}원 반환`);
+        })
     }
-
-    totalAmount = 0;
-    updateTotalAmount(0)；
-    amountInputElement.value = '0';
-    addLog(`${balance.toLocaleString()}원 반환`);
-})
 
 
 // 상품버튼 클릭 이벤트
