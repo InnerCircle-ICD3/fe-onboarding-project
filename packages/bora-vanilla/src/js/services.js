@@ -64,18 +64,23 @@ export const createVendingMachineService = (store) => {
   /** 상품 구매 검증 */
   const validatePurchase = (productId) => {
     const product = store.getProductById(productId);
-
-    if (!product) {
-      return createError(ERROR_CODE.PRODUCT_NOT_FOUND);
-    }
-
     const currentBalance = store.getBalance();
 
+    // 상품이 존재하지 않는 경우
+    if (!product) {
+      const error = createError(ERROR_CODE.PRODUCT_NOT_FOUND);
+      return {
+        ...error,
+        productPrice: 0,
+      };
+    }
+
+    // 잔액이 부족한 경우
     if (currentBalance < product.price) {
       const error = createError(ERROR_CODE.INSUFFICIENT_BALANCE);
       return {
         ...error,
-        product,
+        productPrice: product.price,
       };
     }
 

@@ -1,3 +1,4 @@
+import { COLUMNS } from './constants';
 import { formatter } from './utils';
 
 export const createVendingMachineView = (domSelector) => {
@@ -35,15 +36,33 @@ export const createVendingMachineView = (domSelector) => {
     return button;
   };
 
+  const createEmptyCell = () => {
+    const cell = document.createElement('div');
+    cell.className =
+      'empty-button relative flex flex-col items-center justify-center p-4 bg-gray-100 border-2 border-gray-200';
+    return cell;
+  };
+
   /** 상품 버튼 렌더링 */
   const renderProducts = (productsData) => {
     const buttonContainer = domSelector.getProductButtonContainer();
 
     const fragment = document.createDocumentFragment();
 
+    const rows = Math.ceil(productsData.length / COLUMNS);
+    const TOTAL_SLOTS = COLUMNS * rows;
+
+    // 빈 버튼 갯수 계싼
+    const emptyButtonsCount = TOTAL_SLOTS - productsData.length;
+
     for (const product of productsData) {
       const button = createProductButton(product);
       fragment.appendChild(button);
+    }
+
+    for (let i = 0; i < emptyButtonsCount; i++) {
+      const emptyCell = createEmptyCell();
+      fragment.appendChild(emptyCell);
     }
 
     buttonContainer.appendChild(fragment);
@@ -107,8 +126,11 @@ export const createVendingMachineView = (domSelector) => {
     // 상품 구매 이벤트
     productButtonContainer.addEventListener('click', (e) => {
       const button = e.target.closest('.product-button');
+
       if (!button) return;
+
       const productId = button.dataset.id;
+
       eventHandlers.onProductPurchase(productId);
     });
 
@@ -120,7 +142,9 @@ export const createVendingMachineView = (domSelector) => {
     // 상품 버튼 마우스 이벤트
     productButtonContainer.addEventListener('mousedown', (e) => {
       const button = e.target.closest('.product-button');
+
       if (!button) return;
+
       const productId = button.dataset.id;
       eventHandlers.onPurchaseValidate(productId);
     });
