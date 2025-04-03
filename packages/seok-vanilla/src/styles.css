@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 .input-primary {
-  @apply py-2 px-2 rounded-xl border outline-none;
+  @apply py-2 px-2 rounded-xl border outline-none text-center;
 }
 
 .btn-product {
