@@ -1,8 +1,10 @@
+import { convertLocaleTextToNum } from "../util/localeTextConverter";
+
 const $cashInput = document.querySelector<HTMLInputElement>("input[type=number].cash");
-const $balanceInput = document.querySelector<HTMLInputElement>("input[type=number].balance");
+const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
 const $putButton = document.querySelector<HTMLButtonElement>(".put-btn");
 const $returnButton = document.querySelector<HTMLButtonElement>(".rtn-btn");
-const $warningContent = document.querySelector<HTMLDivElement>(".warning-box");
+const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.control");
 
 $putButton?.addEventListener("click", () => {
     const cash = $cashInput?.valueAsNumber ?? 0;
@@ -16,8 +18,10 @@ $putButton?.addEventListener("click", () => {
 });
 
 $returnButton?.addEventListener("click", () => {
-    const balance = $balanceInput?.valueAsNumber ?? 0;
-
+    if (!$balanceOutput) return;
+    
+    const balance = Number(convertLocaleTextToNum($balanceOutput.innerText) ?? 0);
+    
     if (balance > 0) {
         returnCash(balance);
         clearWarning();
@@ -27,20 +31,20 @@ $returnButton?.addEventListener("click", () => {
 });
 
 const putCash = (cash: number) => {
-    if ($cashInput && $balanceInput) {
-        let balance = $balanceInput.valueAsNumber;
+    if ($cashInput && $balanceOutput) {
+        let balance = convertLocaleTextToNum($balanceOutput.innerText);
 
         $cashInput.value = "";
         balance += cash;
         
-        $balanceInput.value = balance.toString();
+        $balanceOutput.innerText = balance.toLocaleString();
     }
 }
 
 const returnCash = (balance: number) => {
-    if ($cashInput && $balanceInput) {
+    if ($cashInput && $balanceOutput) {
         $cashInput.value = balance.toString();
-        $balanceInput.value = "0";
+        $balanceOutput.innerText = "0";
     }
 }
 

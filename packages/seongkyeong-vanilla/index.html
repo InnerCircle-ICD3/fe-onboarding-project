@@ -12,7 +12,11 @@
     <div id="app">
         <main>
             <section class="menu-wrapper">
-                <input type="number" class="balance" value="0" disabled/>
+                <div class="balance">
+                    0
+                </div>
+                <div class="warning-box menu">
+                </div>
                 <div class="menu-btn-wrapper">
                 </div>
             </section>
@@ -22,7 +26,7 @@
                     <button class="put-btn">투입</button>
                     <button class="rtn-btn">반환</button>
                 </div>
-                <div class="warning-box">
+                <div class="warning-box control">
                 </div>
                 <div class="logging-box">
                     <textarea disabled></textarea>
@@ -32,5 +36,6 @@
     </div>
     <script type="module" src="/ts/menu.ts"></script>
     <script type="module" src="/ts/cash.ts"></script>
+    <script type="module" src="/util/localeTextConverter.ts"></script>
 </body>
 </html>
