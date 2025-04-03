@@ -1,34 +1,59 @@
 /* 1. 좌측 자판기 본체 */
 .machine {
     padding: 20px;
-    background-color: #e8f5e9;  /* 연한 초록색 (영역 확인용) */
-    border: 1px solid #000;
+    background: #f8f9fa;
 }
 
 /* 금액 표시창 */
 .machine-money {
     padding: 10px;
     margin-bottom: 20px;
-    background-color: #e3f2fd; /* 연한 파란색 (영역 확인용) */
-    border: 1px solid #000;
+    background-color: white;
     text-align: center;
 }
 
-/* 3x3 상품 버튼 그리드 컨테이너 */
+/* 3x4 상품 버튼 그리드 컨테이너 */
 .machine-products-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);   /* 3개의 열, 각각 동일한 너비(1fr) */
-    gap: 10px;                               /* 버튼 사이의 간격 */
-    background-color: #fff3e0;             /* 연한 주황색 (영역 확인용) */
+    grid-template-columns: repeat(3, 1fr);    /* 3개의 열을 동일한 비율(1fr)로 나눔 */
+    grid-template-rows: repeat(4, 1fr);       /* 4개의 행을 동일한 비율(1fr)로 나눔 (3x3에서 3x4로 확장) */
+    gap: 10px;                                /* 그리드 아이템 사이의 간격 */
+}
+
+@media screen and (max-width: 480px) {
+    .machine-products-container {
+        gap: 5px;              /* 좁은 화면에서는 간격 축소 */
+    }
+
+    .machine-product {
+        padding: 5px;          /* 버튼 내부 여백 축소 */
+        font-size: 14px;       /* 글자 크기 축소 */
+    }
 }
 
 /* 개별 상품 버튼 */
 .machine-product {
-    display: flex;                /* 버튼 내부 요소들을 세로로 배치 */
-    flex-direction: column;       /* 상품명과 가격을 위아래로 배치 */
+    display: flex;
+    flex-direction: column;
+    background-color: #e3f2fd;  /* 연한 하늘색 */
     padding: 10px;
-    align-items: center;     /* flex 아이템 가로축 가운데 정렬 */
-    justify-content: center; /* flex 아이템 세로축 가운데 정렬 */
+    cursor: pointer;
+}
+
+/* 개별 상품 버튼 - 마우스 올렸을 때 (hover) */
+.machine-product:hover {
+    background-color: #bbdefb;  /* 좀 더 진한 하늘색 */
+}
+
+/* 개별 상품 버튼 - 클릭했을 때 (active) */
+.machine-product:active {
+    background-color: #90caf9;  /* 더 진한 하늘색 */
+}
+
+/* disabled 버튼 스타일 추가 */
+.machine-product:disabled {
+    background-color: #f5f5f5;  /* 연한 회색 */
+    cursor: not-allowed;
 }
 
 /* 상품명 스타일 */
