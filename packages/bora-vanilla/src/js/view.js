@@ -1,7 +1,16 @@
 import { COLUMNS } from './constants';
 import { formatter } from './utils';
 
-export const createVendingMachineView = (domSelector) => {
+export const createVendingMachineView = () => {
+  const domSelectors = {
+    getProductButtonContainer: () => document.querySelector('.vending-machine-button-container'),
+    getMoneyAmountInput: () => document.querySelector('.amount-input'),
+    getMoneyInsertForm: () => document.querySelector('.vending-machine-insert-form'),
+    getMoneyReturnButton: () => document.querySelector('.return-money-button'),
+    getVendingMachineBalance: () => document.querySelector('.vending-machine-balance'),
+    getLogContainer: () => document.querySelector('.log-message-container > div'),
+  };
+
   let eventHandlers = {
     onMoneyAmountInput: (value) => value,
     onMoneyInsert: (amount) => {},
@@ -45,7 +54,7 @@ export const createVendingMachineView = (domSelector) => {
 
   /** 상품 버튼 렌더링 */
   const renderProducts = (productsData) => {
-    const buttonContainer = domSelector.getProductButtonContainer();
+    const buttonContainer = domSelectors.getProductButtonContainer();
 
     const fragment = document.createDocumentFragment();
 
@@ -70,13 +79,13 @@ export const createVendingMachineView = (domSelector) => {
 
   /** 자판기 남은 금액 */
   const renderBalanceDisplay = (balance) => {
-    const vendingMachineBalance = domSelector.getVendingMachineBalance();
+    const vendingMachineBalance = domSelectors.getVendingMachineBalance();
     vendingMachineBalance.textContent = `${formatter.format(balance)}원`;
   };
 
   /** 로그 메시지 렌더링 */
   const renderLogMessage = (message) => {
-    const logContainer = domSelector.getLogContainer();
+    const logContainer = domSelectors.getLogContainer();
     const logItem = document.createElement('div');
     logItem.className = 'p-1 border-gray-200 text-sm';
     logItem.textContent = `${message}`;
@@ -85,12 +94,12 @@ export const createVendingMachineView = (domSelector) => {
 
   /** 금액 입력 필드  */
   const getMoneyInputValue = () => {
-    return domSelector.getMoneyAmountInput().value;
+    return domSelectors.getMoneyAmountInput().value;
   };
 
   /** 금액 입력 필드 설정 */
   const setMoneyInputValue = (value) => {
-    domSelector.getMoneyAmountInput().value = value;
+    domSelectors.getMoneyAmountInput().value = value;
   };
 
   /** 금액 입력 필드 초기화 */
@@ -105,10 +114,10 @@ export const createVendingMachineView = (domSelector) => {
 
   /** 이벤트 바인딩 */
   const bindEventListeners = () => {
-    const moneyAmountInput = domSelector.getMoneyAmountInput();
-    const moneyInsertForm = domSelector.getMoneyInsertForm();
-    const productButtonContainer = domSelector.getProductButtonContainer();
-    const moneyReturnButton = domSelector.getMoneyReturnButton();
+    const moneyAmountInput = domSelectors.getMoneyAmountInput();
+    const moneyInsertForm = domSelectors.getMoneyInsertForm();
+    const productButtonContainer = domSelectors.getProductButtonContainer();
+    const moneyReturnButton = domSelectors.getMoneyReturnButton();
 
     // 금액 입력 이벤트
     moneyAmountInput.addEventListener('input', (e) => {
@@ -163,6 +172,7 @@ export const createVendingMachineView = (domSelector) => {
     renderBalanceDisplay,
     renderLogMessage,
     getMoneyInputValue,
+    setMoneyInputValue,
     clearMoneyInput,
     setEventHandlers,
     bindEventListeners,
