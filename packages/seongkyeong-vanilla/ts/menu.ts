@@ -1,4 +1,5 @@
 import { convertLocaleTextToNum } from "../util/localeTextConverter";
+import { LogType, publishLogEvent } from "./log";
 
 interface Menu {
     name: string;
@@ -70,7 +71,7 @@ $menuBtnWrapper?.addEventListener("mouseup", (e: MouseEvent) => {
             $balanceOutput.innerText = balanceValue.toLocaleString();
             setWarning("잔액이 부족합니다.");
         } else {
-            buy(menu.price);
+            buy(menu);
         }
     }
 });
@@ -97,11 +98,15 @@ const getMenuInfo = (e: MouseEvent): Menu | null => {
     return null;
 }
 
-const buy = (price: number) => {
-    const balance = convertLocaleTextToNum($balanceOutput!.innerText) - price;
+const buy = (menu: Menu) => {
+    const balance = convertLocaleTextToNum($balanceOutput!.innerText) - menu.price;
     $balanceOutput!.innerText = balance.toLocaleString();
 
     clearWarning();
+    publishLogEvent({
+        type: LogType.BUY,
+        menuName: menu.name
+    });
 }
 
 const setWarning = (message: string) => {
