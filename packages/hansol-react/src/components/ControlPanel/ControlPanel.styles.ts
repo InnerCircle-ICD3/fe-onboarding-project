@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { commonBorderStyle } from "./common";
+import { commonBorderStyle } from "../../styles/common";
 
-export const ControlPanel = styled.section`
+export const ControlPanelContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -32,10 +32,10 @@ ${commonBorderStyle}
   white-space: nowrap;
 `;
 
-export const ErrorMessage = styled.span`
+export const ErrorMessage = styled.span<{ visible: boolean }>`
   color: red;
   font-size: 0.8em;
-  visibility: visible;
+  visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
   text-align: center;
   width: 100%;
 `;

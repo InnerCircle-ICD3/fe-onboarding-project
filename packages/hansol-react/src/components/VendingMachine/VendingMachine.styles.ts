@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { commonBorderStyle } from "./common";
+import { commonBorderStyle } from "../../styles/common";
 
-export const VendingMachine = styled.section`
+export const VendingMachineContainer = styled.section`
   ${commonBorderStyle}
   background: repeating-linear-gradient(-45deg, #aee1ff 0px, #aee1ff 0.1px, #fff 1px, #fff 2px);
   flex: 1.5;
