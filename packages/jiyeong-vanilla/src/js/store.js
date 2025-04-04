@@ -6,7 +6,7 @@ const createStore = (initialState = {}) => {
 
   const setState = (newState) => {
     state = { ...state, ...newState };
-    listeners.forEach((listener) => listener(state));
+    listeners.forEach((listener) => listener(structuredClone(state)));
   };
 
   const subscribe = (listener) => {
