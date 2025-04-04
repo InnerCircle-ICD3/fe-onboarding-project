@@ -1,14 +1,17 @@
 import ControlPanel from "../components/ControlPanel";
 import VendingMachine from "../components/VendingMachine";
 import { Container } from "../styles/layout";
+import { VendingMachineProvider } from "./provider/VendingMachineProvider";
 
 
 function App() {
   return (
-    <Container>
-      <VendingMachine />
-      <ControlPanel />
-    </Container>
+    <VendingMachineProvider>
+      <Container>
+        <VendingMachine />
+        <ControlPanel />
+      </Container>
+    </VendingMachineProvider>
   )
 }
 
