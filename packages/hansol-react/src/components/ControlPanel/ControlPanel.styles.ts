@@ -18,6 +18,7 @@ export const InputGroup = styled.div`
 export const ControlInput = styled.input`
   ${commonBorderStyle}
   padding: 8px;
+  width: 100%;
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
@@ -32,7 +33,9 @@ ${commonBorderStyle}
   white-space: nowrap;
 `;
 
-export const ErrorMessage = styled.span<{ visible: boolean }>`
+export const ErrorMessage = styled.span.withConfig({
+  shouldForwardProp: (prop) => prop !== 'visible',
+})<{ visible: boolean }>`
   color: red;
   font-size: 0.8em;
   visibility: ${({ visible }) => (visible ? "visible" : "hidden")};
