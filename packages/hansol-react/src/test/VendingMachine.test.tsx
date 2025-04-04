@@ -60,7 +60,7 @@ describe('VendingMachine', () => {
     });
   });
 
-  it("상품이 없는 경우 disabled 처리된 버튼이 렌더링된다.", () => {
+  it("상품 개수가 3의 배수가 아닐 경우, 남은 슬롯은 자동으로 disabled 처리되어 채워진다.", () => {
     render(<VendingMachine />);
     const allButtons = screen.getAllByTestId("product-button");
     const disabledButtons = allButtons.filter((btn) => btn.hasAttribute("disabled"));
