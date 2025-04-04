@@ -7,7 +7,6 @@ import {
   ProductPrice,
 } from "./VendingMachine.styles";
 import { products } from "../../data/products";
-import { formatCurrencyKRW } from "../../utils/common";
 
 const VendingMachine = () => {
   const PRODUCT_COLUMNS = 3;
@@ -19,20 +18,20 @@ const VendingMachine = () => {
 
     if (product) {
       return (
-        <ProductButton key={index}>
+        <ProductButton data-testid="product-button" key={index}>
           <ProductName>{product.name}</ProductName>
-          <ProductPrice>{formatCurrencyKRW(Number(product.price.replace(/원/, '')))}원</ProductPrice>
+          <ProductPrice>{product.price}</ProductPrice>
         </ProductButton>
       );
     } else {
-      return <ProductButton key={index} disabled />;
+      return <ProductButton data-testid="product-button" key={index} disabled />;
     }
   });
 
   return (
-    <VendingMachineContainer>
-      <VendingMachineDisplay>{/* 잔액 표시용 상태값이 들어갈 예정 */}</VendingMachineDisplay>
-      <ProductGrid>
+    <VendingMachineContainer data-testid="vending-machine-container">
+      <VendingMachineDisplay data-testid="vending-machine-display">{/* 잔액 표시용 상태값 */}</VendingMachineDisplay>
+      <ProductGrid data-testid="product-grid">
         {slots}
       </ProductGrid>
     </VendingMachineContainer>
