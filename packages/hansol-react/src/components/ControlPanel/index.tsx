@@ -3,18 +3,18 @@ import { ControlButton, ControlInput, ControlPanelContainer, ErrorMessage, Input
 
 const ControlPanel = () => {
   const [isError, setIsError] = useState(false);
-  
+
   return (
-    <ControlPanelContainer>
-      <InputGroup>
-        <ControlInput/>
-        <ControlButton>투입</ControlButton>
-        <ControlButton>반환</ControlButton>
+    <ControlPanelContainer data-testid="control-panel-container">
+      <InputGroup data-testid="input-group">
+        <ControlInput data-testid="control-input" />
+        <ControlButton data-testid="add-button" >투입</ControlButton>
+        <ControlButton data-testid="refund-button" >반환</ControlButton>
       </InputGroup>
 
-      <ErrorMessage visible={isError}>양수만 입력해주세요</ErrorMessage>
+      <ErrorMessage data-testid="error-message" visible={isError}>양수만 입력해주세요</ErrorMessage>
 
-      <LogPanel/>
+      <LogPanel data-testid="log-panel"></LogPanel>
     </ControlPanelContainer>
   );
 }
