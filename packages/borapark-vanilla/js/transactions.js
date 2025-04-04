@@ -26,3 +26,9 @@ export const handleSubmitInsertAmount = (event) => {
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
   resetAmount();
 };
+
+export const handleReturnMoney = () => {
+  setCurrentAmount(0);
+  setTotalAmount(0);
+  updateAmountDisplay(".vending-machine-total-amount", 0);
+};

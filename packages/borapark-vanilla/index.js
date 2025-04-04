@@ -1,6 +1,12 @@
 import { DRINK_NAME, DRINK_PRICES } from "./js/constant.js";
 import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
-import { $form, $userAmount, handleChangeAmount, handleSubmitInsertAmount } from "./js/insert-money.js";
+import {
+  $form,
+  $userAmount,
+  handleChangeAmount,
+  handleSubmitInsertAmount,
+  handleReturnMoney,
+} from "./js/transactions.js";
 /**
  * 자판기 상품 상세 정보 표시
  * @param {string | number} text
@@ -70,3 +76,10 @@ const insertMoney = () => {
 };
 
 insertMoney();
+
+const returnMoney = () => {
+  const $returnButton = $form.querySelector("button[type='button']");
+  $returnButton.addEventListener("click", handleReturnMoney);
+};
+
+returnMoney();
