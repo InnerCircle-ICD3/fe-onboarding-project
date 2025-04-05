@@ -106,6 +106,8 @@ export function createDisabledButton() {
  * - 중성 0번째 인덱스: ㅏ / 1번째 인덱스: ㅐ
  * - 종성 0번째 인덱스: 없음 / 1번째 인덱스: ㄱ (예를들면 각이라는 글자에서 종성의 인덱스는 1)
  */
-function getKoreanParticle(str) {
-    return (str.at(-1).charCodeAt(0) - 0xac00) % 28 ? '을' : '를';
+export function getKoreanParticle(str) {
+    const charCode = str.charCodeAt(str.length - 1);  // 마지막 문자 코드를 가져옴 (마지막 문자를 토대로 '을/를' 판단하기 때문)
+    const hasFinalConsonant = (charCode - 0xAC00) % 28 > 0;  // 한글 유니코드에서 종성 인덱스를 계산 (종성 인덱스가 0보다 크면 받침이 있는 것이므로 '을'을 사용)
+    return hasFinalConsonant ? '을' : '를';  // 받침이 있으면 '을', 없으면 '를'을 반환
 }

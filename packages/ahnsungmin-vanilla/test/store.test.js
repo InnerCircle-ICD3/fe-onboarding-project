@@ -33,7 +33,7 @@ describe('Store 테스트', () => {
             expect(currentMoney).toBe(1000);
         });
 
-        it('updateMoney에 전달한 값이 화면에 표시된다', () => {
+        it('updateMoney에 전달한 값이 3자리마다 쉼표가 찍힌 값이 화면에 표시된다', () => {
             // when: 금액 추가
             updateMoney(1500);
             
@@ -52,6 +52,14 @@ describe('Store 테스트', () => {
             const logSection = document.querySelector('.log-section');
             const logText = logSection.lastElementChild.textContent;
             expect(logText).toContain('1000원을 투입했습니다');
+        });
+
+        it('큰 금액도 로그 메시지에 표시된다', () => {
+            updateMoney(1000000);
+            
+            const logSection = document.querySelector('.log-section');
+            const logText = logSection.lastElementChild.textContent;
+            expect(logText).toContain('1000000원을 투입했습니다');
         });
     });
 }); 

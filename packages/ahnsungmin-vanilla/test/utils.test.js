@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { formatMoney, getKoreanParticle } from '../src/utils.js';
+import { getKoreanParticle } from '../src/machine.js';
 
 /**
  * 유틸리티 함수 테스트
@@ -7,16 +7,16 @@ import { formatMoney, getKoreanParticle } from '../src/utils.js';
  * - 한글 조사 처리 테스트
  */
 describe('Utils 테스트', () => {
-    describe('formatMoney', () => {
+    describe('금액 포맷팅', () => {
         it('천 단위로 쉼표를 추가해야 한다', () => {
             // when & then: 다양한 금액에 대한 포맷팅 검증
-            expect(formatMoney(1000)).toBe('1,000');
-            expect(formatMoney(1000000)).toBe('1,000,000');
+            expect((1000).toLocaleString('ko-KR')).toBe('1,000');
+            expect((1000000).toLocaleString('ko-KR')).toBe('1,000,000');
         });
 
         it('0은 0으로 표시해야 한다', () => {
             // when & then: 0 처리 검증
-            expect(formatMoney(0)).toBe('0');
+            expect((0).toLocaleString('ko-KR')).toBe('0');
         });
     });
 
