@@ -24,7 +24,7 @@ describe('Machine 테스트', () => {
     });
 
     describe('상품 버튼 생성', () => {
-        it('상품 정보가 버튼에 올바르게 표시되어야 한다', () => {
+        it('상품의 이름과 가격이 버튼의 각 span 요소에 표시된다', () => {
             // given: 테스트를 위한 전제 조건 (테스트용 상품 데이터 준비)
             const product = { name: '콜라', price: 1500 };
 
@@ -40,7 +40,7 @@ describe('Machine 테스트', () => {
     });
 
     describe('빈 버튼 생성', () => {
-        it('disabled 버튼이 올바르게 생성되어야 한다', () => {
+        it('disabled 버튼은 비활성화되고 내용이 비어있다', () => {
             // when: 테스트하고자 하는 행동 수행 (disabled 버튼 생성)
             const button = createDisabledButton();
             

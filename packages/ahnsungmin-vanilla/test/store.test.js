@@ -25,7 +25,7 @@ describe('Store 테스트', () => {
     });
 
     describe('금액 관리', () => {
-        it('금액이 정상적으로 추가되어야 한다', () => {
+        it('updateMoney에 전달한 값으로 currentMoney가 설정된다', () => {
             // when: 금액 추가
             updateMoney(1000);
             
@@ -33,7 +33,7 @@ describe('Store 테스트', () => {
             expect(currentMoney).toBe(1000);
         });
 
-        it('금액이 화면에 표시되어야 한다', () => {
+        it('updateMoney에 전달한 값이 화면에 표시된다', () => {
             // when: 금액 추가
             updateMoney(1500);
             
@@ -44,7 +44,7 @@ describe('Store 테스트', () => {
     });
 
     describe('로그 기능', () => {
-        it('금액 투입 시 로그가 추가되어야 한다', () => {
+        it('updateMoney에 전달한 값이 로그 메시지에 포함된다', () => {
             // when: 금액 투입
             updateMoney(1000);
             
