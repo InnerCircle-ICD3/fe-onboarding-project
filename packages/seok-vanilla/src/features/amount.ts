@@ -1,4 +1,4 @@
-import { NotEnoughtMoneyError } from "../erros/NotEnoughtMoney.error";
+import { NotEnoughtMoneyError } from "../erros/not-enought-money-error";
 import { formatNumberWithCommas } from "../utills/format";
 
 let amount = 0;

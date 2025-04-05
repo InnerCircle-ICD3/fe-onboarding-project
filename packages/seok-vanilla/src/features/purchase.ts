@@ -1,5 +1,5 @@
 import db from "../db.json";
-import { NotEnoughtMoneyError } from "../erros/NotEnoughtMoney.error";
+import { NotEnoughtMoneyError } from "../erros/not-enought-money-error";
 import { Product } from "../model/product";
 import { formatNumberWithCommas } from "../utills/format";
 import { decrease, getAmount } from "./amount";
@@ -11,20 +11,6 @@ const COLUMN_COUNT = 3;
 const ROW_COUNT = Math.ceil(db.products.length / 3);
 
 function renderProductList() {
-  // db.products.forEach((product) => {
-  //   // const li = document.createElement("li");
-  //   // const button = document.createElement("button");
-  //   // button.innerHTML = `${product.name}<br/>${formatNumberWithCommas(
-  //   //   product.price
-  //   // )}`;
-  //   // button.classList.add("btn-product", "btn-color");
-  //   // button.dataset.productId = product.id.toString();
-  //   // li.append(button);
-  //   // $productList?.append(li);
-  //   renderBtnProduct(product);
-  // });
-  // const emptyCount = 3 - (db.products.length % 3);
-
   for (let i = 0; i < COLUMN_COUNT * ROW_COUNT; i++) {
     const product = db.products[i];
     renderBtnProduct(product);

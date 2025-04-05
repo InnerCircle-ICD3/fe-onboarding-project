@@ -1,4 +1,4 @@
-import { NotFoundHTMLElementError } from "../erros/NotFoundHTMLElementError";
+import { NotFoundHTMLElementError } from "../erros/not-found-html-element-error";
 
 type Log = {
   type: "info" | "error";
