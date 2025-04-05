@@ -17,6 +17,9 @@ npm install
 
 # 개발 서버 실행
 npm run dev
+
+# 테스트 실행
+npm test
 ```
 
 ## 작업 상세 내용
@@ -66,9 +69,28 @@ npm run dev
 - [x] 반응형 레이아웃 구현
   - [x] 화면 크기에 따른 레이아웃 변경
   - [x] 모바일 환경 대응
-- [ ] 단위 테스트 작성
-  - [ ] 주요 기능 테스트 코드 작성
+- [x] 단위 테스트 작성
+  - [x] Utils
+    - [x] 금액 포맷팅 테스트
+    - [x] 한글 조사 처리 테스트
+  - [x] Store
+    - [x] 금액 관리 테스트
+    - [x] 로그 기능 테스트
+  - [x] Machine
+    - [x] 상품 버튼 생성 테스트
+    - [x] disabled 버튼 테스트
 
 ## 참고사항
 - 순수 자바스크립트로만 구현 (라이브러리 사용 금지)
 - CSS 라이브러리/프레임워크는 사용 가능
+
+## 테스트
+- **테스트 환경**
+  - Vitest
+  - jsdom (가상 DOM 환경)
+  - @testing-library/dom
+
+- **테스트 구조**
+  - `test/utils.test.js`: 유틸리티 함수 테스트
+  - `test/store.test.js`: 상태 관리 테스트
+  - `test/machine.test.js`: 자판기 컴포넌트 테스트
