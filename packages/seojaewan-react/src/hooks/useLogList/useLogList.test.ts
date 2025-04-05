@@ -20,7 +20,6 @@ describe("useLogList 테스트", () => {
     ]);
   });
 
-  // boolean을 대표적으로 테스트 케이스로 작성했는데, number, object ... 다른 타입들도 다 테스트해야 할까?
   it("addLog()에 전달된 값이 문자열이 아닌 다른 타입 'boolean' 타입일 때 오류가 발생한다.", () => {
     const { result } = renderHook(() => useLogList());
 

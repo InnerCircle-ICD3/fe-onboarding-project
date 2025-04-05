@@ -58,7 +58,6 @@ describe("PriceForm 컴포넌트 테스트", () => {
     expect(handleSubmit).toHaveBeenCalledTimes(1);
   });
 
-  // 위 테스트와 동일한 플로우인데, 합치는게 좋을까?
   it("투입 버튼을 누르고 제출되면 input의 값이 초기화된다.", async () => {
     const handleSubmit = vi.fn((e: React.FormEvent<HTMLFormElement>) => {});
     const { getByRole } = render(<PriceForm onSubmit={handleSubmit} />);
