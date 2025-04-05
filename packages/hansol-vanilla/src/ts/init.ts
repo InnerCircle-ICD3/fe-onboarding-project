@@ -16,6 +16,7 @@ function initVendingMachine() {
 
 function drawProductButton() {
   const fragment = document.createDocumentFragment();
+  
   for (let i = 0; i < TOTAL_SLOT; i++) {
     const product = products[i];
 
