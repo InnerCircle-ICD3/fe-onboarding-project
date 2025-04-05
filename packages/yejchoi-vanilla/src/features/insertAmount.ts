@@ -33,7 +33,7 @@ export const insertAmount = (props : insertAmountProps) => {
 
             amountInputElement.value = '0';
 
-            addLog(`${value.toLocaleString()}원 투입`);
+            addLog(`${value.toLocaleString('ko-kr')}원 투입`);
         }
     })
 }

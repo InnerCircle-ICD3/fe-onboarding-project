@@ -30,7 +30,7 @@ export const returnAmount = (props : returnAmountProps) => {
             amountInputElement.value = '0';
         }
 
-        addLog(`${balance.toLocaleString()}원 반환`);
+        addLog(`${balance.toLocaleString('ko-kr')}원 반환`);
     })
 
 }

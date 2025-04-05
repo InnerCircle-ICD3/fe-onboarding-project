@@ -12,10 +12,10 @@ export const handleProductButton = (product : Product) => {
         const totalAmount : number = amountStore.getAmount();
 
         if (totalAmount < product.price && totalAmountElement) {
-            totalAmountElement.textContent = product.price.toLocaleString();
+            totalAmountElement.textContent = product.price.toLocaleString('ko-kr');
         } else {
             amountStore.setAmount(totalAmount - product.price)
-            addLog(`${product.name} 구매 (${product.price.toLocaleString()}원 차감)`);
+            addLog(`${product.name} 구매 (${product.price.toLocaleString('ko-kr')}원 차감)`);
         }
     })
 

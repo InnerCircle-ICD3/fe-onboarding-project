@@ -14,6 +14,6 @@ export const addLog = (message : string, state?: string) => {
 
 export const updateTotalAmount = (value : number) => {
     if(totalAmountElement) {
-        totalAmountElement.textContent = value.toLocaleString();
+        totalAmountElement.textContent = value.toLocaleString('ko-kr');
     }
 }
