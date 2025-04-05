@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ControlButton, ControlInput, ControlPanelContainer, ErrorMessage, InputGroup, LogMessage, LogPanel } from "./ControlPanel.styles";
 import { formatCurrencyKRW, getInputNumberValue } from "../../utils/common";
 import { useBalanceDispatch, useBalanceState } from "../../store/balance/BalanceContext";
@@ -15,6 +15,15 @@ const ControlPanel = () => {
   const LogMessageState = useLogMessageState();
   const logMessageDispatch = useLogMessageDispatch();
   const { logMessages } = LogMessageState;
+
+  const logPanelRef = useRef<HTMLUListElement>(null);
+
+  useEffect(() => {
+    const logPanel = logPanelRef.current;
+    if (logPanel) {
+      logPanel.scrollTop = logPanel.scrollHeight;
+    }
+  }, [logMessages]);
   
   const handleInputChange = (event:  React.ChangeEvent<HTMLInputElement>) => {
     const target = event.target as HTMLInputElement;
@@ -61,7 +70,7 @@ const ControlPanel = () => {
 
       <ErrorMessage data-testid="error-message" visible={isError}>양수만 입력해주세요</ErrorMessage>
 
-      <LogPanel data-testid="log-panel">
+      <LogPanel data-testid="log-panel" ref={logPanelRef}>
         {logMessages.map((log, idx) => (
           <li key={idx}>
             <LogMessage>{log}</LogMessage>
