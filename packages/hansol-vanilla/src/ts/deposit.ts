@@ -1,20 +1,56 @@
-import { addLogMessage, BalanceManager, formatCurrencyKRW, getInputNumberValue, updateDisplay } from "./common";
+import { addLogMessage, formatCurrencyKRW, getInputNumberValue, getRequiredElement, updateDisplay } from "./common";
+import { BalanceManager } from "./store";
 
-const controlInput = document.querySelector<HTMLInputElement>('.control-input');
-const addButton = document.querySelector<HTMLButtonElement>('.add-button');
+const controlInput = getRequiredElement<HTMLInputElement>('.control-input');
+const addButton = getRequiredElement<HTMLButtonElement>('.add-button');
+const errorMessageSpan = getRequiredElement<HTMLSpanElement>('.error-message');
 
 function handleAddBalance() {
   const inputValue =  getInputNumberValue(controlInput);
-  
-  BalanceManager.add(inputValue);
-  updateDisplay(BalanceManager.get());
-  addLogMessage(`${formatCurrencyKRW(inputValue)}원을 투입했습니다.`);
-  
-  if(!controlInput) throw new Error('금액 입력창을 찾을 수 없습니다.');
 
-  controlInput.value = '';
+  if (inputValue <= 0) {
+    showInputError();
+  } else {
+    hideInputError();
+    
+    BalanceManager.add(inputValue);
+    updateDisplay(BalanceManager.get());
+    addLogMessage(`${formatCurrencyKRW(inputValue)}원을 투입했습니다.`);
+    
+    controlInput.value = '';
+  }
 }
 
-if(!addButton) throw new Error('투입 버튼을 찾을 수 없습니다.');
+function handleInputFormat(e: KeyboardEvent) {
+  const target = e.target as HTMLInputElement;
+  const value = getInputNumberValue(target);
 
-addButton.addEventListener('click', handleAddBalance);
+  if(target.value === '') {
+    return;
+  }
+
+  if(!value || value <= 0) {
+    showInputError();
+    target.value = '';
+  } else {
+    hideInputError();
+    target.value = formatCurrencyKRW(value);
+  }
+}
+
+function showInputError() {
+  errorMessageSpan.classList.remove('hidden');
+  controlInput.classList.add('error-border');
+}
+
+function hideInputError() {
+  errorMessageSpan.classList.add('hidden');
+  controlInput.classList.remove('error-border');
+}
+
+function initAddEventListeners() {
+  controlInput.addEventListener('keyup', handleInputFormat);
+  addButton.addEventListener('click', handleAddBalance);
+}
+
+initAddEventListeners();

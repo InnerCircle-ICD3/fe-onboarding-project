@@ -37,10 +37,6 @@ section {
     gap: 10px;
 }
 
-.menu-wrapper .menu-btn-wrapper .menu-name {
-    font-weight: bold;
-}
-
 .menu-wrapper .menu-btn-wrapper .menu-item:not(:disabled):hover {
     border: 2px solid black;
 }
