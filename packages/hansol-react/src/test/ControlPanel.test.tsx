@@ -33,8 +33,9 @@ describe('ControlPanel', () => {
     renderWithProviders(<ControlPanel />);
     expect(screen.getByTestId('log-panel')).toBeInTheDocument();
   });
+});
 
-
+describe('handleInputChange()', () => {
   it('금액을 양수를 입력하면 에러 메시지가 보이지 않는다.', () => {
     renderWithProviders(<ControlPanel />);
     const input = screen.getByTestId('control-input');
@@ -57,8 +58,36 @@ describe('ControlPanel', () => {
       expect(errorMessage).toHaveTextContent('양수만 입력해주세요');
     }
   );
+});
 
-  it('투입 버튼 클릭 시 balance와 로그 메시지 dispatch가 발생한다.', () => {
+describe('handleAddButton()', () => {
+  it.each([0, -500])(
+    '입력값이 %d이면 dispatch 없이 에러 메시지가 표시된다.',
+    (invalidValue) => {
+      const mockBalanceDispatch = vi.fn();
+      const mockLogDispatch = vi.fn();
+  
+      renderWithProviders(<ControlPanel />, {
+        balanceDispatch: mockBalanceDispatch,
+        logDispatch: mockLogDispatch,
+      });
+  
+      const input = screen.getByTestId('control-input');
+  
+      fireEvent.change(input, { target: { value: invalidValue.toString() } });
+  
+      const addButton = screen.getByTestId('add-button');
+      fireEvent.click(addButton);
+  
+      expect(mockBalanceDispatch).not.toHaveBeenCalled();
+      expect(mockLogDispatch).not.toHaveBeenCalled();
+  
+      const errorMessage = screen.getByTestId('error-message');
+      expect(errorMessage).toBeVisible();
+      expect(errorMessage).toHaveTextContent('양수만 입력해주세요');
+    }
+  );
+  it('투입 버튼 클릭 시 입력된 금액이 balance에 더해지고, 로그 메시지가 추가된다.', () => {
     const mockBalanceDispatch = vi.fn();
     const mockLogDispatch = vi.fn();
 
@@ -83,8 +112,20 @@ describe('ControlPanel', () => {
       payload: '1,000원을 투입했습니다.',
     });
   });
+  it('투입 버튼 클릭 후 input 창이 "0"으로 비워진다.', () => {
+    renderWithProviders(<ControlPanel />);
+    const input = screen.getByTestId('control-input');
+    const addButton = screen.getByTestId('add-button');
 
-  it('반환 버튼 클릭 시 balance 초기화와 로그 메시지 dispatch가 발생한다.', () => {
+    fireEvent.change(input, { target: { value: '1000' } });
+    fireEvent.click(addButton);
+
+    expect(input).toHaveValue('0');
+  });
+});
+
+describe('handleReturnButton()', () => {
+  it('반환 버튼 클릭 시 balance가 0으로 초기화되고, 반환 메시지가 로그에 추가된다.', () => {
     const mockBalanceDispatch = vi.fn();
     const mockLogDispatch = vi.fn();
 
@@ -105,15 +146,5 @@ describe('ControlPanel', () => {
       type: 'ADD_LOG_MESSAGE',
       payload: '3,000원이 반환되었습니다.',
     });
-  });
-
-  it('투입 후 input 창이 비워진다.', () => {
-    renderWithProviders(<ControlPanel />);
-
-    const input = screen.getByTestId('control-input');
-    const addButton = screen.getByTestId('add-button');
-    fireEvent.click(addButton);
-
-    expect(input).toHaveValue('0');
   });
 });
