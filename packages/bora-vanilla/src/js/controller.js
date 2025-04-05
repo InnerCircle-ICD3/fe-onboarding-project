@@ -60,7 +60,7 @@ export const createVendingMachineController = (service, view, store) => {
     view.renderBalanceDisplay(updatedBalance);
   };
 
-  const handleProductValidateEnd = () => {
+  const handlePurchaseValidateEnd = () => {
     const currentBalance = store.getBalance();
     view.renderBalanceDisplay(currentBalance);
   };
@@ -71,6 +71,6 @@ export const createVendingMachineController = (service, view, store) => {
     handleProductPurchase,
     handleMoneyReturn,
     handlePurchaseValidate,
-    handleProductValidateEnd,
+    handlePurchaseValidateEnd,
   };
 };

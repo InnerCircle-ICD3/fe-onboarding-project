@@ -3,10 +3,9 @@ import '../index.css';
 import { createVendingMachineService } from './services';
 import { store } from './store';
 import { createVendingMachineView } from './view';
-import { domSelectors } from './dom-selectors';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const view = createVendingMachineView(domSelectors);
+  const view = createVendingMachineView();
   const service = createVendingMachineService(store);
   const controller = createVendingMachineController(service, view, store);
 
@@ -16,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
     onProductPurchase: controller.handleProductPurchase,
     onMoneyReturn: controller.handleMoneyReturn,
     onPurchaseValidate: controller.handlePurchaseValidate,
-    onPurchaseValidateEnd: controller.handleProductValidateEnd,
+    onPurchaseValidateEnd: controller.handlePurchaseValidateEnd,
   });
   view.bindEventListeners();
   view.renderProducts(store.getProducts());
