@@ -1,5 +1,6 @@
-import { updateAmountDisplay } from "./utils.js";
+import { updateAmountDisplay, formatCurrencyAsLocaleString } from "./utils.js";
 import { currentAmount, totalAmount, setCurrentAmount, setTotalAmount } from "./store.js";
+import { addLog } from "./logs.js";
 
 export const $form = document.getElementsByTagName("form")[0];
 export const $userAmount = document.getElementById("user-amount");
@@ -35,6 +36,7 @@ export const handleSubmitInsertAmount = (event) => {
   event.preventDefault();
   const totalAmount = setTotalAmount();
   updateAmountDisplay(".vending-machine-total-amount", totalAmount);
+  addLog(`금액 ${formatCurrencyAsLocaleString(totalAmount)}원이 투입되었습니다.`);
   if ($form) {
     $form.reset();
   }
@@ -45,8 +47,9 @@ export const handleSubmitInsertAmount = (event) => {
  */
 export const handleReturnMoney = () => {
   setCurrentAmount(0);
-  setTotalAmount(0);
   updateAmountDisplay(".vending-machine-total-amount", 0);
+  addLog(`잔액 ${formatCurrencyAsLocaleString(totalAmount)}원이 반환되었습니다.`);
+  setTotalAmount(0);
 };
 
 /**
@@ -57,7 +60,9 @@ export const handleBuy = (event) => {
   event.preventDefault();
   const $button = event.target.closest("button");
   const $drink = $button.querySelector(".drink-price");
+  const $drinkName = $button.querySelector(".drink-name");
   const drinkPrice = parseInt($drink?.textContent?.replace(/[원,]/g, ""));
+  const drinkName = $drinkName?.textContent || "음료";
 
   const remainingAmount = currentAmount - drinkPrice;
 
@@ -69,5 +74,9 @@ export const handleBuy = (event) => {
   setCurrentAmount(remainingAmount);
   setTotalAmount(totalAmount - drinkPrice);
   updateAmountDisplay(".vending-machine-total-amount", remainingAmount);
-  // TODO: 로그에 추가
+  addLog(
+    `${drinkName}를 구매했습니다. (가격: ${formatCurrencyAsLocaleString(
+      drinkPrice
+    )}원, 잔액: ${formatCurrencyAsLocaleString(remainingAmount)}원)`
+  );
 };
