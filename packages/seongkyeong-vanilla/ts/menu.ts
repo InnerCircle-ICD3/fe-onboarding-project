@@ -4,6 +4,7 @@ import { LogType, publishLogEvent } from "./log";
 interface Menu {
     name: string;
     price: number;
+    isBlank?: boolean;
 }
 
 const menuItems: Menu[] = [
@@ -15,7 +16,9 @@ const menuItems: Menu[] = [
     { name: "판타지판타", price: 1500 },
     { name: "레드뿔", price: 2500 },
     { name: "핫세븐", price: 1900 },
-    { name: "커피우유", price: 1400 }
+    { name: "커피우유", price: 1400 },
+    { name: "몬스터드링크", price: 1400 },
+    { name: "사과주스", price: 1000 }
 ];
 
 const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
@@ -25,23 +28,39 @@ const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.men
 let balanceValue = 0;
 
 const drawMenuButtons = () => {
-    const $menuWrapper = document.querySelector(".menu-btn-wrapper");
+    const $menuWrapper = document.querySelector<HTMLDivElement>(".menu-btn-wrapper");
+    const $buttonTemplate = document.querySelector<HTMLTemplateElement>(".button-template");
+
+    if (!$menuWrapper || !$buttonTemplate) return;
+
+    if (menuItems.length % 3 !== 0) {
+        appendBlankButtons(3 - menuItems.length % 3);
+    }
 
     for (const menu of menuItems) {
-        const $menuBtn = document.createElement("button");
-        const $name = document.createElement("p");
-        const $price = document.createElement("p");
+        const $template = document.importNode($buttonTemplate.content, true);
         
-        $menuBtn.className = "menu-item";
-        $name.className = "menu-name";
+        const $button = $template.querySelector(".menu-item") as HTMLButtonElement;
+        const $name = $template.querySelector(".menu-name") as HTMLParagraphElement;
+        const $price = $template.querySelector(".price") as HTMLParagraphElement;
+        
+        $button.disabled = !!menu.isBlank;
         $name.innerText = menu.name;
-        $price.className = "price";
-        $price.innerText = `${menu.price}원`;
-        
-        $menuBtn.appendChild($name);
-        $menuBtn.appendChild($price);
+        $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
-        $menuWrapper?.appendChild($menuBtn);
+        $menuWrapper.appendChild($template);
+    }
+}
+
+const appendBlankButtons = (count: number) => {
+    const blankMenu = {
+        name: "",
+        price: 0,
+        isBlank: true
+    };
+
+    for (let i = 0; i < count; i++) {
+        menuItems.push(blankMenu);
     }
 }
 
