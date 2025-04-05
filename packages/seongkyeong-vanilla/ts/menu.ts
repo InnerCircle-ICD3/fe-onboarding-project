@@ -31,7 +31,7 @@ const drawMenuButtons = () => {
     const $menuWrapper = document.querySelector<HTMLDivElement>(".menu-btn-wrapper");
     const $buttonTemplate = document.querySelector<HTMLTemplateElement>(".button-template");
 
-    if (!($menuWrapper instanceof HTMLDivElement) || !($buttonTemplate instanceof HTMLTemplateElement)) return;
+    if (!$menuWrapper || !$buttonTemplate) return;
 
     if (menuItems.length % 3 !== 0) {
         appendBlankButtons(3 - menuItems.length % 3);
@@ -44,7 +44,7 @@ const drawMenuButtons = () => {
         const $name = $template.querySelector(".menu-name") as HTMLParagraphElement;
         const $price = $template.querySelector(".price") as HTMLParagraphElement;
         
-        $button.disabled = menu.isBlank ? true : false;
+        $button.disabled = !!menu.isBlank;
         $name.innerText = menu.name;
         $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
