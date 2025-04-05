@@ -17,19 +17,22 @@ const products = [
 ];
 
 let total = 0;
+let previousAmount = 0;
 const buttonsContainer = document.querySelector(".buttons");
-if (buttonsContainer) {
+
+if(buttonsContainer){
   buttonsContainer.addEventListener("click", (event) => {
-    if (event.target.id === "button-insert") {
-      handleInsert();
-    } else if (event.target.id === "button-refund") {
-      handleRefund();
-    }
-  });
+  if (event.target.id === "button-insert") {
+    handleInsert();
+  } else if (event.target.id === "button-refund") {
+    handleRefund();
+  }
+});
 }
 
 export const resetCount = () => {
   total = 0;
+  previousAmount = 0;
 }
 
 export const renderProducts = () => {
@@ -56,6 +59,49 @@ export const renderProducts = () => {
 
     container.appendChild(button);
   });
+
+   document.querySelectorAll(".product").forEach((productElement, index) => {
+     productElement.addEventListener("mousedown", () => handleMouseDown(index));
+     productElement.addEventListener("mouseup", () => handlePurchase(index));
+   });
+};
+
+const getSelectedProduct = (index) => products[index] || null;
+
+const toggleInputColor = (isHighlight) => {
+  const numberInput = document.querySelectorAll(".number-input");
+  numberInput[0].style.color = isHighlight ? "orange" : "black";
+};
+
+const handleMouseDown = (index) => {
+  const numberInput = document.querySelectorAll(".number-input");
+
+  const selectedProduct = getSelectedProduct(index);
+  if (!selectedProduct) return;
+
+  previousAmount = getNumericValue(numberInput[0]); // 현재 잔액 저장
+
+  if (selectedProduct.price > total) {
+    numberInput[0].value = setCurrencyToWon(selectedProduct.price);
+    toggleInputColor(true);
+  }
+};
+
+const handlePurchase = (index) => {
+  const numberInput = document.querySelectorAll(".number-input");
+
+  const selectedProduct = getSelectedProduct(index);
+  if (!selectedProduct) return;
+
+  if (selectedProduct.price > total) {
+    numberInput[0].value = setCurrencyToWon(previousAmount);
+  } else {
+    addLog(`${selectedProduct.name}을(를) 구매했습니다.`);
+    total -= selectedProduct.price;
+    numberInput[0].value = setCurrencyToWon(total);
+  }
+
+  toggleInputColor(false);
 };
 
 export const handleInsert = () => {
