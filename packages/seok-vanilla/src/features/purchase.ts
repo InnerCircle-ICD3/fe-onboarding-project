@@ -62,7 +62,7 @@ $productList?.addEventListener("mousedown", (e) => {
   }
 });
 
-$productList?.addEventListener("mouseup", () => {
+document.addEventListener("mouseup", () => {
   const $insertedAmount =
     document.querySelector<HTMLInputElement>("#inserted-amount");
   if ($insertedAmount) {
