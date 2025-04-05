@@ -12,8 +12,11 @@ export const VendingMachineContainer = styled.section`
   flex-direction: column;
 `;
 
-export const VendingMachineDisplay = styled.div`
+export const VendingMachineDisplay = styled.div.withConfig({
+  shouldForwardProp: (prop) => prop !== "isError",
+})<{ isError: boolean }>`
   ${commonBorderStyle}
+  border: ${({ isError }) => (isError ? "2px solid red" : "1px solid black")};
   background: #fff;
   font-size: 2rem;
   text-align: center;
