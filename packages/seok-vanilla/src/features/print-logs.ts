@@ -18,13 +18,16 @@ export function printLogs() {
   if (!$logList) {
     throw new NotFoundHTMLElementError("#log-list");
   }
-  $logList.querySelectorAll("li").forEach((li) => li.remove());
+  $logList.innerHTML = "";
+
+  const fragment = document.createDocumentFragment();
   logs.forEach((log) => {
     const li = document.createElement("li");
     li.classList.add(log.type);
-    li.innerHTML = log.message;
-    $logList.append(li);
+    li.textContent = log.message;
+    fragment.append(li);
   });
+  $logList.append(fragment);
   $logList.scrollTo({
     top: $logList.scrollHeight,
     behavior: "smooth",
