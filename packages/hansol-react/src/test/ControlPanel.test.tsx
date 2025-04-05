@@ -4,7 +4,7 @@ import ControlPanel from '../components/ControlPanel';
 import { renderWithProviders } from './renderWithProviders';
 
 
-describe('ControlPanel', () => {
+describe('ControlPanel UI 렌더링', () => {
   it('컨트롤 패널 영역의 컨테이너가 렌더링된다.', () => {
     renderWithProviders(<ControlPanel />);
     expect(screen.getByTestId('control-panel-container')).toBeInTheDocument();
@@ -87,7 +87,7 @@ describe('handleAddButton()', () => {
       expect(errorMessage).toHaveTextContent('양수만 입력해주세요');
     }
   );
-  it('투입 버튼 클릭 시 입력된 금액이 balance에 더해지고, 로그 메시지가 추가된다.', () => {
+  it('투입 버튼 클릭 시 "ADD_BALANCE"와 "ADD_LOG_MESSAGE" 액션이 호출된다.', () => {
     const mockBalanceDispatch = vi.fn();
     const mockLogDispatch = vi.fn();
 
@@ -125,7 +125,7 @@ describe('handleAddButton()', () => {
 });
 
 describe('handleReturnButton()', () => {
-  it('반환 버튼 클릭 시 balance가 0으로 초기화되고, 반환 메시지가 로그에 추가된다.', () => {
+  it('반환 버튼 클릭 시 "RETURN_BALANCE"와 "ADD_LOG_MESSAGE" 액션이 호출된다.', () => {
     const mockBalanceDispatch = vi.fn();
     const mockLogDispatch = vi.fn();
 
