@@ -14,7 +14,7 @@ export const formatCurrencyAsLocaleString = (currency, locale = "ko-KR") => {
  * 금액 표시 화면 기능
  * @param {HTMLElement|string} element
  * @param {number} amount
- * @param {boolean} needUnit (optional)
+ * @param {boolean} [needUnit]
  */
 export const updateAmountDisplay = (element, amount, needUnit = false) => {
   if (!Number.isInteger(amount) || amount < 0) {

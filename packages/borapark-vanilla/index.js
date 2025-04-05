@@ -6,6 +6,7 @@ import {
   handleChangeAmount,
   handleSubmitInsertAmount,
   handleReturnMoney,
+  handleBuy,
 } from "./js/transactions.js";
 /**
  * 자판기 상품 상세 정보 표시
@@ -60,26 +61,37 @@ const initVendingMachineView = () => {
   convertDrinkPrice();
   convertUserAmount();
 };
-
 initVendingMachineView();
 
 /**
  * 투입 기능
  */
-
 const insertMoney = () => {
   // 투입 금액 입력 이벤트 리스너
   $userAmount.addEventListener("change", handleChangeAmount);
-
   // 투입 금액 입력 폼 제출 이벤트 리스너
   $form.addEventListener("submit", handleSubmitInsertAmount);
 };
-
 insertMoney();
 
+/**
+ * 반환 기능
+ */
 const returnMoney = () => {
   const $returnButton = $form.querySelector("button[type='button']");
   $returnButton.addEventListener("click", handleReturnMoney);
 };
-
 returnMoney();
+
+/**
+ * 구매 기능
+ */
+const buy = () => {
+  const $drinkList = document.getElementById("drink-list");
+  const $drinkItem = $drinkList.querySelectorAll("button");
+  $drinkItem.forEach((item) => {
+    item.addEventListener("click", handleBuy);
+  });
+};
+
+buy();
