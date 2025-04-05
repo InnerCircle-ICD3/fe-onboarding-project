@@ -1,61 +1,76 @@
 import { describe, it, beforeEach, vi, expect } from "vitest";
 import { LogType, publishLogEvent } from "./log";
-import "./cash";
 
-const document = globalThis.document as Document;
-document.body.innerHTML = `
-    <input type="number" class="cash" />
-    <div class="balance">0</div>
-    <button class="put-btn"></button>
-    <button class="rtn-btn"></button>
-    <div class="warning-box control"></div>
-`;
-
-const $cashInput = document.querySelector<HTMLInputElement>("input[type=number].cash");
-const $balanceOutput = document.querySelector<HTMLDivElement>(".balance");
-const $putButton = document.querySelector<HTMLButtonElement>(".put-btn");
-const $returnButton = document.querySelector<HTMLButtonElement>(".rtn-btn");
-const $warningContent = document.querySelector<HTMLDivElement>(".warning-box.control");
+const $: Record<string, HTMLElement> = {};
 
 describe("Cash", () => {
-    beforeEach(() => {
+    vi.mock("./log", () => {
+        return {
+            publishLogEvent: vi.fn(),
+            LogType: {
+                CASH_PUT: "CASH_PUT",
+                CASH_RETURN: "CASH_RETURN",
+            },
+        };
+    });
+
+    beforeEach(async () => {
         vi.clearAllMocks();
-        if ($cashInput) $cashInput.value = "";
-        if ($balanceOutput) $balanceOutput.innerText = "0";
-        if ($warningContent) $warningContent.innerText = "";
+        vi.resetModules();
+
+        document.body.innerHTML = `
+            <input type="number" class="cash" />
+            <div class="balance">0</div>
+            <button class="put-btn"></button>
+            <button class="rtn-btn"></button>
+            <div class="warning-box control"></div>
+        `;
+
+        $.cashInput = document.querySelector("input[type=number].cash") as HTMLInputElement;
+        $.balanceOutput = document.querySelector(".balance") as HTMLDivElement;
+        $.putButton = document.querySelector(".put-btn") as HTMLButtonElement;
+        $.returnButton = document.querySelector(".rtn-btn") as HTMLButtonElement;
+        $.warningContent = document.querySelector(".warning-box.control") as HTMLDivElement;
+
+        await import("./cash");
     });
 
     describe("투입 버튼을 클릭했을 때", () => {
-        describe("금액칸에 양수가 입력되어 있다면", () => {
-            if ($cashInput && $putButton && $balanceOutput) {
-                $balanceOutput.innerText = "2,000";
-                $cashInput.value = "1000";
-                $cashInput.dispatchEvent(new Event("input", {bubbles: true}));
-    
-                $putButton.click();
+        describe("금액칸에 양수가 입력되어 있다면", () => {            
+            it("잔액이 금액만큼 늘어나고 input은 초기화된다", () => {
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                expect($.balanceOutput.textContent).toBe("1,000");
+
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                expect($.balanceOutput.textContent).toBe("2,000");
+                expect(($.cashInput as HTMLInputElement).value).toBe("");
+            });
+
+            it("금액칸 밑에 있는 경고 메시지가 사라진다", () => {
+                ($.cashInput as HTMLInputElement).value = "0";
+                $.putButton.click();
+
+                expect($.warningContent.textContent).toBe("투입 금액은 0 이하일 수 없습니다.");
                 
-                it("잔액이 금액만큼 늘어나고 input은 초기화된다", () => {
-                    vi.waitFor(() => {
-                        expect($balanceOutput.innerText).toBe("3,000");
-                        expect($cashInput.value).toBe("");
-                    });
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                expect($.warningContent.textContent).toBe("");
+            });
+
+            it("로그 이벤트를 발행한다", () => {
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                expect(publishLogEvent).toHaveBeenCalledWith({
+                    type: LogType.CASH_PUT,
+                    amount: 1000,
                 });
-    
-                it("금액칸 밑에 있는 경고 메시지가 사라진다", () => {
-                    vi.waitFor(() => {
-                        expect($warningContent?.innerText).toBe("");
-                    });
-                });
-    
-                it("로그 이벤트를 발행한다", () => {
-                    vi.waitFor(() => {
-                        expect(publishLogEvent).toHaveBeenCalledWith({
-                            type: LogType.CASH_PUT,
-                            amount: 3000,
-                        });
-                    });
-                });
-            }
+            });
         });
 
         describe("금액칸에 양수가 아닌 값이 입력되어 있다면", () => {
@@ -63,16 +78,12 @@ describe("Cash", () => {
                 const testCases = [0, -1, -100, Number.NaN, "abc"];
     
                 for (const cash of testCases) {
-                    if ($cashInput && $putButton) {
-                        $cashInput.value = cash.toString();
-                        $putButton.click();
+                    ($.cashInput as HTMLInputElement).value = cash.toString();
+                    $.putButton.click();
     
-                        vi.waitFor(() => {
-                            expect($warningContent?.innerText).toBe("투입 금액은 0 이하일 수 없습니다.");
-                            expect(publishLogEvent).not.toHaveBeenCalled();
-                            expect($balanceOutput?.innerText).toBe("0");
-                        });
-                    }
+                    expect($.warningContent.textContent).toBe("투입 금액은 0 이하일 수 없습니다.");
+                    expect(publishLogEvent).not.toHaveBeenCalled();
+                    expect($.balanceOutput.textContent).toBe("0");
                 }
             });
         });
@@ -80,45 +91,44 @@ describe("Cash", () => {
 
     describe("반환 버튼을 클릭했을 때", () => {
         describe("반환할 금액이 있다면", () => {
-            if ($balanceOutput && $returnButton && $cashInput) {
-                $balanceOutput.innerText = "1,000";
-                $returnButton.click();
+            it("input에 잔액이 입력되고 잔액은 0으로 초기화된다", () => {
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
 
-                it("input에 잔액이 입력되고 잔액은 0으로 초기화된다", () => {
-                    vi.waitFor(() => {
-                        expect($cashInput.value).toBe("1000");
-                        expect($balanceOutput.innerText).toBe("0");
-                    });
-                });
+                $.returnButton.click();
 
-                it("금액칸 밑에 있는 경고 메시지가 사라진다", () => {
-                    vi.waitFor(() => {
-                        expect($warningContent?.innerText).toBe("");
-                    });
-                });
+                expect(($.cashInput as HTMLInputElement).value).toBe("1000");
+                expect($.balanceOutput.textContent).toBe("0");
+            });
 
-                it("로그 이벤트를 발행시킨다", () => {
-                    vi.waitFor(() => {
-                        expect(publishLogEvent).toHaveBeenCalledWith({
-                            type: LogType.CASH_RETURN,
-                            amount: 1000,
-                        });
-                    });
+            it("금액칸 밑에 있는 경고 메시지가 사라진다", () => {
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                $.returnButton.click();
+
+                expect($.warningContent?.textContent).toBe("");
+            });
+
+            it("로그 이벤트를 발행시킨다", () => {
+                ($.cashInput as HTMLInputElement).value = "1000";
+                $.putButton.click();
+
+                $.returnButton.click();
+                
+                expect(publishLogEvent).toHaveBeenCalledWith({
+                    type: LogType.CASH_RETURN,
+                    amount: 1000,
                 });
-            }
+            });
         });
 
         describe("반환할 금액이 없다면", () => {
             it("경고 메시지를 표시하고, 로그 이벤트를 발행시키지 않는다", () => {
-                if ($balanceOutput && $returnButton) {
-                    $balanceOutput.innerText = "0";
-                    $returnButton.click();
+                $.returnButton.click();
 
-                    vi.waitFor(() => {
-                        expect($warningContent?.innerText).toBe("반환할 금액이 없습니다.");
-                        expect(publishLogEvent).not.toHaveBeenCalled();
-                    });
-                }
+                expect($.warningContent.textContent).toBe("반환할 금액이 없습니다.");
+                expect(publishLogEvent).not.toHaveBeenCalled();
             });
         });
     });
