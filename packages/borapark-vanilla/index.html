@@ -20,55 +20,55 @@
         <li>
           <button type="button">
             <span class="drink-name">콜라</span>
-            <span class="drink-price">1500원</span>
+            <span class="drink-price" data-drink-name="COLA">1500원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">속이 사이다</span>
-            <span class="drink-price">17000원</span>
+            <span class="drink-price" data-drink-name="SPRITE">1700원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">판타지판타</span>
-            <span class="drink-price">1500원</span>
+            <span class="drink-price" data-drink-name="FANTA">1500원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">오뎅국물</span>
-            <span class="drink-price">1800원</span>
+            <span class="drink-price" data-drink-name="EOMUK">1800원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">부장라떼</span>
-            <span class="drink-price">800원</span>
+            <span class="drink-price" data-drink-name="LATTE">800원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">오아시스</span>
-            <span class="drink-price">1000원</span>
+            <span class="drink-price" data-drink-name="WATER">1000원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">레드뿔</span>
-            <span class="drink-price">2500원</span>
+            <span class="drink-price" data-drink-name="RED_BULL">2500원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">핫세븐</span>
-            <span class="drink-price">1900원</span>
+            <span class="drink-price" data-drink-name="HOT_SEVEN">1900원</span>
           </button>
         </li>
         <li>
           <button type="button">
             <span class="drink-name">커피우유</span>
-            <span class="drink-price">1400원</span>
+            <span class="drink-price" data-drink-name="COFFEE_MILK">1400원</span>
           </button>
         </li>
       </ul>
@@ -77,9 +77,9 @@
       <section class="vending-machine-input-box">
         <form aria-label="금액 입력">
           <fieldset>
-            <legend>투입 금액</legend>
-            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required aria-invalid="false"
-              placeholder="0" />
+            <legend class="fieldset-legend">투입 금액</legend>
+            <input type="number" id="user-amount" aria-label="투입 금액" min="0" max="100000" required value="0"
+              aria-invalid="false" />
             <label for="user-amount">투입 금액</label>
           </fieldset>
           <fieldset>

@@ -19,26 +19,19 @@ window.addEventListener("logEvent", (e: CustomEventInit<LogInfo>) => {
 });
 
 const createLog = (logInfo: LogInfo) => {
-    let log = "";
-
     switch (logInfo.type) {
         case LogType.CASH_PUT:
-            log = `${logInfo.amount}원을 투입했습니다.`;
-            break;
+            return `${logInfo.amount}원을 투입했습니다.`;
         case LogType.CASH_RETURN:
-            log = `${logInfo.amount}원을 반환합니다.`;
-            break;
+            return `${logInfo.amount}원을 반환합니다.`;
         case LogType.BUY:
-            log = `${logInfo.menuName}을(를) 구매했습니다.`;
-            break;
+            return `${logInfo.menuName}을(를) 구매했습니다.`;
     }
-
-    return log;
 }
 
 const writeLog = (line: string) => {
     if (!($logBox instanceof HTMLTextAreaElement)) return;
-    $logBox.value = `${$logBox.value}${$logBox.value === "" ? "" : "\n"}${line}`;
+    $logBox.value = `${$logBox.value}${$logBox.value === "" ? "" : "\n"}${line}`
 }
 
 const scrollDown = () => {

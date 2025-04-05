@@ -31,22 +31,24 @@ const drawMenuButtons = () => {
     const $menuWrapper = document.querySelector<HTMLDivElement>(".menu-btn-wrapper");
     const $buttonTemplate = document.querySelector<HTMLTemplateElement>(".button-template");
 
-    if (!($menuWrapper instanceof HTMLDivElement) || !($buttonTemplate instanceof HTMLTemplateElement)) return;
+    if (!$menuWrapper || !$buttonTemplate) return;
 
     if (menuItems.length % 3 !== 0) {
         appendBlankButtons(3 - menuItems.length % 3);
     }
 
     for (const menu of menuItems) {
-        const $menuBtn = $buttonTemplate.content.cloneNode(true) as HTMLButtonElement;
-        const $name = $menuBtn.querySelector(".menu-name") as HTMLParagraphElement;
-        const $price = $menuBtn.querySelector(".price") as HTMLParagraphElement;
+        const $template = document.importNode($buttonTemplate.content, true);
         
+        const $button = $template.querySelector(".menu-item") as HTMLButtonElement;
+        const $name = $template.querySelector(".menu-name") as HTMLParagraphElement;
+        const $price = $template.querySelector(".price") as HTMLParagraphElement;
+        
+        $button.disabled = !!menu.isBlank;
         $name.innerText = menu.name;
         $price.innerText = menu.isBlank ? "" : `${menu.price}원`;
 
-        $menuWrapper.appendChild($menuBtn);
-        ($menuWrapper.lastElementChild as HTMLButtonElement).disabled = menu.isBlank ? true : false;
+        $menuWrapper.appendChild($template);
     }
 }
 

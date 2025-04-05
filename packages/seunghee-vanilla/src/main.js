@@ -1,6 +1,7 @@
 import "./style.css";
 
 let insertedMoney = 0;
+let isMdPriceShown = false;
 
 const mds = [
   { name: "콜라", price: 1500 },
@@ -21,17 +22,47 @@ const mds = [
 
 function renderMdButtons() {
   const mdContainer = document.querySelector(".md-container");
-  const mdButtons = mdContainer.children;
 
-  for (let i = 0; i < mdButtons.length; i++) {
-    const mdButton = mdButtons[i];
+  const btnCount = Math.ceil(mds.length / 3) * 3;
+
+  let mdButtons = [];
+  for (let i = 0; i < btnCount; i++) {
+    const mdButton = document.createElement("button");
+    mdButton.className = "md-btn";
+
+    if (i > mds.length - 1) {
+      mdButtons.push(mdButton);
+      continue;
+    }
+
+    const moneyPresenter = document.querySelector(".inserted-money-presenter");
+
     const md = mds[i];
-
     mdButton.innerHTML = `<h3>${md.name}</h3><p>${md.price}원</p>`;
-    mdButton.addEventListener("click", () => {
-      console.log(md.price);
+
+    mdButton.addEventListener("mousedown", (ev) => {
+      if (insertedMoney < md.price) {
+        moneyPresenter.innerText = convertNumToStrForDisplay(md.price);
+        isMdPriceShown = true;
+        return;
+      }
+
+      insertedMoney -= md.price;
     });
+    mdButton.addEventListener("mouseup", (ev) => {
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
+
+      if (isMdPriceShown) {
+        isMdPriceShown = false;
+      } else {
+        addLog(`${md.name}을(를) 구매했습니다.`);
+      }
+    });
+
+    mdButtons.push(mdButton);
   }
+
+  mdContainer.append(...mdButtons);
 }
 
 function renderInsertedMoney() {
@@ -44,12 +75,48 @@ function renderInsertedMoney() {
 
     if (!isNaN(money) && money >= 0) {
       insertedMoney += money;
-      moneyPresenter.innerText = insertedMoney.toLocaleString();
+      moneyPresenter.innerText = convertNumToStrForDisplay(insertedMoney);
     }
 
     moneyInput.value = 0;
+
+    if (money !== 0) {
+      addLog(`${convertNumToStrForDisplay(money)}원을 넣었습니다.`);
+    }
   });
+}
+
+function renderReturnButton() {
+  const returnBtn = document.querySelector(".return-btn");
+  const moneyPresenter = document.querySelector(".inserted-money-presenter");
+
+  returnBtn.addEventListener("click", () => {
+    if (insertedMoney === 0) {
+      return;
+    }
+
+    const insertedMoneyStr = moneyPresenter.innerText;
+    addLog(`${insertedMoneyStr}원을 반환합니다.`);
+
+    moneyPresenter.innerText = "0";
+    insertedMoney = 0;
+  });
+}
+
+function addLog(message) {
+  const userLogger = document.querySelector(".user-logger");
+
+  const log = document.createElement("div");
+  log.innerText = message;
+
+  userLogger.appendChild(log);
+  userLogger.scrollTop = userLogger.scrollHeight;
+}
+
+function convertNumToStrForDisplay(number) {
+  return number.toLocaleString();
 }
 
 renderMdButtons();
 renderInsertedMoney();
+renderReturnButton();
