@@ -26,19 +26,14 @@ body {
     align-items: center;
 }
 
-.log-message.error {
-    color : red;
-}
-
-
 .total-amount {
-
+    display: flex;
     font-size: 32px;
     margin-bottom: 20px;
     border: 2px solid #000;
     padding: 10px 40px;
     background: white;
-
+    justify-content: center;
 }
 
 .product-grid {
@@ -55,6 +50,14 @@ body {
     font-size: 16px;
     line-height: 1.4;
     cursor: pointer;
+}
+
+.product-button:hover {
+    background-color: #6fb8f8;
+}
+
+.product-button:active {
+    background-color: #346996;
 }
 
 .right-panel {
@@ -98,4 +101,8 @@ body {
     background: #fefefe;
     height: 150px;
     overflow-y: scroll;
+}
+
+.log-message.error {
+    color : red;
 }
