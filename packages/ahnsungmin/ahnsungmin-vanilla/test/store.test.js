@@ -51,7 +51,7 @@ describe('Store 테스트', () => {
             // then: 로그 메시지 검증
             const logSection = document.querySelector('.log-section');
             const logText = logSection.lastElementChild.textContent;
-            expect(logText).toContain('1000원을 투입했습니다');
+            expect(logText).toContain('1,000원을 투입했습니다');
         });
 
         it('큰 금액도 로그 메시지에 표시된다', () => {
@@ -59,7 +59,7 @@ describe('Store 테스트', () => {
             
             const logSection = document.querySelector('.log-section');
             const logText = logSection.lastElementChild.textContent;
-            expect(logText).toContain('1000000원을 투입했습니다');
+            expect(logText).toContain('1,000,000원을 투입했습니다');
         });
     });
 }); 
