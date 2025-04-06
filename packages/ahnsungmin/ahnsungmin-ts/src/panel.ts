@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function handleInsert(): void {
         const amount = parseInt(typedInputElement.value);
         if (isNaN(amount) || amount <= 0) {
-            alert('올바른 금액을 입력해주세요.');
             return;
         }
+
         updateMoney(amount);
         typedInputElement.value = '';
     }
@@ -44,9 +44,27 @@ document.addEventListener('DOMContentLoaded', () => {
             handleInsert();
         }
     }
+    
+    // 입력값 필터링 처리
+    function handleInput(e: Event): void {
+        if (!(e.target instanceof HTMLInputElement)) {
+            return;
+        }
+        
+        // 숫자만 입력 가능하도록 필터링
+        let value = e.target.value.replace(/[^0-9]/g, '');
+        
+        // 7자리로 제한
+        if (value.length > 7) {
+            value = value.slice(0, 7);
+        }
+        
+        e.target.value = value;
+    }
 
     // 이벤트 리스너 등록
     insertButton.addEventListener('click', handleInsert);
     returnButton.addEventListener('click', handleReturn);
     inputElement.addEventListener('keypress', handleKeyPress);
+    inputElement.addEventListener('input', handleInput);
 }); 
