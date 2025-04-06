@@ -1,4 +1,3 @@
-// machine.js에서 export한 currentMoney 변수를 import
 import { currentMoney, updateMoney, addLog } from './store.js';
 
 // 조작 패널 관련 코드 
@@ -37,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. [반환] 버튼
     const returnMoney = () => {
         if (currentMoney > 0) {
-            addLog(`${currentMoney}원을 반환합니다.`);
+            addLog(`${currentMoney.toLocaleString('ko-KR')}원을 반환합니다.`);
             updateMoney(0);
         }
     };

@@ -31,7 +31,6 @@ function calculateTotalSlots(productsLength) {
 
 function initializeVendingMachine() {
     const productsContainer = document.querySelector('.machine-products-container');
-    const totalSlots = calculateTotalSlots(products.length);
     
     // A) 먼저 상품 버튼들을 생성
     products.forEach(product => {
@@ -40,6 +39,7 @@ function initializeVendingMachine() {
     });
 
     // B) 남은 슬롯만큼 disabled 버튼 추가
+    const totalSlots = calculateTotalSlots(products.length);
     const remainingSlots = totalSlots - products.length;
     for (let i = 0; i < remainingSlots; i++) {
         const button = createDisabledButton();

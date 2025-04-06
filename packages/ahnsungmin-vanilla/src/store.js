@@ -6,7 +6,7 @@ let logs = [];
 export function updateMoney(newAmount) {
     const difference = newAmount - currentMoney;
     if (difference > 0) {
-        addLog(`${difference}원을 투입했습니다.`);
+        addLog(`${difference.toLocaleString('ko-KR')}원을 투입했습니다.`);
     }
     
     currentMoney = newAmount;
