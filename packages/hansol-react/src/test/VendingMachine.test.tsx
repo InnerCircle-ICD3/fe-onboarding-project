@@ -3,7 +3,7 @@ import VendingMachine from '../components/VendingMachine';
 import { describe, expect, it } from 'vitest';
 
 describe('VendingMachine', () => {
-  const TOTAL_SLOT = 12;
+  const TOTAL_SLOT = 9;
   const defaultProducts = [
     { name: '콜라', price: '1500원' },
     { name: '속이사이다', price: '1700원' },
@@ -12,10 +12,7 @@ describe('VendingMachine', () => {
     { name: '부장라떼', price: '800원' },
     { name: '판타지판타', price: '1500원' },
     { name: '레드불', price: '2500원' },
-    { name: '핫세븐', price: '1900원' },
-    { name: '커피우유', price: '1400원' },
-    { name: '딸기우유', price: '1400원' },
-    { name: '초코우유', price: '1400원' },
+    { name: '핫세븐', price: '1900원' }
   ]
 
   it('자판기 영역의 컨테이너가 렌더링된다.', () => {
@@ -60,6 +57,12 @@ describe('VendingMachine', () => {
     const disabledButtons = allButtons.filter((btn) => btn.hasAttribute("disabled"));
 
     expect(disabledButtons).toHaveLength(TOTAL_SLOT - products.length);
+  });
+  it("상품 갯수가 3의 배수라면 상품 갯수와 동일한 만큼의 상품 버튼이 렌더링된다.", () => {
+    const products = [ ...defaultProducts ];
+    render(<VendingMachine products={products} />);
+    const allButtons = screen.getAllByTestId("product-button");
+    expect(allButtons).toHaveLength(TOTAL_SLOT);
   });
   it("상품 갯수가 3의 배수가 아니라면 3의 배수를 채워서 렌더링되고, 상품이 없는 버튼은 disabled 된다.", () => {
     const products = defaultProducts.slice(0, 7);
