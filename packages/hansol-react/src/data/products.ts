@@ -1,4 +1,7 @@
-import { Product } from "../types/types";
+export interface Product {
+  name: string,
+  price: string
+}
 
 export const products: Product[] = [
   { name: '콜라', price: '1500원' },
