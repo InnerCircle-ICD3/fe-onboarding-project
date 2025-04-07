@@ -1,3 +1,4 @@
+import { Product } from "../../data/products";
 import {
   ProductGrid,
   VendingMachineContainer,
@@ -6,9 +7,12 @@ import {
   ProductName,
   ProductPrice,
 } from "./VendingMachine.styles";
-import { products } from "../../data/products";
 
-const VendingMachine = () => {
+interface VendingMachineProps {
+  products: Product[];
+}
+
+const VendingMachine = ({ products }: VendingMachineProps) => {
   const PRODUCT_COLUMNS = 3;
   const PRODUCT_ROWS = Math.ceil(products.length / PRODUCT_COLUMNS);
   const TOTAL_SLOT = PRODUCT_COLUMNS * PRODUCT_ROWS;
