@@ -1,5 +1,7 @@
-import { PRODUCT_LIST } from '../data/products';
-import { renderProductList } from '../ui/productRenderer';
+import { ProductContainer } from "../components/product_button/productContainer";
+import { LogContainer } from "../components/product_log/logContainer";
+import { PRODUCT_LIST } from "../data/products";
+import { renderProductList } from "../ui/productRenderer";
 
 /**
  * 홈 페이지 렌더링 함수
@@ -7,14 +9,19 @@ import { renderProductList } from '../ui/productRenderer';
  */
 export function renderHomePage(container: HTMLElement): void {
   // 컨테이너 초기화
-  container.innerHTML = '';
-  
+  container.innerHTML = "";
+
+  // 홈 컨테이너 생성
+  // 제품 컨테이너와 로그 컨테이너를 포함
+  const homeContainer = document.createElement("div");
+  homeContainer.id = "home-container";
+  homeContainer.className = "grid grid-cols-5 gap-4";
+  container.appendChild(homeContainer);
+
   // 제품 컨테이너 생성
-  const productContainer = document.createElement('div');
-  productContainer.id = 'product-container';
-  productContainer.className = 'grid grid-cols-3 gap-4';
-  container.appendChild(productContainer);
-  
-  // 제품 목록 렌더링
-  renderProductList(PRODUCT_LIST, productContainer);
+  const productContainer = new ProductContainer().render();
+  homeContainer.appendChild(productContainer);
+
+  const logContainer = new LogContainer().render();
+  homeContainer.appendChild(logContainer);
 }

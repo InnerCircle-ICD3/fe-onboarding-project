@@ -1,4 +1,4 @@
-import { Button } from '../components/Button';
+import { Button } from '../components/product_button/button';
 import { Product, ProductList } from '../types/product';
 import { ProductService } from '../services/productService';
 
