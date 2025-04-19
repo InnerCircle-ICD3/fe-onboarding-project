@@ -1,5 +1,5 @@
-import { store } from "./store";
 import { formatNumber, extractNumber } from "./utils";
+import { store } from "./store";
 
 export const handleInputCoin = () => {
   const inputCoin = document.querySelector(".insert-amount");
@@ -9,7 +9,6 @@ export const handleInputCoin = () => {
     e.target.value = formatNumber(numericValue);
 
     store.setState({
-      ...store.getState(),
       insertAmount: numericValue,
     });
   });
@@ -24,10 +23,20 @@ export const handleInsertButton = () => {
 
     if (insertAmount > 0) {
       store.setState({
-        ...currentState,
         insertAmount: 0,
         balance: currentState.balance + insertAmount,
       });
     }
+  });
+};
+
+export const handleReturnButton = () => {
+  const returnButton = document.querySelector(".btn-return");
+
+  returnButton.addEventListener("click", () => {
+    store.setState({
+      insertAmount: 0,
+      balance: 0,
+    });
   });
 };
