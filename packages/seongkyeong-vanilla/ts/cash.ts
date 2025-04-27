@@ -25,7 +25,7 @@ $putButton?.addEventListener("click", () => {
 $returnButton?.addEventListener("click", () => {
     if (!$balanceOutput) return;
 
-    const balance = Number(convertLocaleTextToNum($balanceOutput.innerText) ?? 0);
+    const balance = Number(convertLocaleTextToNum($balanceOutput.textContent ?? "0"));
     
     if (balance > 0) {
         returnCash(balance);
@@ -40,27 +40,27 @@ $returnButton?.addEventListener("click", () => {
 });
 
 const putCash = (cash: number) => {
-    if ($cashInput && $balanceOutput) {
-        let balance = convertLocaleTextToNum($balanceOutput.innerText);
+    if ($cashInput && $balanceOutput instanceof HTMLDivElement) {
+        let balance = Number(convertLocaleTextToNum($balanceOutput.textContent ?? "0"));
 
         $cashInput.value = "";
         balance += cash;
         
-        $balanceOutput.innerText = balance.toLocaleString();
+        $balanceOutput.textContent = balance.toLocaleString();
     }
 }
 
 const returnCash = (balance: number) => {
     if ($cashInput && $balanceOutput) {
         $cashInput.value = balance.toString();
-        $balanceOutput.innerText = "0";
+        $balanceOutput.textContent = "0";
     }
 }
 
 const setWarning = (message: string) => {
-    if ($warningContent) $warningContent.innerText = message;
+    if ($warningContent) $warningContent.textContent = message;
 }
 
 const clearWarning = () => {
-    if ($warningContent) $warningContent.innerText = "";
+    if ($warningContent) $warningContent.textContent = "";
 }
