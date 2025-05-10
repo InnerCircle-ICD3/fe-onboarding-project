@@ -1,68 +1,44 @@
-import { formatCurrencyAsLocaleString } from "./utils.js";
-
-// 상수 정의
-const DRINK_PRICES = {
-  COLA: 1500,
-  SPRITE: 1700,
-  FANTA: 1500,
-  EOMUK: 1800,
-  LATTE: 800,
-  WATER: 1000,
-  RED_BULL: 2000,
-  HOT_SEVEN: 1900,
-  COFFEE_MILK: 1400,
-};
-
-// 상태 관리
-let totalAmount = 0;
-let currentAmount = 0;
-
+import { DRINK_NAME, DRINK_PRICES } from "./js/constant.js";
+import { convertDrinkPrice, convertUserAmount, convertVendingMachineTotalAmount } from "./js/display-money.js";
+import { $form, $userAmount, handleChangeAmount, handleSubmitInsertAmount } from "./js/insert-money.js";
 /**
- * 금액 표시 화면 기능
- * @param {string} selector
- * @param {number} amount
- * @param {boolean} [needUnit]
+ * 자판기 상품 상세 정보 표시
+ * @param {string | number} text
+ * @param {string} className
+ * @param {string | null} drinkName
+ * @returns {HTMLSpanElement}
  */
-const updateAmountDisplay = (selector, amount, needUnit = false) => {
-  const unit = "원";
-  const amountElement = document.querySelector(selector);
-  amountElement.textContent = `${formatCurrencyAsLocaleString(amount)}${needUnit ? unit : ""}`;
+const createSpan = (text, className, drinkName = null) => {
+  const $span = document.createElement("span");
+  $span.classList.add(className);
+  if (drinkName) $span.dataset.drinkName = drinkName;
+  $span.textContent = text;
+  return $span;
 };
 
 /**
- * 금액 표시 화면 금액 변환
+ * 자판기 상품 목록
+ * @property {string} drink_name - 음료수 이름
+ * @property {number} drink_price - 음료수 가격
  * @returns {void}
  */
-const convertVendingMachineTotalAmount = () => {
-  updateAmountDisplay(".vending-machine-total-amount", totalAmount);
-};
+const drinkListElement = () => {
+  const $drinkList = document.getElementById("drink-list");
+  const $fragment = document.createDocumentFragment();
 
-/**
- * 자판기 표시 금액 변환
- * @returns {void}
- */
-const convertDrinkPrice = () => {
   Object.entries(DRINK_PRICES).forEach(([drink_name, drink_price]) => {
-    updateAmountDisplay(`.drink-price[data-drink-name="${drink_name}"]`, drink_price, true);
+    const $li = document.createElement("li");
+    const $button = document.createElement("button");
+    $button.type = "button";
+
+    $button.appendChild(createSpan(DRINK_NAME[drink_name], "drink-name"));
+    $button.appendChild(createSpan(drink_price, "drink-price", drink_name));
+
+    $li.appendChild($button);
+    $fragment.appendChild($li);
   });
-};
 
-/**
- * 투입 금액 입력창 금액
- * @returns {number}
- */
-const getUserAmount = () => {
-  const userAmount = document.querySelector("#user-amount").value;
-  return userAmount;
-};
-
-/**
- * 투입 금액 입력창 금액 변환
- * @returns {void}
- */
-const convertUserAmount = () => {
-  const userAmount = getUserAmount();
-  updateAmountDisplay("#user-amount", userAmount);
+  $drinkList.appendChild($fragment);
 };
 
 /**
@@ -70,9 +46,27 @@ const convertUserAmount = () => {
  * @returns {void}
  */
 const initVendingMachineView = () => {
+  // 자판기 상품 표시
+  drinkListElement();
+
+  // 자판기 금액 표시
   convertVendingMachineTotalAmount();
   convertDrinkPrice();
   convertUserAmount();
 };
 
 initVendingMachineView();
+
+/**
+ * 투입 기능
+ */
+
+const insertMoney = () => {
+  // 투입 금액 입력 이벤트 리스너
+  $userAmount.addEventListener("change", handleChangeAmount);
+
+  // 투입 금액 입력 폼 제출 이벤트 리스너
+  $form.addEventListener("submit", handleSubmitInsertAmount);
+};
+
+insertMoney();
