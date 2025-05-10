@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",                         // ECMAScript 2020 문법 사용 (최신 JS 기능)
+    "useDefineForClassFields": true,            // 클래스 속성 초기화 방식 설정 (상속 시 더 안전한 방식 사용)
+    "module": "ESNext",                         // 모듈 시스템 설정 (최신 import/export 문법)
+    "lib": [                                    // 타입스크립트가 사용할 기본 타입 정의 라이브러리 지정
+      "ES2020",                                 // ㄴ Promise 같은 최신 JavaScript 문법을 알고 있어야 함
+      "DOM",                                    // ㄴ document.querySelector 같은 브라우저 기능을 알고 있어야 함
+      "DOM.Iterable"                            // ㄴ NodeList의 forEach 같은 기능을 알고 있어야 함
+    ],
+    "skipLibCheck": true,                       // 라이브러리 타입 체크 생략 (빌드 속도 향상)
+    "moduleResolution": "bundler",              // 모듈 해석 방식 (Vite 최적화)
+    "allowImportingTsExtensions": true,         // .ts 확장자 import 허용 (예시: import { data } from './data.ts')
+    "resolveJsonModule": true,                  // JSON 파일 import 허용 (예시: import data from './data.json')
+    "isolatedModules": true,                    // 독립적 파일 컴파일 (빌드 도구 호환성)
+    "noEmit": true,                             // JS 파일 생성 안함 (Vite가 직접 처리)
+    "strict": true,                             // 엄격한 타입 체크
+    "noUnusedLocals": true,                     // 미사용 변수 체크
+    "noUnusedParameters": true,                 // 미사용 매개변수 체크
+    "noFallthroughCasesInSwitch": true          // switch문의 case마다 break 필수 체크 (의도치 않은 동작 방지)
+  },
+  "include": ["src"]                            // 타입스크립트 파일 위치
+} 

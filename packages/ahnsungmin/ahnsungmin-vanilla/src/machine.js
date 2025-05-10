@@ -31,7 +31,6 @@ function calculateTotalSlots(productsLength) {
 
 function initializeVendingMachine() {
     const productsContainer = document.querySelector('.machine-products-container');
-    const totalSlots = calculateTotalSlots(products.length);
     
     // A) 먼저 상품 버튼들을 생성
     products.forEach(product => {
@@ -40,6 +39,7 @@ function initializeVendingMachine() {
     });
 
     // B) 남은 슬롯만큼 disabled 버튼 추가
+    const totalSlots = calculateTotalSlots(products.length);
     const remainingSlots = totalSlots - products.length;
     for (let i = 0; i < remainingSlots; i++) {
         const button = createDisabledButton();
@@ -48,7 +48,7 @@ function initializeVendingMachine() {
 }
 
 // A) 상품 버튼 생성
-function createProductButton(product) {
+export function createProductButton(product) {
     // 1. template 태그를 가져온 뒤, template 태그 안에 있던 내용(button 태그)만 쏙 빼와서 복사
     const template = document.getElementById('product-button-template');
     const button = template.content.cloneNode(true);  // 참고: true는 자식 요소까지 모두 복사한다는 의미 (깊은 복사)
@@ -83,7 +83,7 @@ function createProductButton(product) {
 }
 
 // B) disabled 버튼 생성
-function createDisabledButton() {
+export function createDisabledButton() {
     const template = document.getElementById('product-button-template');
     const clone = template.content.cloneNode(true);
     const buttonElement = clone.querySelector('button');
@@ -106,6 +106,8 @@ function createDisabledButton() {
  * - 중성 0번째 인덱스: ㅏ / 1번째 인덱스: ㅐ
  * - 종성 0번째 인덱스: 없음 / 1번째 인덱스: ㄱ (예를들면 각이라는 글자에서 종성의 인덱스는 1)
  */
-function getKoreanParticle(str) {
-    return (str.at(-1).charCodeAt(0) - 0xac00) % 28 ? '을' : '를';
+export function getKoreanParticle(str) {
+    const charCode = str.charCodeAt(str.length - 1);  // 마지막 문자 코드를 가져옴 (마지막 문자를 토대로 '을/를' 판단하기 때문)
+    const hasFinalConsonant = (charCode - 0xAC00) % 28 > 0;  // 한글 유니코드에서 종성 인덱스를 계산 (종성 인덱스가 0보다 크면 받침이 있는 것이므로 '을'을 사용)
+    return hasFinalConsonant ? '을' : '를';  // 받침이 있으면 '을', 없으면 '를'을 반환
 }
